@@ -32,7 +32,7 @@ table {
 		<h1 style="text-align: center; margin-top: 250px;">로그인</h1>
 			<tr>
 				<td>ID</td>
-				<td><input type="text" name="userID" placeholder="입력하세요"></td>
+				<td><input type="text" name="userID" placehoder="입력하세요"></td>
 			</tr>
 			<tr>
 				<td>PW</td>

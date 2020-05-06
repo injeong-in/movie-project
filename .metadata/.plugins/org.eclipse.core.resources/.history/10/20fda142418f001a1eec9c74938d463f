@@ -50,7 +50,7 @@ table {
 			</tr>
 			<tr>
 				<td align="center">PW확인</td>
-				<td><input type="password" placeholder="영어+특수문자+숫자를 섞어서 (8~16)자리" name="correctPassword"></td>
+				<td><input type="password" name="correctPassword"></td>
 			</tr>
 			<tr>
 				<td align="center">이름</td>
@@ -99,7 +99,7 @@ table {
 		}
 	%>
 
-	<script>
+	<script type="text/javascript">
 	var text ="";
 	var count = 0;
 	
@@ -131,9 +131,10 @@ table {
 		//아이디 유효성 검사
 		if (idPattern.test(userID[0].value) == true) {
 			text += "ID : " + userID[0].value + "\n";
-			
+			return true;
 		} else { 
 			alert("아이디를 잘못 입력 하셨습니다.");
+			return false;
 		}
 		
 		
@@ -142,37 +143,43 @@ table {
 	        if(pwPattern.test(correctPassword[0].value) == true){
 	          if(userPW[0].value == correctPassword[0].value){
 	            text += "PW : " + userPW[0].value + "\n";
+	            	return true;
 	          }
 	        }
 		}
 	        else {
 	        	alert("패스워드가 일치 하지 않습니다.");
+	        	return false;
 	        }
 		
 		
 		//이메일 유효성 검사
 		if (emailPattern.test(email[0].value) == true) {
 			text += "EMAIL : " + email[0].value + "\n";
+			return true;
 		} else {
 			alert("이메일을 잘못 입력 하셨습니다.");
+			return false;
 		}
 		
 		
 		//폰번호 유효성 검사
 		if (phonePattern.test(phone[0].value) == true) {
 			text += "EMAIL : " + phone[0].value + "\n";
+			return true;
 		} else {
 			alert("폰번호 형식이 잘못 되었습니다.");
+			return false;
 		}
-		
-		alert(text);
 		
 		if(count == 0+count)
 	        text = [];
 	}
 	
 	
+	
 </script>
+
 
 
 </body>
