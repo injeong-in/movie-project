@@ -107,7 +107,7 @@ table {
 	    alert("asdf")
 	}
 	
-	function inputClear() {
+	function inputClear() {				
 		document.getElementById("fm").reset();
 	}
 	
@@ -138,16 +138,13 @@ table {
 		
 		
 		//비밀번호 유효성 검사
-		if(pwPattern.test(userPW[0].value) == true){
-	        if(pwPattern.test(correctPassword[0].value) == true){
-	          if(userPW[0].value == correctPassword[0].value){
-	            text += "PW : " + userPW[0].value + "\n";
-	          }
-	        }
-		}
-	        else {
-	        	alert("패스워드가 일치 하지 않습니다.");
-	        }
+		if((pwPattern.test(userPW[0].value) == true) && 
+            (pwPattern.test(correctPassword[0].value) == true)
+            && (userPW[0].value == correctPassword[0].value))
+               text += "PW : " + userPW[0].value + "\n";
+              
+     	 else 
+                 alert("패스워드가 일치 하지 않습니다.");
 		
 		
 		//이메일 유효성 검사

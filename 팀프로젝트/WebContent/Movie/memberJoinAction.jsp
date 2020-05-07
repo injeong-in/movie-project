@@ -30,6 +30,7 @@
 		} else {
 
 			Dao dao = Dao.getInstance();
+			//setproperty로 매핑된 객체를 함수에 매개변수로 전달
 			int result = dao.insertMember(member);
 
 			if (result == -1) {
