@@ -30,14 +30,14 @@ public class Dao {
 		}
 	}
 
-	
-	
+
+
 	//싱글톤 객체 리턴
 	public static Dao getInstance() {
 		return dao;
 	}
 
-	
+
 	//로그인
 	public int login(String userID, String userPW) {
 
@@ -54,12 +54,12 @@ public class Dao {
 
 			if(rs.next()) {
 				if(rs.getString(1).equals(userPW)) {
-					return 1; //�α��� ����
+					return 1; //
 				} else 
-					return 0; // id,��� ����ġ
+					return 0; //
 			}
 
-			return -1; // �������� �ʴ� ���̵�
+			return -1; //
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,21 +72,42 @@ public class Dao {
 	public int insertMember(UserDTO dto) {
 
 		String sql = "INSERT INTO user_inform VALUES(?,?,?,?,?);";
-		
+
 		try {
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, dto.getUserID());
-		pstmt.setString(2, dto.getUserPW());
-		pstmt.setString(3, dto.getUserName());
-		pstmt.setString(4, dto.getEmail());
-		pstmt.setString(5, dto.getPhoneNumber());
-		return pstmt.executeUpdate();
-		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUserID());
+			pstmt.setString(2, dto.getUserPW());
+			pstmt.setString(3, dto.getUserName());
+			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getPhoneNumber());
+			return pstmt.executeUpdate();
+
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 
 		return -1;
-
 	}
+	
+	//아이디 중복 검사
+	public ArrayList<String> idCheck() {
+	      
+	      String sql = "SELECT userID FROM user_inform;"; //유저 아이디 가져오는 쿼리
+	      ArrayList<String> list = new ArrayList<>(); //아이디 담을 자료구조
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         rs = pstmt.executeQuery();
+	         
+	         while(rs.next()) {
+	            list.add(rs.getString(1));
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      return list;
+	   }
+	
 }
