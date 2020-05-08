@@ -1,5 +1,8 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ page import="Movie.Dao"%>
 <jsp:useBean id="user" class="Movie.UserDTO"></jsp:useBean>
 <jsp:setProperty property="userID" name="user" param="userID" />
@@ -11,6 +14,36 @@
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
+	
+	PrintWriter script = response.getWriter();
+	
+	
+	Dao dao = Dao.getInstance();
+	
+	
+	ArrayList<String> list = dao.idCheck();
+	
+	int i=0;
+	String str;
+	
+	while(list != null) {
+		str = list.get(i);
+		if(str.equals("userID")) {
+			script.println("<script>");
+			script.println("alert('중복된 아이디 입니다')");
+			script.println("history.back()");
+			script.println("</script>");
+		} else {
+			script.println("<script>");
+			script.println("alert('사용가능한 아이디 입니다')");
+			script.println("location.href='login.jsp'");
+			script.println("</script>");
+		}
+		
+		i++;
+	}
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -23,7 +56,7 @@
 table {
 	position: absolute;
 	padding: 20px;
-	width: 300px;
+	width: 500px;
 	background-color: #EEEFF1;
 	border-radius: 5px;
 	top: 50%;
@@ -44,6 +77,12 @@ table {
 				<td align="center">ID</td>
 				<td><input type="text" name="userID"></td>
 			</tr>
+			<tr>
+				<td align="center">아이디 중복검사</td>
+				<td><input type="text" name="checkID"></td>
+				<td><input type="button" value="확인" onclick=></td>
+			</tr>
+			
 			<tr>
 				<td align="center">PW</td>
 				<td><input type="password" name="userPW"></td>
@@ -157,7 +196,7 @@ table {
 		
 		//폰번호 유효성 검사
 		if (phonePattern.test(phone[0].value) == true) {
-			text += "EMAIL : " + phone[0].value + "\n";
+			text += "PHONE : " + phone[0].value + "\n";
 		} else {
 			alert("폰번호 형식이 잘못 되었습니다.");
 		}
