@@ -80,7 +80,7 @@ table {
 			<tr>
 				<td align="center">아이디 중복검사</td>
 				<td><input type="text" name="checkID"></td>
-				<td><input type="button" value="확인" onclick=></td>
+				<td><input type="button" value="확인" onclick="idFind()"></td>
 			</tr>
 			
 			<tr>
@@ -145,6 +145,12 @@ table {
 	function print() {
 	    alert("asdf")
 	}
+	
+	function idFind() {
+	      let inputId = document.getElementsByName('userID');
+	      location.href = 'idcheckAction.jsp?userID=' + inputId[0].value;
+	   }
+	
 	
 	function inputClear() {				
 		document.getElementById("fm").reset();
