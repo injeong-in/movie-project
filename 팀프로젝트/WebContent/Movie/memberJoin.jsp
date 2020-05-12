@@ -18,39 +18,13 @@
 	PrintWriter script = response.getWriter();
 	
 	
-	Dao dao = Dao.getInstance();
-	
-	
-	ArrayList<String> list = dao.idCheck();
-	
-	int i=0;
-	String str;
-	
-	while(list != null) {
-		str = list.get(i);
-		if(str.equals("userID")) {
-			script.println("<script>");
-			script.println("alert('중복된 아이디 입니다')");
-			script.println("history.back()");
-			script.println("</script>");
-		} else {
-			script.println("<script>");
-			script.println("alert('사용가능한 아이디 입니다')");
-			script.println("location.href='login.jsp'");
-			script.println("</script>");
-		}
-		
-		i++;
-	}
-	
-	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입페이지</title>
 
 <style>
 table {
@@ -77,9 +51,9 @@ table {
 				<td align="center">ID</td>
 				<td><input type="text" name="userID"></td>
 			</tr>
+			
 			<tr>
 				<td align="center">아이디 중복검사</td>
-				<td><input type="text" name="checkID"></td>
 				<td><input type="button" value="확인" onclick="idFind()"></td>
 			</tr>
 			
