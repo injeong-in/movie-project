@@ -6,8 +6,28 @@ public class UserDTO {
 	private String userPW;
 	private String userName;
 	private String email;
+	private String userEmailHash;
+	private String userEmailChecked;
 	private String phoneNumber;
 	
+	public UserDTO() {}
+	
+	public UserDTO(String userEmailHash) {
+		this.userEmailHash = userEmailHash;
+	}
+	
+	public String getUserEmailChecked() {
+		return userEmailChecked;
+	}
+	public void setUserEmailChecked(String userEmailChecked) {
+		this.userEmailChecked = userEmailChecked;
+	}
+	public String getUserEmailHash() {
+		return userEmailHash;
+	}
+	public void setUserEmailHash(String userEmailHash) {
+		this.userEmailHash = userEmailHash;
+	}
 	public String getUserName() {
 		return userName;
 	}
