@@ -35,9 +35,9 @@
 		} else {
 		
 			Dao dao = Dao.getInstance();
-			UserDTO dto = new UserDTO(SHA256.getSHA256(member.getEmail()));
+			member.setUserEmailHash(SHA256.getSHA256("email"));
 			//setproperty로 매핑된 객체를 함수에 매개변수로 전달
-			int result = dao.insertMember(dto);
+			int result = dao.insertMember(member);
 
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
