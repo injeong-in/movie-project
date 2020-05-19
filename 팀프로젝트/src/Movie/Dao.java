@@ -17,10 +17,10 @@ public class Dao {
 
 	public Dao() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/movie?"; //DB��ġ
-			String dbID = "root"; //mysql ����
-			String dbPassword = "1234"; //mysql ��й�ȣ
-			String driver = "org.gjt.mm.mysql.Driver"; //
+			String dbURL = "jdbc:mysql://localhost:3306/movie?"; //
+			String dbID = "root"; //mysql 계정
+			String dbPassword = "1234"; //mysql 비밀번호
+			String driver = "org.gjt.mm.mysql.Driver";
 
 			Class.forName(driver);
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
@@ -71,7 +71,7 @@ public class Dao {
 	//회원가입
 	public int insertMember(UserDTO dto) {
 
-		String sql = "INSERT INTO user_inform VALUES(?,?,?,?,?);";
+		String sql = "INSERT INTO user_inform VALUES(?,?,?,?,?,?,?);";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -79,7 +79,9 @@ public class Dao {
 			pstmt.setString(2, dto.getUserPW());
 			pstmt.setString(3, dto.getUserName());
 			pstmt.setString(4, dto.getEmail());
-			pstmt.setString(5, dto.getPhoneNumber());
+			pstmt.setString(5, dto.getUserEmailHash());
+			pstmt.setString(6, dto.getPhoneNumber());
+			pstmt.setString(7, dto.getUserEmailChecked());
 			return pstmt.executeUpdate();
 
 		} catch(SQLException e) {
@@ -109,5 +111,74 @@ public class Dao {
 	      
 	      return list;
 	   }
+	
+	
+	//사용자 이메일 인증이 되었는지 확인
+		public boolean getEmailChecked(String userID) {
+
+			String sql = "SELECT emailChecked FROM user_inform WHERE id=?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,userID);
+				rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					return rs.getBoolean(1);
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {if(conn!=null) conn.close();} catch (Exception e2) {e2.printStackTrace();}
+				try {if(pstmt!=null) pstmt.close();} catch (Exception e2) {e2.printStackTrace();}
+				try {if(rs!=null) rs.close();} catch (Exception e2) {e2.printStackTrace();}
+			}
+			return false; //DB오류
+		}
+
+		
+		//사용자의 이메일 인증을 수행
+		public boolean setEmailChecked(String userID) {
+
+			String sql = "UPDATE user_inform SET emailChecked = true WHERE id = ?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,userID);
+				pstmt.executeUpdate();
+				return true;
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {if(conn!=null) conn.close();} catch (Exception e2) {e2.printStackTrace();}
+				try {if(pstmt!=null) pstmt.close();} catch (Exception e2) {e2.printStackTrace();}
+				try {if(rs!=null) rs.close();} catch (Exception e2) {e2.printStackTrace();}
+			}
+			return false; //DB오류
+		}
+		
+		
+		//사용자 이메일을 반환해주는 함수
+		public String getUserEmail(String userID) {
+			String sql = "SELECT email FROM user_inform WHERE id=?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,userID);
+				rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {if(conn!=null) conn.close();} catch (Exception e2) {e2.printStackTrace();}
+				try {if(pstmt!=null) pstmt.close();} catch (Exception e2) {e2.printStackTrace();}
+				try {if(rs!=null) rs.close();} catch (Exception e2) {e2.printStackTrace();}
+			}
+			return null; //DB오류
+		}
+	
 	
 }

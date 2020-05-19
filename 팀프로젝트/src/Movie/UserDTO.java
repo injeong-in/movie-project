@@ -10,11 +10,7 @@ public class UserDTO {
 	private String userEmailChecked;
 	private String phoneNumber;
 	
-	public UserDTO() {}
 	
-	public UserDTO(String userEmailHash) {
-		this.userEmailHash = userEmailHash;
-	}
 	
 	public String getUserEmailChecked() {
 		return userEmailChecked;
