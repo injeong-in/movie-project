@@ -1,5 +1,5 @@
 INDEX VERSION 1.131
-C:\team-project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2065990302.index
+C:\프로젝트\WebProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2065990302.index
 \팀프로젝트\src
-C:\team-project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3970969725.index
+C:\프로젝트\WebProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3970969725.index
 \팀프로젝트\src

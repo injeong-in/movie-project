@@ -1,7 +1,10 @@
-<%@page import="java.io.PrintWriter"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="Movie.Dao"%>
+<%@ page import="util.SHA256" %>
+<%@ page import="Movie.UserDTO" %>
 <jsp:useBean id="member" class="Movie.UserDTO"></jsp:useBean>
 <jsp:setProperty property="userID" name="member" param="userID" />
 <jsp:setProperty property="userPW" name="member" param="userPW" />
@@ -9,7 +12,9 @@
 <jsp:setProperty property="email" name="member" param="email" />
 <jsp:setProperty property="phoneNumber" name="member" param="phone" />
 <%
+
 	request.setCharacterEncoding("UTF-8");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -28,8 +33,10 @@
 			script.println("</script>");
 
 		} else {
-
+		
 			Dao dao = Dao.getInstance();
+			member.setUserEmailHash(SHA256.getSHA256("email"));
+			//setproperty로 매핑된 객체를 함수에 매개변수로 전달
 			int result = dao.insertMember(member);
 
 			if (result == -1) {

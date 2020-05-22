@@ -2,3 +2,27 @@
 5월 06, 2020 09:23:25.14 NEW SESSION
 5월 06, 2020 09:23:25.14 [9640:208:0506/092325.142:ERROR:browser_switcher_service.cc(238)] XXX Init()
 5월 06, 2020 09:23:35.37 [9640:208:0506/092335.376:ERROR:device_event_log_impl.cc(162)] [09:23:35.376] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+5월 18, 2020 21:42:03.16 NEW SESSION
+5월 18, 2020 21:42:03.16 [10416:13020:0518/214203.150:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 18, 2020 21:42:05.64 [10416:13020:0518/214205.639:ERROR:account_info_fetcher.cc(60)] OnGetTokenFailure: Invalid credentials (credentials rejected by server).
+5월 18, 2020 21:42:16.70 [10416:13020:0518/214216.701:ERROR:device_event_log_impl.cc(162)] [21:42:16.701] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 18, 2020 21:53:00.86 [10416:13020:0518/215300.862:ERROR:event_router.cc(707)] Event dispatched while shutting down extensions browser client.
+5월 18, 2020 21:53:01.34 [0518/215301.334:ERROR:process_info.cc(329)] VirtualQueryEx: 액세스가 거부되었습니다. (0x5)
+5월 18, 2020 21:53:01.35 [0518/215301.348:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+5월 18, 2020 21:53:01.37 [0518/215301.351:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+5월 18, 2020 21:53:01.38 [0518/215301.352:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: 기존 프로세스에 액세스하려고 했습니다. (0xc000010a)
+
+5월 21, 2020 16:23:58.24 NEW SESSION
+5월 21, 2020 16:23:58.24 [8288:7752:0521/162358.240:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 16:24:00.66 [8288:7752:0521/162400.668:ERROR:account_info_fetcher.cc(60)] OnGetTokenFailure: Invalid credentials (credentials rejected by server).
+5월 21, 2020 16:24:12.66 [8288:7752:0521/162412.663:ERROR:device_event_log_impl.cc(162)] [16:24:12.663] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 21, 2020 18:26:42.65 [0521/182642.654:ERROR:process_info.cc(329)] VirtualQueryEx: 액세스가 거부되었습니다. (0x5)
+5월 21, 2020 18:26:42.67 [0521/182642.657:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+5월 21, 2020 18:26:42.68 [0521/182642.659:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: 기존 프로세스에 액세스하려고 했습니다. (0xc000010a)
+5월 21, 2020 19:12:31.17 [6308:1164:0521/191231.178:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 19:12:47.29 [6308:1164:0521/191247.298:ERROR:device_event_log_impl.cc(162)] [19:12:47.298] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+5월 21, 2020 22:01:48.96 NEW SESSION
+5월 21, 2020 22:01:48.96 [1632:6072:0521/220148.962:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 22:01:58.50 [1632:6072:0521/220158.502:ERROR:device_event_log_impl.cc(162)] [22:01:58.501] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.

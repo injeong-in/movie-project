@@ -1,5 +1,8 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ page import="Movie.Dao"%>
 <jsp:useBean id="user" class="Movie.UserDTO"></jsp:useBean>
 <jsp:setProperty property="userID" name="user" param="userID" />
@@ -11,19 +14,23 @@
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
+	
+	PrintWriter script = response.getWriter();
+	
+	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입페이지</title>
 
 <style>
 table {
 	position: absolute;
 	padding: 20px;
-	width: 300px;
+	width: 500px;
 	background-color: #EEEFF1;
 	border-radius: 5px;
 	top: 50%;
@@ -44,6 +51,12 @@ table {
 				<td align="center">ID</td>
 				<td><input type="text" name="userID"></td>
 			</tr>
+			
+			<tr>
+				<td align="center">아이디 중복검사</td>
+				<td><input type="button" value="확인" onclick="idFind()"></td>
+			</tr>
+			
 			<tr>
 				<td align="center">PW</td>
 				<td><input type="password" name="userPW"></td>
@@ -107,7 +120,13 @@ table {
 	    alert("asdf")
 	}
 	
-	function inputClear() {
+	function idFind() {
+	      let inputId = document.getElementsByName('userID');
+	      location.href = 'idcheckAction.jsp?userID=' + inputId[0].value;
+	   }
+	
+	
+	function inputClear() {				
 		document.getElementById("fm").reset();
 	}
 	
@@ -138,16 +157,13 @@ table {
 		
 		
 		//비밀번호 유효성 검사
-		if(pwPattern.test(userPW[0].value) == true){
-	        if(pwPattern.test(correctPassword[0].value) == true){
-	          if(userPW[0].value == correctPassword[0].value){
-	            text += "PW : " + userPW[0].value + "\n";
-	          }
-	        }
-		}
-	        else {
-	        	alert("패스워드가 일치 하지 않습니다.");
-	        }
+		if((pwPattern.test(userPW[0].value) == true) && 
+            (pwPattern.test(correctPassword[0].value) == true)
+            && (userPW[0].value == correctPassword[0].value))
+               text += "PW : " + userPW[0].value + "\n";
+              
+     	 else 
+                 alert("패스워드가 일치 하지 않습니다.");
 		
 		
 		//이메일 유효성 검사
@@ -160,7 +176,7 @@ table {
 		
 		//폰번호 유효성 검사
 		if (phonePattern.test(phone[0].value) == true) {
-			text += "EMAIL : " + phone[0].value + "\n";
+			text += "PHONE : " + phone[0].value + "\n";
 		} else {
 			alert("폰번호 형식이 잘못 되었습니다.");
 		}

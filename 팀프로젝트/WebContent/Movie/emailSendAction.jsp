@@ -18,7 +18,7 @@
 <jsp:setProperty property="email" name="member" param="email" />
 
 <%
-
+	  
 	String userID = request.getParameter("userID");
 
 	request.setCharacterEncoding("UTF-8");

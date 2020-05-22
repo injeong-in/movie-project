@@ -71,7 +71,7 @@ public class Dao {
 	//회원가입
 	public int insertMember(UserDTO dto) {
 
-		String sql = "INSERT INTO user_inform VALUES(?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO user_inform VALUES(?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
