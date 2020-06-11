@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="Movie.Dao" %>
-<%@ page import="chat.userChatDTO" %>
+<%@ page import="chat.ChatDTO" %>
 
 <%
 		String userID = null;
@@ -55,7 +55,7 @@
 		var chatContent = $('#chatContent').val(); //채팅내용
 		$.ajax(	{
 			type : "POST",
-			url : "ChatSubmitServlet",
+			url : "./chatSubmitServlet",
 			data : {
 				fromID : encodeURIComponent(fromID),
 				toID : encodeURIComponent(toID),
@@ -82,7 +82,7 @@
 		var toID = '<%= toID%>';
 		$.ajax({
 			type: "POST",
-			url : "ChatListServlet",
+			url : "./chatListServlet",
 			data: {
 				fromID: encodeURIComponent(fromID),
 				toID: encodeURIComponent(toID),
@@ -90,12 +90,12 @@
 			},
 			success: function(data) {
 				if(data=="") return;
-				var parsed = JSON.parse(data);
+				var parsed = JSON.parse(data); //제이슨 형태로 데이터 파싱
 				var result = parsed.result;
 				for (var i = 0; i < result.length; i++) {// [궁금한 부분]
 					addChat(result[i][0].value, result[i][2].value,result[i][3].value);
 				}
-				lastID = Number(parsed.last);
+				lastID = Number(parsed.last); //가장 마지막으로 전달받은 chatID가져오기
 			}
 		});
 	}
@@ -103,13 +103,14 @@
 	function addChat(chatName, chatContent, chatTime) {
 		$('#chatList').append('<div class="row">' +
 		'<div class="col-lg-12">' + 
-		'<a class="pull-left" href="#"' +
-		'<img class="media-object img-circle" src="images/icon.png" style="width: 30px; height: 30px;" alt="">' +
+		'<a class="pull-left" href="#">' +
+		'<img class="media-object img-circle" src="../images/icon.png" style="width: 30px; height: 30px;" alt="">' +
 		'</a>' +
 		'<div class="media-body">'+
+		'<h4 class="media-heading">'+
 		chatName +
 		'<span class="small pull-right">' +
-		chartTime +
+		chatTime +
 		'</span>'+
 		'</h4>' +
 		'<p>' +
@@ -119,8 +120,8 @@
 		'</div>' +
 		'</div>' +
 		'</div>' +
-		'<hr>');
-		$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+		'<hr>'); 
+		$('#chatList').scrollTop($('#chatList')[0].scrollHeight); //챗리스트의 스크롤을 가장 아래쪽으로 내려준다
 	}
 	
 	function getInfiniteChat() { //몇초간격으로 새로운 메시지가 왔는지 가져오는것
@@ -180,7 +181,12 @@
 	<script type="text/javascript">
 	 $('#messageModal').modal("show");
 	 </script>
+	 <%
+	 	session.removeAttribute("messageContent");
+	 	session.removeAttribute("messageType");
+	 %>
 	 
+	 <!--특정시간을 주기로 데이터베이스 목록을 가져오기  -->
 	 <script>
 	 $(document).ready(function(){
 		 chatListFunction('ten');

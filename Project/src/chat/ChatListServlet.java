@@ -1,6 +1,7 @@
 package chat;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 
@@ -13,10 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ChatListServlet
  */
-@WebServlet("/chat/ChatListServlet")
+@WebServlet("/ChatListServlet")
 
 
 public class ChatListServlet extends HttpServlet {
+	@Override
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Hello world");
+		response.setContentType("text/html");
+		PrintWriter write = response.getWriter();
+		write.print("<html>");
+		write.print("<head>");
+		write.print("</head>");
+		write.print("<body>");
+		write.print("<h1>helloworld</h1>");
+		write.print("</body>");
+		write.print("</html>");
+		}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
@@ -40,17 +55,17 @@ public class ChatListServlet extends HttpServlet {
 	public String getTen(String fromID, String toID, String listType) {
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
-		ChatDAO chatDAO = ChatDAO.getInstance();
-		ArrayList<userChatDTO> chatList = chatDAO.getChatListByRecent(fromID, toID, 10);
+		ChatDAO chatDAO = new ChatDAO();
+		ArrayList<ChatDTO> chatList = chatDAO.getChatListByRecent(fromID, toID, 10);
 		if(chatList.size()==0) return "";
 		
 		for(int i=0; i< chatList.size(); i++) {
-			result.append("[{\"value\": \""+chatList.get(i).getFromID()+ "\"),");
-			result.append("{\"value\": \""+chatList.get(i).getToID()+ "\"),");
-			result.append("{\"value\": \""+chatList.get(i).getChatContent()+ "\"),");
-			result.append("{\"value\": \""+chatList.get(i).getChatTime()+ "\")}]");
+			result.append("[{\"value\": \""+chatList.get(i).getFromID()+ "\"},");
+			result.append("{\"value\": \""+chatList.get(i).getToID()+ "\"},");
+			result.append("{\"value\": \""+chatList.get(i).getChatContent()+ "\"},");
+			result.append("{\"value\": \""+chatList.get(i).getChatTime()+ "\"}]");
 			
-			if(i != chatList.size() -1) result.append(", ");
+			if(i != chatList.size() -1) result.append(","); //마지막 원소가 아닐 경우
 		}
 		result.append("], \"last\":\"" + chatList.get(chatList.size()-1).getChatID()+ "\"}");
 		return result.toString();
@@ -59,15 +74,15 @@ public class ChatListServlet extends HttpServlet {
 	public String getID(String fromID, String toID, String chatID) {
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
-		ChatDAO chatDAO = ChatDAO.getInstance();
-		ArrayList<userChatDTO> chatList = chatDAO.getChatList(fromID, toID, chatID);
-		if(chatList.size()==0) return "";
+		ChatDAO chatDAO = new ChatDAO();
+		ArrayList<ChatDTO> chatList = chatDAO.getChatList(fromID, toID, chatID);
+		if(chatList.size()==0) return ""; //비어있을때 공백 출력
 		
-		for(int i=0; i< chatList.size(); i++) {
-			result.append("[{\"value\": \""+chatList.get(i).getFromID()+ "\"),");
-			result.append("{\"value\": \""+chatList.get(i).getToID()+ "\"),");
-			result.append("{\"value\": \""+chatList.get(i).getChatContent()+ "\"),");
-			result.append("{\"value\": \""+chatList.get(i).getChatTime()+ "\")}]");
+		for(int i=0; i< chatList.size(); i++) { //실제 대화정보 출력
+			result.append("[{\"value\": \""+chatList.get(i).getFromID()+ "\"},");
+			result.append("{\"value\": \""+chatList.get(i).getToID()+ "\"},");
+			result.append("{\"value\": \""+chatList.get(i).getChatContent()+ "\"},");
+			result.append("{\"value\": \""+chatList.get(i).getChatTime()+ "\"}]");
 			
 			if(i != chatList.size() -1) result.append(", ");
 		}

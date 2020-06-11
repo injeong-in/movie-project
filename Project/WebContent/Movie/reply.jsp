@@ -45,7 +45,7 @@
       </div>
     </form>
     <hr>
-  		
+  		</section>
   <% } %>
 
 

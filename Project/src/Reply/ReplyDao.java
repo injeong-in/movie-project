@@ -48,50 +48,6 @@ public class ReplyDao implements PrototypeReply{
 	}
 
 
-	//댓글 리스트 가져오기
-	@Override
-	public ArrayList<ReplyDTO> replyList() throws Exception {
-
-		ArrayList<ReplyDTO> list = new ArrayList<>();
-		String sql = "SELECT * FROM reply_tb";
-
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		ReplyDTO dto = new ReplyDTO();
-
-		while(rs.next()) {
-			dto.setReplyID(rs.getInt(1));
-			dto.setBoardID(rs.getInt(2));
-			dto.setUserID(rs.getString(3));
-			dto.setDate(rs.getInt(4));
-			dto.setReplyContent(rs.getString(5));
-			list.add(dto);
-		}
-		return list;
-	}
-
-	//비회원 댓글 리스트 가져오기
-	public ArrayList<ReplyUserDTO> replyList2() throws Exception {
-
-		ArrayList<ReplyUserDTO> list = new ArrayList<>();
-		String sql = "SELECT * FROM reply_user";
-
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		ReplyUserDTO dto = new ReplyUserDTO();
-
-		while(rs.next()) {
-			dto.setReplyID(rs.getInt(1));
-			dto.setUserID(rs.getString(2));
-			dto.setUserPW(rs.getString(3));
-			dto.setReplyContent(rs.getString(4));
-			list.add(dto);
-		}
-		return list;
-	}
-
-
-
 	//댓글 입력하기
 	@Override
 	public String replyInsert(ReplyDTO dto) throws Exception {
@@ -157,42 +113,85 @@ public class ReplyDao implements PrototypeReply{
 		return "0";
 	}
 
-	public static void main(String[] args) {
+	//댓글 리스트 가져오기
+	@Override
+	public ArrayList<ReplyDTO> replyList(int boardID) throws Exception {
+	
+		String sql = "SELECT reply_id, user_id,reply_content FROM reply_tb where board_id=?";
+		ArrayList<ReplyDTO> list = new ArrayList<>();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, boardID);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			do {
+			ReplyDTO dto = new ReplyDTO();
+			dto.setReplyID(rs.getInt(1));
+			dto.setUserID(rs.getString(2));
+			dto.setReplyContent(rs.getString(3));
+			list.add(dto);
+			
+			} while(rs.next());
+		}
+		pstmt.close();
+		return list;
+	}
 
-//		ReplyDao dao = ReplyDao.getInstance();
-//
+
+
+	//비회원 댓글 리스트 가져오기
+	public ArrayList<ReplyUserDTO> replyList2(int boardID) throws Exception {
+	
+		String sql = "SELECT user_id,reply_content FROM reply_user where board_id=?";
+	
+		pstmt = conn.prepareStatement(sql);
+		ArrayList<ReplyUserDTO> list = new ArrayList<>();
+		pstmt.setInt(1, boardID);
+		rs = pstmt.executeQuery();
+		
+		
+		
+		if(rs.next()) {
+			do {
+			ReplyUserDTO dto = new ReplyUserDTO(); //스코프 주의, 밖에있을경우 while문 마지막 데이터만 삽입됨
+			dto.setUserID(rs.getString(1));
+			dto.setReplyContent(rs.getString(2));
+			list.add(dto);
+			}
+			while(rs.next());
+		}
+		pstmt.close();
+		return list;
+	}
+
+
+
+	public static void main(String[] args) {
+		
+		ReplyDao dao = ReplyDao.getInstance();
 //		try {
-//			ArrayList<ReplyUserDTO> list = dao.replyList2();
-//			ReplyUserDTO dto = new ReplyUserDTO();
-//			dto = list.get(0);
-//			String str = null;
-//			String str2 = null;
-//
-//			for(int i=0; i<list.size(); i++) {
-//				dto = list.get(i);
-//				str = dto.getUserID();
-//				str2 = dto.getReplyContent();
-//
-//				System.out.println(str +" "+ str2);
+//			ArrayList<ReplyDTO> list = dao.replyList(1);
+//			for(ReplyDTO dto : list)
+//			{
+//				System.out.println(dto.getReplyID());
+//				System.out.println(dto.getReplyContent());
 //			}
-//
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-
-//		String query = "name=hamin&addr=jeju&age=25";
-//		StringTokenizer st = new StringTokenizer(query,"&=");
-//		
-//		int n = st.countTokens();
-//		
-//		for(int i=0; i<n; i++) {
-//			String str = st.nextToken();
-//			System.out.println(str);
-//		}
-		boolean a = spaceCheck("반갑  습니다");
-		System.out.println(a);
+//	
+		try {
+			ArrayList<ReplyUserDTO> list = dao.replyList2(0);
+			
+			for(ReplyUserDTO dto : list) {
+				System.out.println(dto.getReplyContent());
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
 	
 	//문자열 공백체크 기능
 	public static boolean spaceCheck(String spaceCheck)
@@ -222,3 +221,4 @@ public class ReplyDao implements PrototypeReply{
 	}
 
 }
+	

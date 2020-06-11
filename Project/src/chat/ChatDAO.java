@@ -1,8 +1,10 @@
 package chat;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -14,8 +16,12 @@ import javax.sql.DataSource;
 public class ChatDAO {
 	
 		DataSource dataSource;
-
-		static private ChatDAO dao = new ChatDAO();
+//		private Connection conn = null;
+//		private static ChatDAO dao = new ChatDAO();
+//		
+//		public static ChatDAO getInstance() {
+//			return dao;
+//		}
 
 		public ChatDAO() {
 			try {
@@ -28,42 +34,50 @@ public class ChatDAO {
 			}
 		}
 
-		//싱글톤 객체 리턴
-		public static ChatDAO getInstance() {
-			return dao;
-		}
-
-		public ArrayList<userChatDTO> getChatList(String fromID, String toID, String chatID) {
+//		public ChatDAO() {
+//			try {
+//				String dbURL = "jdbc:mysql://localhost:3306/movie?"; //
+//				String dbID = "root"; //mysql 계정
+//				String dbPassword = "1234"; //mysql 비밀번호
+//				String driver = "org.gjt.mm.mysql.Driver";
+//
+//				Class.forName(driver);
+//				conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
+//
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+		
+		
+		public ArrayList<ChatDTO> getChatList(String fromID, String toID, String chatID) {
 			
-			ArrayList<userChatDTO> chatList = null;
+			ArrayList<ChatDTO> chatList = null;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			StringBuffer sql  = new StringBuffer();
 			
-			sql.append("SELECT*FROM CHAT WHERE  ");
-			sql.append(" SELECT*FROM CHAT WHERE ((fromID = ? AND toID = ?) ");
-			sql.append(" OR (fromID = ? AND toID = ?)) AND chatID > ? ORDER BY chatTime	  ");
-			
-			
-			
+			sql.append(" SELECT*FROM user_chat WHERE ((fromID = ? AND toID = ?) ");
+			sql.append(" OR (fromID = ? AND toID = ?)) AND chatID > ? ORDER BY chatTime ");
 			
 			try {
 				conn = (Connection) dataSource.getConnection();
-				pstmt = conn.prepareStatement(String.valueOf(sql));
+				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setString(1, fromID);
 				pstmt.setString(2, toID);
 				pstmt.setString(3, toID);
 				pstmt.setString(4, fromID); //순서를 뒤바꿔서 넣어줌.(자신이받든 보내든 항상 가져올수있도록)
 				pstmt.setInt(5, Integer.parseInt(chatID));
-				chatList = new ArrayList<userChatDTO>();
+				rs = pstmt.executeQuery();
+				chatList = new ArrayList<ChatDTO>();
 				
 				while(rs.next()) {
-					userChatDTO dto = new userChatDTO();
-					dto.setChatID(rs.getInt("chatID"));
-					dto.setFromID(rs.getString("fromID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll("<", "&gt;").replaceAll("\n", "<br>"));
-					dto.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll("<", "&gt;").replaceAll("\n", "<br>"));
-					dto.setChatContent(rs.getString("chatContent").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll("<", "&gt;").replaceAll("\n", "<br>"));
+					ChatDTO chat = new ChatDTO();
+					chat.setChatID(rs.getInt("chatID"));
+					chat.setFromID(rs.getString("fromID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); //특수문자를 치환해주는 과정
+					chat.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+					chat.setChatContent(rs.getString("chatContent").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 					int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
 					String timeType = "오전";
 					if(chatTime>12) {
@@ -71,36 +85,34 @@ public class ChatDAO {
 						chatTime -= 12;
 						
 					}
-					dto.setChatTime(rs.getString("chatTime").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chatTime").substring(14, 16)+ "");
-					chatList.add(dto);
+					chat.setChatTime(rs.getString("chatTime").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chatTime").substring(14, 16)+ "");
+					chatList.add(chat);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-			} finally {
+			}
+			finally {
 				try {if(conn!=null) conn.close();} catch (Exception e2) {e2.printStackTrace();}
 				try {if(pstmt!=null) pstmt.close();} catch (Exception e2) {e2.printStackTrace();}
 				try {if(rs!=null) rs.close();} catch (Exception e2) {e2.printStackTrace();}
 			}
 			
-			return chatList; //리스트 반환
+			return chatList;
 			
 		}
 		
 		
 		
-		public ArrayList<userChatDTO> getChatListByRecent(String fromID, String toID, int number) {
+		public ArrayList<ChatDTO> getChatListByRecent(String fromID, String toID, int number) {
 			
-			ArrayList<userChatDTO> chatList = null;
+			ArrayList<ChatDTO> chatList = null;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			StringBuffer sql  = new StringBuffer();
 			
-			sql.append("SELECT*FROM CHAT WHERE  ");
-			sql.append(" SELECT*FROM CHAT WHERE ((fromID = ? AND toID = ?) ");
-			sql.append(" OR (fromID = ? AND toID = ?)) AND chatID > (SELECT MAX(chatID) - ? FROM CHAT) ORDER BY chatTime	  ");
-			
-			
+			sql.append(" SELECT*FROM user_chat WHERE ((fromID = ? AND toID = ?) ");
+			sql.append(" OR (fromID = ? AND toID = ?)) AND chatID > (SELECT MAX(chatID) - ? FROM user_chat) ORDER BY chatTime	  ");
 			
 			
 			try {
@@ -111,10 +123,11 @@ public class ChatDAO {
 				pstmt.setString(3, toID);
 				pstmt.setString(4, fromID); //순서를 뒤바꿔서 넣어줌.(자신이받든 보내든 항상 가져올수있도록)
 				pstmt.setInt(5, number);
-				chatList = new ArrayList<userChatDTO>();
+				rs= pstmt.executeQuery();
+				chatList = new ArrayList<ChatDTO>();
 				
 				while(rs.next()) {
-					userChatDTO dto = new userChatDTO();
+					ChatDTO dto = new ChatDTO();
 					dto.setChatID(rs.getInt("chatID"));
 					dto.setFromID(rs.getString("fromID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll("<", "&gt;").replaceAll("\n", "<br>"));
 					dto.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll("<", "&gt;").replaceAll("\n", "<br>"));
@@ -144,13 +157,13 @@ public class ChatDAO {
 		
 			public int submit(String fromID, String toID, String chatContent) {
 			
-			ArrayList<userChatDTO> chatList = null;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			StringBuffer sql  = new StringBuffer();
 			
 			sql.append("INSERT INTO user_chat VALUES (NULL, ?, ?, ?, NOW())");
+			//null값 넣으면 auto_increment 자동 증가
 			
 			
 			
@@ -173,14 +186,28 @@ public class ChatDAO {
 			
 		}
 		public static void main(String[] args) {
-			ChatDAO dao = ChatDAO.getInstance();
+//			Connection conn = null;
+//		      try {
+//		    	  String dbURL = "jdbc:mysql://localhost:3306/movie?"; //
+//				String dbID = "root"; //mysql 계정
+//					String dbPassword = "1234"; //mysql 비밀번호
+//				String driver = "org.gjt.mm.mysql.Driver";
+//
+//				Class.forName(driver);
+//				conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+
 			
-			ArrayList<userChatDTO> list = dao.getChatList("simazeri", "khm2456", "4");
+			ChatDAO dao = new ChatDAO();
 			
-			for (int i = 0; i < list.size(); i++) {
-				System.out.println(list.get(i));
+			ArrayList<ChatDTO> list = dao.getChatList("simazeri","khm2456", "1");
+			
+			for(int i=0; i<list.size(); i++) {
+				Object obj = list.get(i);
+				System.out.println(obj.toString());
 			}
 		}
-		
 	}
-	

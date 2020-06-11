@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body>	
 	<%
-	System.out.println("1");
+	System.out.println("1 ");
 	InitialContext initCtx = new InitialContext();
-	System.out.println("2" + initCtx);
+	System.out.println("2 " + initCtx);
 	Context envContext = (Context)initCtx.lookup("java:comp/env");
 	System.out.println("3 " + envContext);
 	DataSource ds = (DataSource) envContext.lookup("jdbc/Project"); //소스발견시 프로젝트에 접근하도록

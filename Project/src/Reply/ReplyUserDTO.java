@@ -4,6 +4,7 @@ public class ReplyUserDTO {
 	
 	private String userID;
 	private String userPW;
+	private int boardID;
 	private int replyID;
 	private String replyContent;
 	
@@ -30,5 +31,11 @@ public class ReplyUserDTO {
 	}
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
+	}
+	public int getBoardID() {
+		return boardID;
+	}
+	public void setBoardID(int boardID) {
+		this.boardID = boardID;
 	}
 }

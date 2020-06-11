@@ -42,10 +42,10 @@
 	 다바쳐 만든</h1>
 	<h1>DB 관리자 페이지</h1>
 	<h5 style="color: red;">삭제할때 확인 누르면 무조건 삭제됐다고 뜨니깐 주의! :)</h5>
-	<div><a href="http://localhost/Admin/LocationTable.jsp">촬영지 DB입력 페이지</a></div>
-	<div><a href="http://localhost/Admin/MovieTable.jsp">영화 DB입력 페이지</a></div>
-	<div><a href="http://localhost/Admin/GenreTable.jsp">장르 DB입력 페이지</a></div>
-	<div><a href="http://localhost/Admin/insertActor.jsp">영화배우 DB입력 페이지</a></div>
+	<div><a href="http://137.128.100.104/Project/Admin/LocationTable.jsp">촬영지 DB입력 페이지</a></div>
+	<div><a href="http://137.128.100.104/Project/Admin/MovieTable.jsp">영화 DB입력 페이지</a></div>
+	<div><a href="http://137.128.100.104/Project/Admin/GenreTable.jsp">장르 DB입력 페이지</a></div>
+	<div><a href="http://137.128.100.104/Project/Admin/insertActor.jsp">영화배우 DB입력 페이지</a></div>
 	<img src="../images/maru.png">
 	</section>
 </body>
