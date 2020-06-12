@@ -50,23 +50,39 @@ public class ReplyDao implements PrototypeReply{
 
 	//댓글 입력하기
 	@Override
-	public String replyInsert(ReplyDTO dto) throws Exception {
-		String sql = "INSERT INTO reply_tb(USER_ID,REPLY_CONTENT) VALUES(?,?);"; //아이디, 댓글 입력
-
+	public String replyInsert(ReplyDTO dto) {
+		String sql = "INSERT INTO reply_tb(USER_ID, REPLY_CONTENT, REPLY_DATE) VALUES(?, ?, NOW());"; //아이디, 댓글 입력
+		try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, dto.getUserID());
 		pstmt.setString(2, dto.getReplyContent());
-
-		if(true) // 가입된 회원 ID와 회원테이블 ID 일치여부 확인
+		
 			return String.valueOf(pstmt.executeUpdate());
-
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "-1";
 	}
 
 
+	@Override
+	public String replyInsert(ReplyDTO dto, String sessionID) {
+		String sql = "INSERT INTO reply_tb(USER_ID,REPLY_CONTENT,REPLY_DATE) VALUES(?,?,NOW());"; //아이디, 댓글 입력
+		 try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, sessionID);
+		pstmt.setString(2, dto.getReplyContent());
+		return String.valueOf(pstmt.executeUpdate());
+		 } catch(Exception e) {
+		return "-1";
+		 }
+	}
+
+
+
 	//비회원용 댓글입력메소드
 	public String replyInsert(ReplyUserDTO dto) {
-		String sql = "INSERT INTO reply_user(USER_ID,USER_PW,REPLY_CONTENT) VALUES(?,?,?);"; 
+		String sql = "INSERT INTO reply_user(USER_ID,USER_PW,REPLY_CONTENT,REPLY_DATE) VALUES(?,?,?,NOW());"; 
 		//비회원 아이디, 비번,댓글 입력
 		
 		try {
@@ -163,12 +179,58 @@ public class ReplyDao implements PrototypeReply{
 		pstmt.close();
 		return list;
 	}
-
+	
+	//통합 댓글리스트 가져오기
+	public ArrayList<Object> replyList3(int boardID) throws Exception {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT user_id, reply_content,reply_date");
+		sql.append("    FROM reply_tb WHERE board_id = ? UNION");
+		sql.append("       SELECT user_id, reply_content,reply_date");
+		sql.append("           FROM reply_user WHERE board_id = ?");
+		sql.append("       ORDER BY reply_date ASC;");
+		
+		
+		pstmt = conn.prepareStatement(String.valueOf(sql));
+		ArrayList<Object> list = new ArrayList<>();
+		pstmt.setInt(1, boardID);
+		pstmt.setInt(2, boardID);
+		
+		rs = pstmt.executeQuery();
+		
+		
+		if(rs.next()) {
+			do {
+			ReplyDTO dto = new ReplyDTO(); //스코프 주의, 밖에있을경우 while문 마지막 데이터만 삽입됨
+			dto.setUserID(rs.getString(1));
+			dto.setReplyContent(rs.getString(2));
+			list.add(dto);
+			}
+			
+			while(rs.next());
+		}
+		pstmt.close();
+		return list;
+	}
 
 
 	public static void main(String[] args) {
 		
 		ReplyDao dao = ReplyDao.getInstance();
+		
+		try {
+			ArrayList<Object> list = dao.replyList3(1);
+			for(int i=0; i<list.size(); i++) {
+				ReplyDTO dto = (ReplyDTO) list.get(i);
+				System.out.print(dto.getUserID()+" ");
+				System.out.println(dto.getReplyContent());
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 //		try {
 //			ArrayList<ReplyDTO> list = dao.replyList(1);
 //			for(ReplyDTO dto : list)
@@ -180,19 +242,7 @@ public class ReplyDao implements PrototypeReply{
 //			e.printStackTrace();
 //		}
 //	
-		try {
-			ArrayList<ReplyUserDTO> list = dao.replyList2(0);
-			
-			for(ReplyUserDTO dto : list) {
-				System.out.println(dto.getReplyContent());
-			}
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
-	
 	//문자열 공백체크 기능
 	public static boolean spaceCheck(String spaceCheck)
 	{
@@ -202,22 +252,6 @@ public class ReplyDao implements PrototypeReply{
 	            return true;
 	    }
 	    return false;
-	}
-
-	
-	
-	
-	@Override
-	public String replyInsert(ReplyDTO dto, String sessionID) {
-		String sql = "INSERT INTO reply_tb(USER_ID,REPLY_CONTENT) VALUES(?,?);"; //아이디, 댓글 입력
-		 try {
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, sessionID);
-		pstmt.setString(2, dto.getReplyContent());
-		return String.valueOf(pstmt.executeUpdate());
-		 } catch(Exception e) {
-		return "-1";
-		 }
 	}
 
 }

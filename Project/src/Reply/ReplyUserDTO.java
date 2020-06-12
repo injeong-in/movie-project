@@ -7,6 +7,7 @@ public class ReplyUserDTO {
 	private int boardID;
 	private int replyID;
 	private String replyContent;
+	private String date;
 	
 	public String getUserID() {
 		return userID;
@@ -37,5 +38,11 @@ public class ReplyUserDTO {
 	}
 	public void setBoardID(int boardID) {
 		this.boardID = boardID;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

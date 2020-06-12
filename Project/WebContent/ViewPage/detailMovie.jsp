@@ -1,9 +1,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="Reply.ReplyDao" %>
-<%@ page import="Reply.ReplyDTO" %>
-<%@ page import="Reply.ReplyUserDTO" %>
+<%@ page import="Reply.ReplyDao"%>
+<%@ page import="Reply.ReplyDTO"%>
+<%@ page import="Reply.ReplyUserDTO"%>
 <jsp:useBean id="dto" class="Reply.ReplyDTO" scope="page"></jsp:useBean>
 <jsp:useBean id="dto2" class="Reply.ReplyUserDTO" scope="page"></jsp:useBean>
 <jsp:useBean id="userDTO" class="Movie.UserDTO" scope="page"></jsp:useBean>
@@ -27,6 +27,7 @@
 <title>Document</title>
 <link rel="stylesheet" href="DmStyle.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js">
     </script>
@@ -47,6 +48,28 @@
     </script>
 </head>
 
+
+<style>
+
+#slider {
+	margin-top: 60px;
+}
+#slider .item {
+	height: 400px;
+	
+}
+#slide1 {
+	background: url(../images/endgame2.jpg);
+}
+
+#slide2 {
+	background: url(../images/endgame3.jpg);
+}
+
+#slide3 {
+	background: url(../images/endgame4.jpg);
+}
+</style>
 <body>
 	<div id="header">
 		<!-- 네비게이션 -->
@@ -59,10 +82,10 @@
 					href="#">로그아웃</a></li>
 				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
 					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/detailMovie.jsp"><a
+				<li onclick="location.href='../ViewPage/movie.jsp'"><a
 					href="#">MOVIE</a></li>
-				<li><a href="#2">OST</a></li>
-				<li><a href="#3">LOCATION</a></li>
+				<li onclick="location.href='../ViewPage/ost.jsp'"><a href="#">OST</a></li>
+				<li><a href="#">LOCATION</a></li>
 			</ul>
 			<a href="" id="trigger"></a>
 		</nav>
@@ -73,15 +96,15 @@
 				<li onclick="location.href='../Movie/login.jsp'"><a href="#">로그인</a></li>
 				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
 					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/detailMovie.jsp"><a
+				<li onclick="location.href='../ViewPage/movie.jsp"><a
 					href="#">MOVIE</a></li>
-				<li><a href="#2">OST</a></li>
-				<li><a href="#3">LOCATION</a></li>
+				<li onclick="location.href='../ViewPage/ost.jsp'"><a href="#">OST</a></li>
+				<li><a href="#">LOCATION</a></li>
 
 			</ul>
 			<a href="" id="trigger"></a>
 		</nav>
-		
+
 		<% } %>
 	</div>
 	<div id="container">
@@ -94,18 +117,18 @@
 				<div class="movie-sector">
 					<div class="box-image">
 						<span class="thumb-image"> <img
-							src="../images/greenteck.jpg">
+							src="../images/endgame1.jpg">
 						</span>
 					</div>
 					<div class="box-contents">
 						<div class="title">
-							<strong>왕의남자</strong>
-							<p style="margin-top: 10px;">영어제목</p>
+							<strong>어벤져스-엔드게임</strong>
+							<p style="margin-top: 10px;">Avengers-endgame</p>
 						</div>
 						<div class="spec" style="margin-top: 5px;">
 							<dl>
-								<dt>감독 : 손오공</dt>
-								<dt>장르 : 미스터리, 스릴러</dt>
+								<dt>감독 : 조 루소, 앤서니 루소</dt>
+								<dt>장르 : SF판타지,액션</dt>
 								<dt>개봉 : 201X</dt>
 							</dl>
 						</div>
@@ -123,57 +146,63 @@
 
 
 			<!--이미지 슬라이더-->
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
-
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="" alt="Los Angeles"
-							style="width: 100%;">
-							<img src="../images/maru.png" alt="Chicago" style="width: 100%;">
-					</div>
+				<div class="carousel slide" id="slider" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#slider" data-slide-to="0" class="active"></li>
+						<li data-target="#slider" data-slide-to="1"></li>
+						<li data-target="#slider" data-slide-to="2"></li>
+					</ol>
+					
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item" id="slide1">
+					<div class="carousel-caption"></div>
+				</div>
+				<div class="item" id="slide2">
+					<div class="carousel-caption"></div>
 				</div>
 
-				<!-- Left and right controls -->
-				<a class="left carousel-control" href="#myCarousel" data-slide="prev"> 
-					<span class="glyphicon glyphicon-chevron-left"></span> 
-					<span class="sr-only">Previous</span>
-				</a> 
-				<a class="right carousel-control" href="#myCarousel" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> 
-					<span class="sr-only">Next</span>
-				</a>
-			</div>
+				<div class="item" id="slide3">
+					<div class="carousel-caption"></div>
+				</div>
+		</div>
+		<!-- Left and right controls -->
+			<a class="left carousel-control" href="#slider" data-slide="prev">
+				<span class="icon-prev" role="button"></span>
+			</a>
+			<a class="right carousel-control" href="#slider">
+				<span class="icon-next" data-slide="next" role="button"></span>
+			</a>
+	</div>
+	
+	
+		<!--댓글-->
+		<label style="margin-top: 15px;">전체 리플</label>
+		<hr style="border: 1.5px solid gray;">
+		<% 
 			
-			<!--댓글-->
-			<label style="margin-top:15px;">전체 리플</label>
-			<hr style="border: 1.5px solid gray;">
-			<% 
-			
-			ArrayList<ReplyDTO> list = dao.replyList(1);
-			
-			for(ReplyDTO data : list) {
-				String id = data.getUserID();
-				String reply = data.getReplyContent();
+			ArrayList<Object> list = dao.replyList3(1);
+			for(int i=0; i<list.size(); i++) {
+				dto = (ReplyDTO) list.get(i);
+				String id = dto.getUserID();
+				String reply = dto.getReplyContent();
 			%>
-			
-			<table>
-				<tr>
-					<%if(userID == null) id = "***"; %>
-					<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><%=reply%></td>
-				</tr>
-			</table>
-			
-			<% } %>
-			
-			<% 
-			ArrayList<ReplyUserDTO> list2 = dao.replyList2(0);
+
+		<table>
+			<tr>
+				<%-- <%if(userID == null) id = "***"; %> --%>
+
+				<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%=reply%></td>
+				<hr>
+			</tr>
+		</table>
+
+		<% } %>
+
+		<%-- <% 
+			ArrayList<ReplyUserDTO> list2 = dao.replyList2(1);
 			for(ReplyUserDTO reply : list2) {
 				String noneId = reply.getUserID();
 				String noneReply = reply.getReplyContent();
@@ -187,53 +216,54 @@
 			</table>
 			
 			<% } %>
-			
-			
-			
-			<% if (session.getAttribute("userID") != null) {
+			 --%>
+
+
+		<% if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 			%>
-			<section class="container">
-				<form action="replyAction.jsp" class="form-horizontal" method="post">
-					<div class="form-group">
-						<label>댓글</label> 
-						<input type="hidden" name="userID" placeholder="아이디">
-						<textarea style="margin: 0px; width: 972px; height: 35px;" class="form-control" name="replyContent" id="replyContent" cols="45" rows="5" placeholder="댓글입력하기"></textarea>
-						<br>
-						<button type="submit" class="btn pull-right">등록</button>
+		<section class="container">
+			<form action="replyAction.jsp" class="form-horizontal" method="post">
+				<div class="form-group">
+					<label>댓글</label> <input type="hidden" name="userID"
+						placeholder="아이디">
+					<textarea style="margin: 0px; width: 972px; height: 35px;"
+						class="form-control" name="replyContent" id="replyContent"
+						cols="45" rows="5" placeholder="댓글입력하기"></textarea>
+					<br>
+					<button type="submit" class="btn pull-right">등록</button>
+				</div>
+			</form>
+			<hr>
+
+		</section>
+		<% } else {%>
+
+		<section style="width: 980px;" class="container">
+			<form action="replyAction.jsp" class="form-horizontal" method="post">
+				<div class="form-group">
+					<label>댓글작성&nbsp;</label>
+					<div>
+						<input type="text" name="userID" placeholder="닉네임"> <input
+							type="password" name="userPW" placeholder="비밀번호">
 					</div>
-				</form>
-				<hr>
+					<textarea style="margin-top: 5px; width: 972px; height: 35px;"
+						class="form-control" name="replyContent" id="replyContent"
+						cols="45" rows="3" placeholder="댓글입력하기"></textarea>
+					<br>
+					<button type="submit" class="btn pull-right">등록</button>
+				</div>
+			</form>
+			<hr>
+		</section>
+		<% } %>
+		<!--댓글 끝-->
 
-			</section>
-			<% } else {%>
-
-			<section style="width: 980px;" class="container">
-				<form action="replyAction.jsp" class="form-horizontal" method="post">
-					<div class="form-group">
-						<label>댓글작성&nbsp;</label> 
-						<div>
-						<input type="text" name="userID"
-							placeholder="닉네임"> 
-						<input type="password" name="userPW"
-							placeholder="비밀번호">
-						</div>
-						<textarea style="margin-top: 5px; width: 972px; height: 35px;" class="form-control" name="replyContent"
-							id="replyContent" cols="45" rows="3" placeholder="댓글입력하기"></textarea>
-						<br>
-						<button type="submit" class="btn pull-right">등록</button>
-					</div>
-				</form>
-				<hr>
-			</section>
-			<% } %>
-			<!--댓글 끝-->
-
-			<a href="" class="btn_gotop"> 
-			<img src="../images/topbutton.png" style="position: fixed; width:80px;"> 
-			<span class="glyphicon glyphicon-chevron-up"> </span>
-			</a>
-		</div>
+		<a href="" class="btn_gotop"> <img src="../images/topbutton.png"
+			style="position: fixed; width: 80px;"> <span
+			class="glyphicon glyphicon-chevron-up"> </span>
+		</a>
+	</div>
 	</div>
 </body>
 </html>

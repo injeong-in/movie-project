@@ -62,7 +62,6 @@
 			<div id="handle"></div>
 		</div>
 		<div id="currentTime">00:00<%for(int i=0; i<32; i++){ %>&nbsp;<%}%>00:00</div>
-		<input id="songSlider" type="range" min="0" step="1" />
 	</section>
 </body>
 

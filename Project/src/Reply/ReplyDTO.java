@@ -4,7 +4,7 @@ public class ReplyDTO {
 	private int replyID;
 	private int boardID;
 	private String userID;
-	private int date;
+	private String date;
 	private String replyContent;
 	
 	
@@ -26,10 +26,10 @@ public class ReplyDTO {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public String getReplyContent() {

@@ -165,8 +165,6 @@ public class ChatDAO {
 			sql.append("INSERT INTO user_chat VALUES (NULL, ?, ?, ?, NOW())");
 			//null값 넣으면 auto_increment 자동 증가
 			
-			
-			
 			try {
 				conn = (Connection) dataSource.getConnection();
 				pstmt = conn.prepareStatement(String.valueOf(sql));

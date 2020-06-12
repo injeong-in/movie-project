@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%  
-			
-			
+		request.setCharacterEncoding("UTF-8");
+		
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		
 %>
 
 <!DOCTYPE html>
@@ -18,6 +23,7 @@
     <script src="../js/jquery.scrollTo.min.js">
     </script>
     <script>
+    
     $(document).ready(function(){
         $('nav a').click(function(e){
             $.scrollTo(this.hash||0, 280);
@@ -64,16 +70,28 @@
 	<div id="container">
     <!-- 네비게이션 -->
     <nav class="clearfix">
+    	<%if(userID == null) { %>
         <ul class="clearfix">
-            <li><a href="">HOME</a></li>
-            <li><a href="">로그인</a></li>
-            <li><a href="">회원가입</a></li>
-            <li><a href="#1">MOVIE</a></li>
-            <li><a href="#2">OST</a></li>
-            <li><a href="#3">LOCATION</a></li>
+            <li onclick="location.href='../ViewPage/main.jsp'"><a href="">HOME</a></li>
+            <li onclick="location.href='../Movie/login.jsp'"><a href="">로그인</a></li>
+            <li onclick="location.href='../Movie/memberJoin.jsp'"><a href="">회원가입</a></li>
+            <li onclick="location.href='../ViewPage/movie.jsp"><a href="">MOVIE</a></li>
+            <li onclick="location.href='../ViewPage/ost.jsp'"><a href="">OST</a></li>
+            <li><a href="#">LOCATION</a></li>
             
         </ul>
         <a href="" id="trigger"></a>
+        <% } else {%>
+        <ul class="clearfix">
+            <li onclick="location.href='../ViewPage/main.jsp'"><a href="">HOME</a></li>
+            <li onclick="location.href='../Movie/logoutAction.jsp'"><a href="">로그아웃</a></li>
+            <li onclick="location.href='../Movie/memberJoin.jsp'"><a href="">회원가입</a></li>
+            <li onclick="location.href='../ViewPage/movie.jsp"><a href="#1">MOVIE</a></li>
+            <li onclick="location.href='../ViewPage/ost.jsp'"><a href="#2">OST</a></li>
+            <li><a href="#3">LOCATION</a></li>
+            
+        </ul>
+        <% } %>
     </nav>
 
 
@@ -90,7 +108,7 @@
     </section>
     <section id="1" class="page1">
     </section>
-    <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='detailMovie.jsp'">
+    <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../ViewPage/ost.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>
     </section>
     <section id="3" class="page3">
