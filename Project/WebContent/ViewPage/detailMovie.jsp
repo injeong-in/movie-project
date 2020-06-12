@@ -7,6 +7,8 @@
 <jsp:useBean id="dto" class="Reply.ReplyDTO" scope="page"></jsp:useBean>
 <jsp:useBean id="dto2" class="Reply.ReplyUserDTO" scope="page"></jsp:useBean>
 <jsp:useBean id="userDTO" class="Movie.UserDTO" scope="page"></jsp:useBean>
+
+
 <%  
 		request.setCharacterEncoding("UTF-8");
 		
@@ -17,6 +19,14 @@
 		
 		ReplyDao dao = ReplyDao.getInstance();
 		
+		dto.setBoardID(2);
+		dto2.setBoardID(2);
+		
+		int boardID = 0;
+		int boardID2 = dto.getBoardID();
+		/* response.sendRedirect("replyAction.jsp?boardID="+boardID); */
+		/* request.setAttribute("boardID", boardID); */
+		/* request.getRequestDispatcher("replyAction.jsp").forward(request, response); */
 %>
 
 <!DOCTYPE html>
@@ -31,8 +41,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js">
     </script>
-<script src="../js/jquery.scrollTo.min.js">
-    </script>
+<script src="../js/jquery.scrollTo.min.js"></script>
 <script>
     $(window).scroll(function(){
     	if ($(this).scrollTop() > 300){
@@ -182,7 +191,7 @@
 		<hr style="border: 1.5px solid gray;">
 		<% 
 			
-			ArrayList<Object> list = dao.replyList3(1);
+			ArrayList<Object> list = dao.replyList3(boardID2);
 			for(int i=0; i<list.size(); i++) {
 				dto = (ReplyDTO) list.get(i);
 				String id = dto.getUserID();
@@ -194,7 +203,7 @@
 				<%-- <%if(userID == null) id = "***"; %> --%>
 
 				<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><%=reply%></td>
+				<td style="color: gray;"><%=reply%></td>
 				<hr>
 			</tr>
 		</table>
@@ -218,18 +227,21 @@
 			<% } %>
 			 --%>
 
-
+		<!--회원댓글작성-->
 		<% if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 			%>
 		<section class="container">
 			<form action="replyAction.jsp" class="form-horizontal" method="post">
 				<div class="form-group">
-					<label>댓글</label> <input type="hidden" name="userID"
-						placeholder="아이디">
+					<label>댓글</label> 
+					
+					<input type="hidden" value=<%=boardID2%> name="boardID"> <!--히든값 게시물 아이디-->
+					
 					<textarea style="margin: 0px; width: 972px; height: 35px;"
 						class="form-control" name="replyContent" id="replyContent"
 						cols="45" rows="5" placeholder="댓글입력하기"></textarea>
+					
 					<br>
 					<button type="submit" class="btn pull-right">등록</button>
 				</div>
@@ -237,15 +249,18 @@
 			<hr>
 
 		</section>
-		<% } else {%>
-
+		<% } else {
+			boardID = dto2.getBoardID();
+		%>
+		<!--비회원댓글작성-->
 		<section style="width: 980px;" class="container">
 			<form action="replyAction.jsp" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글작성&nbsp;</label>
 					<div>
-						<input type="text" name="userID" placeholder="닉네임"> <input
-							type="password" name="userPW" placeholder="비밀번호">
+						<input type="text" name="userID" placeholder="닉네임"> 
+						<input type="password" name="userPW" placeholder="비밀번호">
+						<input type="hidden" value=<%=boardID%> name="boardID"> <!--히든값 게시물 아이디-->
 					</div>
 					<textarea style="margin-top: 5px; width: 972px; height: 35px;"
 						class="form-control" name="replyContent" id="replyContent"
@@ -256,7 +271,10 @@
 			</form>
 			<hr>
 		</section>
-		<% } %>
+		
+		<% } 
+		
+		%>
 		<!--댓글 끝-->
 
 		<a href="" class="btn_gotop"> <img src="../images/topbutton.png"

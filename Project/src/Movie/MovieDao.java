@@ -12,7 +12,7 @@ public class MovieDao {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-
+	
 	static private MovieDao dao = new MovieDao();
 
 	public MovieDao() {
@@ -101,6 +101,11 @@ public class MovieDao {
 		}
 		return list;
 	}
+	
+	
+	
+	
+	
 	
 	
 	public static void main(String[] args) {

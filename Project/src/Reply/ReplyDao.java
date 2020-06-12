@@ -67,11 +67,12 @@ public class ReplyDao implements PrototypeReply{
 
 	@Override
 	public String replyInsert(ReplyDTO dto, String sessionID) {
-		String sql = "INSERT INTO reply_tb(USER_ID,REPLY_CONTENT,REPLY_DATE) VALUES(?,?,NOW());"; //아이디, 댓글 입력
+		String sql = "INSERT INTO reply_tb(USER_ID,REPLY_CONTENT,BOARD_ID,REPLY_DATE) VALUES(?,?,?,NOW());"; //아이디, 댓글 입력
 		 try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, sessionID);
 		pstmt.setString(2, dto.getReplyContent());
+		pstmt.setInt(3, dto.getBoardID());
 		return String.valueOf(pstmt.executeUpdate());
 		 } catch(Exception e) {
 		return "-1";
@@ -82,7 +83,7 @@ public class ReplyDao implements PrototypeReply{
 
 	//비회원용 댓글입력메소드
 	public String replyInsert(ReplyUserDTO dto) {
-		String sql = "INSERT INTO reply_user(USER_ID,USER_PW,REPLY_CONTENT,REPLY_DATE) VALUES(?,?,?,NOW());"; 
+		String sql = "INSERT INTO reply_user(USER_ID,USER_PW,REPLY_CONTENT,BOARD_ID,REPLY_DATE) VALUES(?,?,?,?,NOW());"; 
 		//비회원 아이디, 비번,댓글 입력
 		
 		try {
@@ -90,6 +91,7 @@ public class ReplyDao implements PrototypeReply{
 		pstmt.setString(1, dto.getUserID());
 		pstmt.setString(2, dto.getUserPW());
 		pstmt.setString(3, dto.getReplyContent());
+		pstmt.setInt(4, dto.getBoardID());
 		return String.valueOf(pstmt.executeUpdate());
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -216,12 +218,13 @@ public class ReplyDao implements PrototypeReply{
 	public static void main(String[] args) {
 		
 		ReplyDao dao = ReplyDao.getInstance();
-		
+		int j = 0;
 		try {
 			ArrayList<Object> list = dao.replyList3(1);
 			for(int i=0; i<list.size(); i++) {
 				ReplyDTO dto = (ReplyDTO) list.get(i);
-				System.out.print(dto.getUserID()+" ");
+				++j;
+				System.out.print(j +" "+ dto.getUserID()+" ");
 				System.out.println(dto.getReplyContent());
 			}
 			

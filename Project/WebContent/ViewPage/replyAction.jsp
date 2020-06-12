@@ -9,16 +9,22 @@
 <jsp:setProperty name="dto" property="userID" param="userID" />
 <jsp:setProperty property="userID" name="dto2" param="userID" />
 <jsp:setProperty property="userPW" name="dto2" param="userPW" />
-<jsp:setProperty property="replyContent" name="dto2"
-	param="replyContent" />
+<jsp:setProperty property="replyContent" name="dto2" param="replyContent" />
+<jsp:setProperty property="boardID" name="dto2" param="boardID"/>
+<jsp:setProperty property="boardID" name="dto" param="boardID"/> <!--값전달시에 반드시-->
+
 <%
 	ReplyDao dao = ReplyDao.getInstance();
 	String sessionID = (String) session.getAttribute("userID");
 	
 	String str = null;
-	
 	Boolean replyCheck = null;
 	String reply = null;
+	/* 
+	int boardID = Integer.parseInt(request.getParameter("boardID"));
+	System.out.println(boardID);
+    dto2.setBoardID(boardID); */
+	 
 %>
 <!DOCTYPE html>
 <html>
@@ -74,9 +80,6 @@
 			String insert = "<script> history.back(); </script>";
 			script.println(insert);
 		}
-		
-		
-		
 		
 	}
 

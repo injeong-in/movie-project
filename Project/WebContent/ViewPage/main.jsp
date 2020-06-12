@@ -6,7 +6,6 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		
 %>
 
 <!DOCTYPE html>
@@ -75,9 +74,9 @@
             <li onclick="location.href='../ViewPage/main.jsp'"><a href="">HOME</a></li>
             <li onclick="location.href='../Movie/login.jsp'"><a href="">로그인</a></li>
             <li onclick="location.href='../Movie/memberJoin.jsp'"><a href="">회원가입</a></li>
-            <li onclick="location.href='../ViewPage/movie.jsp"><a href="">MOVIE</a></li>
-            <li onclick="location.href='../ViewPage/ost.jsp'"><a href="">OST</a></li>
-            <li><a href="#">LOCATION</a></li>
+            <li><a href="#1">MOVIE</a></li>
+            <li><a href="#2">OST</a></li>
+            <li><a href="#3">LOCATION</a></li>
             
         </ul>
         <a href="" id="trigger"></a>
@@ -86,8 +85,8 @@
             <li onclick="location.href='../ViewPage/main.jsp'"><a href="">HOME</a></li>
             <li onclick="location.href='../Movie/logoutAction.jsp'"><a href="">로그아웃</a></li>
             <li onclick="location.href='../Movie/memberJoin.jsp'"><a href="">회원가입</a></li>
-            <li onclick="location.href='../ViewPage/movie.jsp"><a href="#1">MOVIE</a></li>
-            <li onclick="location.href='../ViewPage/ost.jsp'"><a href="#2">OST</a></li>
+            <li><a href="#1">MOVIE</a></li>
+            <li><a href="#2">OST</a></li>
             <li><a href="#3">LOCATION</a></li>
             
         </ul>
