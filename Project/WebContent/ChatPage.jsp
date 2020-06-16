@@ -42,95 +42,95 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script type="text/javascript">
-	
-	function autoClosingAlert(selector, delay) {
-		var alert = $(selector).alert();
-		alert.show();
-		window.setTimeout(function() { alert.hide() }, delay);
-	}
-	
-	
-	function submitFunction() {
-		var fromID = '<%= userID%>';
-		var toID = '<%= toID%>';
-		var chatContent = $('#chatContent').val(); //채팅내용
-		$.ajax(	{
-			type : "POST",
-			url : "./chatSubmitServlet",
-			data : {
-				fromID : encodeURIComponent(fromID),
-				toID : encodeURIComponent(toID),
-				chatContent : encodeURIComponent(chatContent)
-			},
-			success : function(result) {
-				if (result == 1) {
-					autoClosingAlert('#successMessage', 2000);
-				} else if (result == 0) {
-					autoClosingAlert('#dangerMessage', 2000);
-				} else {
-					autoClosingAlert('#warningMessage', 2000);
-				}
+function autoClosingAlert(selector, delay) {
+	var alert = $(selector).alert();
+	alert.show();
+	window.setTimeout(function() { alert.hide() }, delay);
+}
+
+
+function submitFunction() {
+	var fromID = '<%= userID%>';
+	var toID = '<%= toID%>';
+	var chatContent = $('#chatContent').val(); //채팅내용
+	$.ajax(	{
+		type : "POST",
+		url : "./chatSubmitServlet",
+		data : {
+			fromID : encodeURIComponent(fromID),
+			toID : encodeURIComponent(toID),
+			chatContent : encodeURIComponent(chatContent)
+		},
+		success : function(result) {
+			if (result == 1) {
+				autoClosingAlert('#successMessage', 2000);
+			} else if (result == 0) {
+				autoClosingAlert('#dangerMessage', 2000);
+			} else {
+				autoClosingAlert('#warningMessage', 2000);
 			}
-		});
-		$('#chatContent').val('');
-	}
-	
-	
-	var lastID = 0; //마지막 대화 chatID
-	
-	function chatListFunction(type) {
-		var fromID = '<%= userID%>';
-		var toID = '<%= toID%>';
-		$.ajax({
-			type: "POST",
-			url : "./chatListServlet",
-			data: {
-				fromID: encodeURIComponent(fromID),	
-				toID: encodeURIComponent(toID),
-				listType: type // [궁금한 부분]
-			},
-			success: function(data) {
-				if(data=="") return;
-				var parsed = JSON.parse(data); //제이슨 형태로 데이터 파싱
-				var result = parsed.result;
-				for (var i = 0; i < result.length; i++) {// [궁금한 부분]
-					addChat(result[i][0].value, result[i][2].value,result[i][3].value);
-				}
-				lastID = Number(parsed.last); //가장 마지막으로 전달받은 chatID가져오기
+		}
+	});
+	$('#chatContent').val('');
+}
+
+
+var lastID = 0; //마지막 대화 chatID
+
+function chatListFunction(type) {
+	var fromID = '<%= userID%>';
+	var toID = '<%= toID%>';
+	$.ajax({
+		type: "POST",
+		url : "./chatListServlet",
+		data: {
+			fromID: encodeURIComponent(fromID),	
+			toID: encodeURIComponent(toID),
+			listType: type // [궁금한 부분]
+		},
+		success: function(data) {
+			if(data=="") return;
+			var parsed = JSON.parse(data); //제이슨 형태로 데이터 파싱
+			var result = parsed.result;
+			for (var i = 0; i < result.length; i++) {// [궁금한 부분]
+				addChat(result[i][0].value, result[i][2].value,result[i][3].value);
 			}
-		});
-	}
+			lastID = Number(parsed.last); //가장 마지막으로 전달받은 chatID가져오기
+		}
+	});
+}
+
+function addChat(chatName, chatContent, chatTime) {
+	$('#chatList').append('<div class="row">' +
+	'<div class="col-lg-12">' + 
+	'<div class="media">' +
+	'<a class="pull-left" href="#">' +
+	'<img class="media-object img-circle" src="../images/icon.png" style="width: 30px; height: 30px;" alt="">' +
+	'</a>' +
+	'<div class="media-body">'+
+	'<h4 class="media-heading">'+
+	chatName +
+	'<span class="small pull-right">' +
+	chatTime +
+	'</span>'+
+	'</h4>' +
+	'<p>' +
+	chatContent +
+	'</p>' +
+	'</div>' +
+	'</div>' +
+	'</div>' +
+	'</div>' +
+	'<hr>'); 
+	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+}
+
+function getInfiniteChat() { //몇초간격으로 새로운 메시지가 왔는지 가져오는것
+	setInterval(function() {
+		chatListFunction(lastID);
+	},3000);
+}
 	
-	function addChat(chatName, chatContent, chatTime) {
-		$('#chatList').append('<div class="row">' +
-		'<div class="col-lg-12">' + 
-		'<div class="media"' +
-		'<a class="pull-left" href="#">' +
-		'<img class="media-object img-circle" src="../images/icon.png" style="width: 30px; height: 30px;" alt="">' +
-		'</a>' +
-		'<div class="media-body">'+
-		'<h4 class="media-heading">'+
-		chatName +
-		'<span class="small pull-right">' +
-		chatTime +
-		'</span>'+
-		'</h4>' +
-		'<p>' +
-		chatContent +
-		'</p>' +
-		'</div>' +
-		'</div>' +
-		'</div>' +
-		'</div>' +
-		'<hr>'); 
-		$('#chatList').scrollTop($('#chatList'[0].scrollHeight));
-	}
-	
-	function getInfiniteChat() { //몇초간격으로 새로운 메시지가 왔는지 가져오는것
-		setInterval(function() {
-			chatListFunction(lastID);
-		},3000);
-	}
 	
 </script>
 </head>
@@ -148,7 +148,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<div id="chat" class="panel-collapse collapse in">
-					<div id="chatlist" class="porlet-body chat-widget"
+					<div id="chatList" class="portlet-body chat-widget"
 						style="overflow-y: auto; width: auto; height: 600px;"></div>
 					<div class="portlet-footer">
 						<div class="row" style="height: 90px;">
@@ -190,10 +190,13 @@
 	 
 	 <!--특정시간을 주기로 데이터베이스 목록을 가져오기  -->
 	 <script>
+	 
 	 $(document).ready(function(){
 		 chatListFunction('ten');
 		 getInfiniteChat();
 	 });
+	 
+	 
 	</script>
 </body>
 

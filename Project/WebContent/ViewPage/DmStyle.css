@@ -87,6 +87,7 @@ nav li {
 .clearfix:after {
     content: " ";
     display: table;
+    position: fixed;
 }
 
 .clearfix:after {
@@ -229,6 +230,8 @@ nav a#trigger {
 	#container {
 		width: 100%;
 	}
+	
+	
 	
 	#contents {
 		position: relative;

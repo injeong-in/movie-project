@@ -54,7 +54,9 @@
     	$('html, body').animate({scrollTop:0},400);
     	return false;
     });
+    
     </script>
+       
 </head>
 
 
@@ -153,37 +155,33 @@
 			<div class="story">반갑습니다</div>
 
 
-
-			<!--이미지 슬라이더-->
-				<div class="carousel slide" id="slider" data-ride="carousel">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#slider" data-slide-to="0" class="active"></li>
-						<li data-target="#slider" data-slide-to="1"></li>
-						<li data-target="#slider" data-slide-to="2"></li>
-					</ol>
-					
-			<!-- Wrapper for slides -->
+		<div class="slide">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
 			<div class="carousel-inner">
-				<div class="item" id="slide1">
-					<div class="carousel-caption"></div>
+				
+				<div class="item active">
+					<img src="../images/endgame2.jpg">
 				</div>
-				<div class="item" id="slide2">
-					<div class="carousel-caption"></div>
+				<%for(int i=4; i<6; i++) {%>
+				<div class ="item">
+					<img src="../images/endgame<%=i%>.jpg" style="margin:0 auto;">
 				</div>
-
-				<div class="item" id="slide3">
-					<div class="carousel-caption"></div>
-				</div>
+				<% } %>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
 		</div>
-		<!-- Left and right controls -->
-			<a class="left carousel-control" href="#slider" data-slide="prev">
-				<span class="icon-prev" role="button"></span>
-			</a>
-			<a class="right carousel-control" href="#slider">
-				<span class="icon-next" data-slide="next" role="button"></span>
-			</a>
 	</div>
+			
 	
 	
 		<!--댓글-->
@@ -204,7 +202,7 @@
 
 				<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td style="color: gray;"><%=reply%></td>
-				<hr>
+				<hr>	
 			</tr>
 		</table>
 
@@ -232,7 +230,7 @@
 			userID = (String) session.getAttribute("userID");
 			%>
 		<section class="container">
-			<form action="replyAction.jsp" class="form-horizontal" method="post">
+			<form action="replyAction.jsp" name="Form" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글</label> 
 					
@@ -254,7 +252,7 @@
 		%>
 		<!--비회원댓글작성-->
 		<section style="width: 980px;" class="container">
-			<form action="replyAction.jsp" class="form-horizontal" method="post">
+			<form action="replyAction.jsp" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글작성&nbsp;</label>
 					<div>
@@ -278,10 +276,70 @@
 		<!--댓글 끝-->
 
 		<a href="" class="btn_gotop"> <img src="../images/topbutton.png"
-			style="position: fixed; width: 80px;"> <span
-			class="glyphicon glyphicon-chevron-up"> </span>
+			style="position: fixed; width: 80px;"> <span class="glyphicon glyphicon-chevron-up"> </span>
 		</a>
 	</div>
 	</div>
+	 <script type="text/javascript">
+   /*  var xhr = null;
+
+    function getXMLHttpRequest() {
+        if (window.ActiveXObject) {
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP");//IE 상위 버젼
+            } catch (e1) {
+                try {
+                    return new ActiveXObject("Microsoft.XMLHTTP");//IE 하위 버젼
+                } catch (e2) {
+                    return null;
+                }
+            }
+        } else if (window.XMLHttpRequest) {
+            return new XMLHttpRequest();//IE 이외의 브라우저(FireFox 등)
+        } else {
+            return null;
+        }
+    }// XMLHttpRequest 객체 얻기
+
+    var responseHello = function () {
+        if (xhr.readyState == 4) {//완료
+            if (xhr.status == 200) {//오류없이 OK
+                var str = xhr.responseText;//서버에서 보낸 내용 받기
+                document.getElementById("replyContent").innerHTML = str;//보여주기    
+            } else {
+                alert("Fail : " + xhr.status);
+            }
+        }
+    } 
+    
+    function requestHello(URL) {
+        var data = {value:Form.name.value};
+        console.log(data);
+        var URL = URL;
+        xhr = getXMLHttpRequest();//XMLHttpRequest 객체 얻기
+        xhr.onreadystatechange = responseHello;
+        xhr.open("POST", URL, true);//연결
+        xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
+        xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
+    }// 서버에 요청 */
+    
+    
+    $(function(){
+    	$("#Form").on("submit",function(){
+    		var d=$("#Form").serialize();
+    		
+    		$.ajax({
+    			url:"replyAction.jsp",
+    			type:"post",
+    			data:d,
+    			success: function() {
+    				location.reload(true);
+    			}
+    		});
+    		return false;
+    	});
+    });
+    
+</script>
 </body>
 </html>
