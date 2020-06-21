@@ -117,20 +117,41 @@ public class ReplyDao implements PrototypeReply{
 	}
 
 
-
+	//회원 댓글삭제
 	@Override
-	public String replyDelete(ReplyDTO dto) throws Exception {
+	public String replyDelete(ReplyDTO dto) {
 		String sql = "DELETE FROM reply_tb where USER_ID=?";
-
+		
+		try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, dto.getUserID());
 
-		if(true)
 			return String.valueOf(pstmt.executeUpdate());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "0";
+	}
+	
+	//비회원 댓글 삭제
+	public String replyDelete(ReplyUserDTO dto) {
+		String sql = "DELETE FROM reply_user where board_ID=? && USER_PW=? && USER_ID=?";
+		
+		try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, dto.getBoardID());
+		pstmt.setString(2, dto.getUserPW());
+		pstmt.setString(3, dto.getUserID());
 
+			return String.valueOf(pstmt.executeUpdate());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "0";
 	}
 
+	
+	
 	//댓글 리스트 가져오기
 	@Override
 	public ArrayList<ReplyDTO> replyList(int boardID) throws Exception {
@@ -220,7 +241,7 @@ public class ReplyDao implements PrototypeReply{
 		ReplyDao dao = ReplyDao.getInstance();
 		int j = 0;
 		try {
-			ArrayList<Object> list = dao.replyList3(1);
+			ArrayList<Object> list = dao.replyList3(2);
 			for(int i=0; i<list.size(); i++) {
 				ReplyDTO dto = (ReplyDTO) list.get(i);
 				++j;

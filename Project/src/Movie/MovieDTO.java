@@ -1,7 +1,8 @@
 package Movie;
 
 public class MovieDTO {
-
+	
+	private int boardID;
 	private String title;
 	private String filmingLocation;
 	private Long figures;
@@ -44,6 +45,12 @@ public class MovieDTO {
 	}
 	public void setDeleteName(String deleteName) {
 		this.deleteName = deleteName;
+	}
+	public int getBoardID() {
+		return boardID;
+	}
+	public void setBoardID(int boardID) {
+		this.boardID = boardID;
 	}
 	
 	

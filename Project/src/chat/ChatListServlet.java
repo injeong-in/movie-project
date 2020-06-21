@@ -42,17 +42,17 @@ public class ChatListServlet extends HttpServlet {
 		if(fromID == null || fromID.equals("") || toID == null || toID.equals("") ||
 				listType == null || listType.equals("")) 
 			response.getWriter().write("0");
-		 else if(listType.equals("ten")) response.getWriter().write(getTen(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8"),URLDecoder.decode(listType, "UTF-8")));
+		 else if(listType.equals("ten")) response.getWriter().write(getTen(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8")));
 		 else {
 			 try {
-				response.getWriter().write(getID(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8"),URLDecoder.decode(listType, "UTF-8"))); //특정 아이디값으로 대화가져오기
+				response.getWriter().write(getID(URLDecoder.decode(fromID, "UTF-8"), URLDecoder.decode(toID, "UTF-8"),listType)); //특정 아이디값으로 대화가져오기
 			} catch (Exception e) {
 				response.getWriter().write("");
 			}
 		 }
 	}
 	
-	public String getTen(String fromID, String toID, String listType) {
+	public String getTen(String fromID, String toID) {
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		ChatDAO chatDAO = new ChatDAO();

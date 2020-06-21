@@ -1,10 +1,8 @@
 package chat;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -60,9 +58,8 @@ public class ChatDAO {
 			
 			sql.append(" SELECT*FROM user_chat WHERE ((fromID = ? AND toID = ?) ");
 			sql.append(" OR (fromID = ? AND toID = ?)) AND chatID > ? ORDER BY chatTime ");
-			
 			try {
-				conn = (Connection) dataSource.getConnection();
+				conn = dataSource.getConnection();
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setString(1, fromID);
 				pstmt.setString(2, toID);
@@ -88,17 +85,20 @@ public class ChatDAO {
 					chat.setChatTime(rs.getString("chatTime").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chatTime").substring(14, 16)+ "");
 					chatList.add(chat);
 				}
-			} catch (Exception e) {
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			finally {
-				try {if(conn!=null) conn.close();} catch (Exception e2) {e2.printStackTrace();}
-				try {if(pstmt!=null) pstmt.close();} catch (Exception e2) {e2.printStackTrace();}
-				try {if(rs!=null) rs.close();} catch (Exception e2) {e2.printStackTrace();}
-			}
-			
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			finally {
+//				try {if(conn!=null) conn.close();} catch (Exception e2) {e2.printStackTrace();}
+//				try {if(pstmt!=null) pstmt.close();} catch (Exception e2) {e2.printStackTrace();}
+//				try {if(rs!=null) rs.close();} catch (Exception e2) {e2.printStackTrace();}
+//			}
+//			return null;
 			return chatList;
-			
+				
 		}
 		
 		
@@ -166,7 +166,7 @@ public class ChatDAO {
 			//null값 넣으면 auto_increment 자동 증가
 			
 			try {
-				conn = (Connection) dataSource.getConnection();
+				conn = dataSource.getConnection();
 				pstmt = conn.prepareStatement(String.valueOf(sql));
 				pstmt.setString(1, fromID);
 				pstmt.setString(2, toID);
@@ -183,6 +183,9 @@ public class ChatDAO {
 			return -1; //데이터베이스 오류
 			
 		}
+			
+		public static void method() {
+		}
 		public static void main(String[] args) {
 //			Connection conn = null;
 //		      try {
@@ -197,15 +200,10 @@ public class ChatDAO {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-
+			ArrayList<ChatDTO> list;
+				list = new ChatDAO().getChatList("simazeri", "khm2456", "1");
+				System.out.println(list);
+				
 			
-			ChatDAO dao = new ChatDAO();
-			
-			ArrayList<ChatDTO> list = dao.getChatList("simazeri","khm2456", "1");
-			
-			for(int i=0; i<list.size(); i++) {
-				Object obj = list.get(i);
-				System.out.println(obj.toString());
-			}
 		}
 	}

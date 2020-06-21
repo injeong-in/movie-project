@@ -79,22 +79,23 @@ public class MovieDao {
 	
 	
 	
-	public ArrayList<String> getProperty() {
+	public ArrayList<MovieDTO> getProperty(String title) {
 
-		String sql = "SELECT * FROM movie_inform";
-		ArrayList<String> list = new ArrayList<>();
-
-
+		String sql = "SELECT title, released_year, figures, audience_number FROM movie_inform WHERE title=?";
+		
+		ArrayList<MovieDTO> list = new ArrayList<>();
+		MovieDTO dto = new MovieDTO();
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
 			rs = pstmt.executeQuery();
-
+			
 			while(rs.next()) {
-				list.add(rs.getString(1));
-				list.add(rs.getString(2));
-				list.add(rs.getString(3));
-				list.add(rs.getString(4));
-				list.add(rs.getString(5));
+				dto.setTitle(rs.getString(1));
+				dto.setReleasedYear(rs.getInt(2));
+				dto.setFigures(rs.getLong(3));
+				dto.setAudienceNumber(rs.getInt(4));
+				list.add(dto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,19 +103,41 @@ public class MovieDao {
 		return list;
 	}
 	
-	
-	
-	
-	
-	
+	public ArrayList<MovieDTO> getProperty(String title, String location) {
+
+		String sql = "SELECT title, released_year, figures, audience_number FROM movie_inform WHERE title=? && filming_location=?";
+		
+		ArrayList<MovieDTO> list = new ArrayList<>();
+		MovieDTO dto = new MovieDTO();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, location);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setTitle(rs.getString(1));
+				dto.setReleasedYear(rs.getInt(2));
+				dto.setFigures(rs.getLong(3));
+				dto.setAudienceNumber(rs.getInt(4));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	public static void main(String[] args) {
-		MovieDao dao = MovieDao.getInstance();
-		ArrayList<String> list = dao.getProperty();
 		
-		for (int i = 0; i < list.size(); i++) {
-			String str = list.get(i);
-			System.out.println(str);
+		MovieDao dao = MovieDao.getInstance();
+		ArrayList<MovieDTO> list = dao.getProperty("7번방의 선물");
+		
+		for(MovieDTO dto:list) {
+			System.out.println(dto.getTitle());
+			System.out.println(dto.getReleasedYear());
+			System.out.println(dto.getFigures());
+			System.out.println(dto.getAudienceNumber());
 		}
 		
 	}

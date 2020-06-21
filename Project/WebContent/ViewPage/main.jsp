@@ -107,7 +107,7 @@
     </section>
     <section id="1" class="page1">
     </section>
-    <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../ViewPage/ost.jsp'">
+    <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../Music/ost.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>
     </section>
     <section id="3" class="page3">
