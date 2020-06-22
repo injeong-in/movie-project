@@ -25,8 +25,7 @@
 		
 		int boardID = dto2.getBoardID();
 		int boardID2 = dto.getBoardID();
-		int number=0;
-		String checkBoard = null;
+		int number=0; //비회원 댓글삭제 인덱스넘버링 변수
 		/* response.sendRedirect("replyAction.jsp?boardID="+boardID); */
 		/* request.setAttribute("boardID", boardID); */
 		/* request.getRequestDispatcher("replyAction.jsp").forward(request, response); */
@@ -38,33 +37,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="DmStyle.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js">
     </script>
 <script src="../js/jquery.scrollTo.min.js"></script>
-<script>
-    $(window).scroll(function(){
-    	if ($(this).scrollTop() > 300){
-    		$('.btn_gotop').show();
-    	} else{
-    		$('.btn_gotop').hide();
-    	}
-    });
-    $('.btn_gotop').click(function(){
-    	$('html, body').animate({scrollTop:0},400);
-    	return false;
-    });
-    
-    </script>
-       
+<script src="./script.js"></script>
 </head>
 
-
 <style>
-
 
 #slider {
 	margin-top: 60px;
@@ -88,78 +71,9 @@
 .spec dt {
 	font-size: 13px;
 }
-
-
-.cmt_mdf_del {
-	font-size: 11px;
-}
-
-.cmt_delpw_box {
-	overflow: hidden;
-	position: absolute;
-	width: 212px;
-	height: 31px;
-	border: 2px solid #3c4790;
-}
-
-.cmt_delpw {
-	float: left;
-	width: 129px;
-	height: 31px;
-	line-height: 34px;
-	padding: 0 5px;
-	border: 0;
-	background: #fff;
-	font-size: 14px;
-}
-
-.btn_ok {
-	float: left;
-	width: 49px;
-	height: 31px;
-	line-height: 32px;
-	background: #4a57a8;
-	color: #fff;
-	font-weight: bold;
-	text-shadow: 0px 1px #343a8e;
-}
-
-.cmt_mdf_del button {
-	color: #999;
-}
-
-.btn_cmtpw_close {
-	width: 30px;
-	height: 31px;
-	background: #3c4790;
-}
-
-.blind {
-	position: absolute;
-	overflow: hidden;
-	visibility: hidden;
-	margin: -1px;
-	width: 0px;
-	height: 0px;
-	top: -9999px;
-	font-size: 0;
-}
-
-.icon_cmtpw_close {
-	display: inline-block;
-	width: 13px;
-	height: 14px;
-	margin: 3px 0 0 3px;
-	background-position: -138px -78px;
-}
-
-.sp_img {
-	background-image: url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);
-	background-repeat: no-repeat;
-}
-
 </style>
 <body>
+	<section id="2"></section>
 	<div id="header">
 		<!-- 네비게이션 -->
 		<% if(userID != null) {
@@ -185,9 +99,9 @@
 				<li onclick="location.href='../Movie/login.jsp'"><a href="#">로그인</a></li>
 				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
 					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/movie.jsp"><a
+				<li onclick="location.href='../ViewPage/movie.jsp'"><a
 					href="#">MOVIE</a></li>
-				<li onclick="location.href='../Music/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 
 			</ul>
@@ -224,8 +138,8 @@
 						</div>
 						<div class="like" style="margin-top: 10px;">
 							<img src="./images/stillcut.png">
-							<a href="../Music/ost-search.jsp"><img src="./images/music.png" style="margin-left:-6px;"></a>
-							<img src="./images/reply.png" style="margin-left:-6px;">
+							<img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
+							<a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
 						</div>
 					</div>
 				</div>
@@ -283,6 +197,7 @@
 		<table>
 			<tr>
 				<%-- <%if(userID == null) id = "***"; %> --%>
+
 				<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td style="color: gray;"><%=reply%></td>
 			</tr>
@@ -293,13 +208,13 @@
 				String checkId = dto2.getUserID();
 					if(checkId.equals(id)) { %>
 			<div class="cmt_mdf_del" data-type="cmt" style="float: right">
-				<button type="button" class="btn_cmt_delete" onclick="dis()">삭제</button>
+				<button type="button" class="btn_cmt_delete" id="btn_cmt_delete" onclick="dis(<%=number%>)">삭제</button>
 				<div id="cmt_delpw_box" class="cmt_delpw_box" data-type="cmt" style="margin: -16px 0 0 -242px">
 					<input type="hidden" value="<%=checkId%>" name="cmt_ID" id="cmt_ID" class="cmt_ID">
 					<input type="password" title="비밀번호" placeholder="비밀번호" id="cmt_password" name="cmt_password" class="cmt_delpw">
 					<button type="button" id="btn_ok" class="btn_ok" onclick="deleteReply(<%=number%>)">확인</button> 
 					<!-- 매개변수를 j로 했을때 동일아이디를 같은 숫자로 인식하는 문제 발생, number 인트 변수를 따로 설정해서 1씩 증가하도록 해서 해결-->
-					<button type="button" class="btn_cmtpw_close">
+					<button type="button" class="btn_cmtpw_close" id="btn_cmtpw_close" onclick="appear(<%=number%>)">
 						<span class="blind">닫기</span>
 						<em class="sp_img icon_cmtpw_close"></em>
 					</button>
@@ -309,11 +224,10 @@
 			number+=1; /*넘버값 0부터 1씩 증가하도록 선처리 후증가로 */
 			break; } 
 			}%>
-			
 		</table>
 
 		<% } %>
-		<hr>
+	<hr>
 		<%-- <% 
 			ArrayList<ReplyUserDTO> list2 = dao.replyList2(1);
 			for(ReplyUserDTO reply : list2) {
@@ -335,7 +249,7 @@
 		<% if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 			%>
-		<section class="container">
+		<section ID="1" class="container">
 			<form action="replyAction.jsp" name="Form" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글</label> 
@@ -356,7 +270,7 @@
 		<% } else {
 		%>
 		<!--비회원댓글작성-->
-		<section style="width: 980px;" class="container">
+		<section ID="1" style="width: 980px;" class="container">
 			<form action="replyAction.jsp" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글작성&nbsp;</label>
@@ -380,62 +294,19 @@
 		%>
 		<!--댓글 끝-->
 
-		<a href="" class="btn_gotop"> <img src="../images/topbutton.png"
+		<a href="#2" class="btn_gotop" id="btn_gotop"> <img src="../images/topbutton.png"
 			style="position: fixed; width: 80px;"> <span class="glyphicon glyphicon-chevron-up"> </span>
 		</a>
-	</div>
+		</div>
 	</div>
 	 <script type="text/javascript">
-	 
-	 var replyPW = document.getElementsByClassName('cmt_delpw');
-	 var replyID = document.getElementsByClassName('cmt_ID');
-	 
-	 
-	 /*겪었던 함수실행문제 - id값을 담아서 함수를 실행했더니 자꾸 맨위의 댓글만 함수실행이 되어서 아래 댓글들은 함수실행이 안되는 문제를 겪음*/
 	 
 	 var deleteReply = function(i) {
 		 location.href = 'replyDelete.jsp?cmt_ID=' +replyID[i].value + '&cmt_password=' + replyPW[i].value +'&boardID='+<%=boardID%>;
 	 }
-		 
 	 
-	 $(function(){
-	    	$("#btn_ok").on("click",function(){
-	    		
-	    		$.ajax({
-	    			url:"replyDelete.jsp",
-	    			type:"cmt",
-	    			success: function() {
-	    				alert('입력되었습니다');
-	    			}
-	    		});
-	    		return false;
-	    	});
-	    });
 	 
-    
-    $(function(){
-    	$("#Form").on("submit",function(){
-    		var d=$("#Form").serialize();
-    		
-    		$.ajax({
-    			url:"replyAction.jsp",
-    			type:"post",
-    			data:d,
-    			success: function() {
-    				location.reload(true);
-    			}
-    		});
-    		return false;
-    	});
-    });
-    
-    /* function dis(){
-        if($('.btn_cmt_delete').css('display') == 'none'){
-        $('#cmt_delpw_box').show();
-    }else{
-        $('#cmt_delpw_box').hide();
-    	}
-    } */
+	    
     
 </script>
 </body>

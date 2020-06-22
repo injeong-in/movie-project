@@ -28,12 +28,14 @@
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="../css/swiper.min.css" />
-<link rel="stylesheet" href="DmStyle.css">
 <link type="text/css" rel="stylesheet" href="style.css" />
 <script type="text/javascript" src="../js/swiper.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"
-	integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
-	crossorigin="anonymous"></script>
+<script src="../js/jquery-2.1.3.min.js">
+    </script>
+    <script src="../js/jquery.vide.min.js">
+    </script>
+    <script src="../js/jquery.scrollTo.min.js">
+    </script>
 </head>
 <style>
 body::before {
@@ -58,7 +60,6 @@ body::before {
 .contents {
 	width: 980px;
 	height: 500px;
-	border: 1px solid red;
 	margin: 0 auto;
 }
 
@@ -68,18 +69,16 @@ body::before {
 	
 	<div id="header">
 		<!-- 네비게이션 -->
-		<% if(userID != null) {
-	%>
+		
 		<nav class="clearfix">
+		<% if(userID == null) {
+								%>
 			<ul class="clearfix">
-				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#">HOME</a></li>
-				<li onclick="location.href='../Movie/logoutAction.jsp'"><a
-					href="#">로그아웃</a></li>
-				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
-					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/movie.jsp'"><a
-					href="#">MOVIE</a></li>
-				<li onclick="location.href='../ViewPage/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#1">HOME</a></li>
+				<li onclick="location.href='../Movie/login.jsp'"><a href="#2">로그인</a></li>
+				<li onclick="location.href='../Movie/memberJoin.jsp'"><a href="#3">회원가입</a></li>
+				<li onclick="location.href='./movie.jsp'"><a href="#4">MOVIE</a></li>
+				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#5">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 			</ul>
 			<a href="" id="trigger"></a>
@@ -87,20 +86,18 @@ body::before {
 		<% } else { %>
 		<nav class="clearfix">
 			<ul class="clearfix">
-				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#">HOME</a></li>
-				<li onclick="location.href='../Movie/login.jsp'"><a href="#">로그인</a></li>
-				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
-					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/movie.jsp"><a
-					href="#">MOVIE</a></li>
-				<li onclick="location.href='../ViewPage/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#1">HOME</a></li>
+				<li onclick="location.href='../Movie/logoutAction.jsp'"><a href="#2">로그아웃</a></li>
+				<li onclick="location.href='../Movie/memberJoin.jsp'"><a href="#3">회원가입</a></li>
+				<li onclick="location.href='./movie.jsp'"><a href="#4">MOVIE</a></li>
+				<li onclick="location.href='./ost-search.jsp'"><a href="#5">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 
 			</ul>
+			<% } %>
 			<a href="" id="trigger"></a>
 		</nav>
 
-		<% } %>
 	</div>
 	<section id="container">
 		<!-- Swiper -->
@@ -111,7 +108,8 @@ body::before {
 					style="background-image: url(../images/greenteck.jpg)"
 					onclick="location.href='detailMovie.jsp'">
 					</div>
-					<div class="swiper-slide" style="background-image: url()"></div>
+					<div class="swiper-slide" style="background-image: url(../Movie-inform/images/F2.jpg)"
+					onclick=""></div>
 					<div class="swiper-slide" style="background-image: url()"></div>
 					<div class="swiper-slide" style="background-image: url()"></div>
 					<div class="swiper-slide" style="background-image: url()"></div>

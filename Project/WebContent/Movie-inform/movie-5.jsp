@@ -20,11 +20,13 @@
 		ReplyDao dao = ReplyDao.getInstance();
 		
 		/*게시물 ID번호 세팅*/
-		dto.setBoardID(4);
-		dto2.setBoardID(4);
+		dto.setBoardID(5);
+		dto2.setBoardID(5);
 		
-		int boardID = 0;
+		int boardID = dto2.getBoardID();
 		int boardID2 = dto.getBoardID();
+		int number=0; //비회원 댓글삭제 인덱스넘버링 변수
+		
 		/* response.sendRedirect("replyAction.jsp?boardID="+boardID); */
 		/* request.setAttribute("boardID", boardID); */
 		/* request.getRequestDispatcher("replyAction.jsp").forward(request, response); */
@@ -36,7 +38,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="DmStyle.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -56,6 +58,17 @@
     	return false;
     });
     
+  //댓글삭제창 띄우기
+    var dis = function (i) {
+    	if($('.cmt_delpw_box').eq(i).css('display') == 'none') {
+    		$('.cmt_delpw_box').eq(i).show();
+    	}
+    }
+    
+    //댓글삭제창 닫기
+    var appear = function(i) {
+    		$('.cmt_delpw_box').eq(i).hide();
+    	}
     </script>
        
 </head>
@@ -85,6 +98,76 @@
 .spec dt {
 	font-size: 13px;
 }
+
+
+.cmt_mdf_del {
+	font-size: 11px;
+}
+
+.cmt_delpw_box {
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	width: 212px;
+	height: 31px;
+	border: 2px solid #3c4790;
+}
+
+.cmt_delpw {
+	float: left;
+	width: 129px;
+	height: 31px;
+	line-height: 34px;
+	padding: 0 5px;
+	border: 0;
+	background: #fff;
+	font-size: 14px;
+}
+
+.btn_ok {
+	float: left;
+	width: 49px;
+	height: 31px;
+	line-height: 32px;
+	background: #4a57a8;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0px 1px #343a8e;
+}
+
+.cmt_mdf_del button {
+	color: #999;
+}
+
+.btn_cmtpw_close {
+	width: 30px;
+	height: 31px;
+	background: #3c4790;
+}
+
+.blind {
+	position: absolute;
+	overflow: hidden;
+	visibility: hidden;
+	margin: -1px;
+	width: 0px;
+	height: 0px;
+	top: -9999px;
+	font-size: 0;
+}
+
+.icon_cmtpw_close {
+	display: inline-block;
+	width: 13px;
+	height: 14px;
+	margin: 3px 0 0 3px;
+	background-position: -138px -78px;
+}
+
+.sp_img {
+	background-image: url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);
+	background-repeat: no-repeat;
+}
 </style>
 <body>
 	<div id="header">
@@ -100,7 +183,7 @@
 					href="#">회원가입</a></li>
 				<li onclick="location.href='../ViewPage/movie.jsp'"><a
 					href="#">MOVIE</a></li>
-				<li onclick="location.href='../ViewPage/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 			</ul>
 			<a href="" id="trigger"></a>
@@ -110,11 +193,9 @@
 			<ul class="clearfix">
 				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#">HOME</a></li>
 				<li onclick="location.href='../Movie/login.jsp'"><a href="#">로그인</a></li>
-				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
-					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/movie.jsp"><a
-					href="#">MOVIE</a></li>
-				<li onclick="location.href='../ViewPage/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../Movie/memberJoin.jsp'"><a href="#">회원가입</a></li>
+				<li onclick="location.href='../ViewPage/movie.jsp"><a href="#">MOVIE</a></li>
+				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 
 			</ul>
@@ -143,15 +224,16 @@
 						</div>
 						<div class="spec" style="margin-top: 5px;">
 							<dl>
-								<dt>감독 : 조 루소, 앤서니 루소</dt>
-								<dt>배우 : 로버트 다우니 주니어, 크리스 에반스, 마크 러팔로, 크리스 헴스워스, 스칼렛 요한슨... </dt>
-								<dt>장르 : SF판타지,액션</dt>
-								<dt>개봉 : 2019</dt>
+								<dt>감독 : 크리스 벅, 제니퍼 리</dt>
+								<dt>배우 : 크리스틴 벨, 이디나 멘젤, 조나단 그로프, 조시 게드... </dt>
+								<dt>장르 : 애니메이션</dt>
+								<dt>개봉 : 2014</dt>
 							</dl>
 						</div>
 						<div class="like" style="margin-top: 10px;">
-							<input type="button" value="주요정보"> <input type="button"
-								value="O.S.T듣기"> <input type="button" value="촬영지">
+							<a href="./UIcard/card-5.jsp"><img src="./images/stillcut.png"></a>
+							<a href="../Music/ost-5.jsp"><img src="./images/music.png" style="margin-left:-6px;"></a>
+							<img src="./images/reply.png" style="margin-right:-40px;">
 						</div>
 					</div>
 				</div>
@@ -173,11 +255,11 @@
 			<div class="carousel-inner">
 				
 				<div class="item active">
-					<img src="./images/F1.jpg">
+					<img style="width: 700px; margin:0 auto;" src="./images/F1.jpg">
 				</div>
 				<%for(int i=2; i<11; i++) {%>
 				<div class ="item">
-					<img src="./images/F<%=i%>.jpg" style="margin:0 auto;">
+					<img style="width: 700px; margin:0 auto;" src="./images/F<%=i%>.jpg" style="margin:0 auto;">
 				</div>
 				<% } %>
 			</div>
@@ -196,7 +278,7 @@
 		<label style="margin-top: 15px;">전체 리플</label>
 		<hr style="border: 1.5px solid gray;">
 		<% 
-			
+			ArrayList<ReplyUserDTO> check = dao.replyList2(boardID);
 			ArrayList<Object> list = dao.replyList3(boardID2);
 			for(int i=0; i<list.size(); i++) {
 				dto = (ReplyDTO) list.get(i);
@@ -210,12 +292,34 @@
 
 				<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td style="color: gray;"><%=reply%></td>
-				<hr>	
 			</tr>
+			<hr>
+			<%	/*비회원 리스트를 가져와서 조인 테이블 리스트의 ID값과 비교해서 비회원 댓글만 삭제창이 나오도록함*/
+				for(int j=0; j<check.size(); j++) {
+				dto2 = check.get(j);
+				String checkId = dto2.getUserID();
+					if(checkId.equals(id)) { %>
+			<div class="cmt_mdf_del" data-type="cmt" style="float: right">
+				<button type="button" class="btn_cmt_delete" id="btn_cmt_delete" onclick="dis(<%=number%>)">삭제</button>
+				<div id="cmt_delpw_box" class="cmt_delpw_box" data-type="cmt" style="margin: -16px 0 0 -242px">
+					<input type="hidden" value="<%=checkId%>" name="cmt_ID" id="cmt_ID" class="cmt_ID">
+					<input type="password" title="비밀번호" placeholder="비밀번호" id="cmt_password" name="cmt_password" class="cmt_delpw">
+					<button type="button" id="btn_ok" class="btn_ok" onclick="deleteReply(<%=number%>)">확인</button> 
+					<!-- 매개변수를 j로 했을때 동일아이디를 같은 숫자로 인식하는 문제 발생, number 인트 변수를 따로 설정해서 1씩 증가하도록 해서 해결-->
+					<button type="button" class="btn_cmtpw_close" id="btn_cmtpw_close" onclick="appear(<%=number%>)">
+						<span class="blind">닫기</span>
+						<em class="sp_img icon_cmtpw_close"></em>
+					</button>
+				</div>
+			</div>
+			<% 
+			number+=1; /*넘버값 0부터 1씩 증가하도록 선처리 후증가로 */
+			break; } 
+			}%>
 		</table>
 
 		<% } %>
-
+	<hr>
 		<%-- <% 
 			ArrayList<ReplyUserDTO> list2 = dao.replyList2(1);
 			for(ReplyUserDTO reply : list2) {
@@ -256,7 +360,6 @@
 
 		</section>
 		<% } else {
-			boardID = dto2.getBoardID();
 		%>
 		<!--비회원댓글작성-->
 		<section style="width: 980px;" class="container">
@@ -289,48 +392,34 @@
 	</div>
 	</div>
 	 <script type="text/javascript">
-   /*  var xhr = null;
-
-    function getXMLHttpRequest() {
-        if (window.ActiveXObject) {
-            try {
-                return new ActiveXObject("Msxml2.XMLHTTP");//IE 상위 버젼
-            } catch (e1) {
-                try {
-                    return new ActiveXObject("Microsoft.XMLHTTP");//IE 하위 버젼
-                } catch (e2) {
-                    return null;
-                }
-            }
-        } else if (window.XMLHttpRequest) {
-            return new XMLHttpRequest();//IE 이외의 브라우저(FireFox 등)
-        } else {
-            return null;
-        }
-    }// XMLHttpRequest 객체 얻기
-
-    var responseHello = function () {
-        if (xhr.readyState == 4) {//완료
-            if (xhr.status == 200) {//오류없이 OK
-                var str = xhr.responseText;//서버에서 보낸 내용 받기
-                document.getElementById("replyContent").innerHTML = str;//보여주기    
-            } else {
-                alert("Fail : " + xhr.status);
-            }
-        }
-    } 
-    
-    function requestHello(URL) {
-        var data = {value:Form.name.value};
-        console.log(data);
-        var URL = URL;
-        xhr = getXMLHttpRequest();//XMLHttpRequest 객체 얻기
-        xhr.onreadystatechange = responseHello;
-        xhr.open("POST", URL, true);//연결
-        xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
-        xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
-    }// 서버에 요청 */
-    
+	 
+	 var replyPW = document.getElementsByClassName('cmt_delpw');
+	 var replyID = document.getElementsByClassName('cmt_ID');
+	 
+	 
+	 /*겪었던 함수실행문제 - id값을 담아서 함수를 실행했더니 자꾸 맨위의 댓글만 함수실행이 되어서 아래 댓글들은 함수실행이 안되는 문제를 겪음*/
+	 
+	 var deleteReply = function(i) {
+		 location.href = 'replyDelete.jsp?cmt_ID=' +replyID[i].value + '&cmt_password=' + replyPW[i].value +'&boardID='+<%=boardID%>;
+	 }
+		 
+	 
+	 /* $(function(){
+	    	$("#btn_ok").on("click",function(){
+	    		
+	    		$.ajax({
+	    			url:"replyDelete.jsp",
+	    			type:"cmt",
+	    			success: function() {
+	    				alert('입력되었습니다');
+	    			}
+	    		});
+	    		return false;
+	    	});
+	    }); */
+	 
+	 
+	 
     
     $(function(){
     	$("#Form").on("submit",function(){
@@ -347,6 +436,15 @@
     		return false;
     	});
     });
+    
+    /* function dis(){
+        if($('.btn_cmt_delete').css('display') == 'none'){
+        $('#cmt_delpw_box').show();
+    }else{
+        $('#cmt_delpw_box').hide();
+    	}
+    } */
+    
     
 </script>
 </body>

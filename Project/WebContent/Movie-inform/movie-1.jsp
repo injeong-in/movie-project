@@ -23,8 +23,9 @@
 		dto.setBoardID(1);
 		dto2.setBoardID(1);
 		
-		int boardID = 0;
+		int boardID = dto2.getBoardID();
 		int boardID2 = dto.getBoardID();
+		int number=0; //비회원 댓글삭제 인덱스넘버링 변수
 		/* response.sendRedirect("replyAction.jsp?boardID="+boardID); */
 		/* request.setAttribute("boardID", boardID); */
 		/* request.getRequestDispatcher("replyAction.jsp").forward(request, response); */
@@ -36,30 +37,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="DmStyle.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js">
     </script>
 <script src="../js/jquery.scrollTo.min.js"></script>
-<script>
-    $(window).scroll(function(){
-    	if ($(this).scrollTop() > 300){
-    		$('.btn_gotop').show();
-    	} else{
-    		$('.btn_gotop').hide();
-    	}
-    });
-    $('.btn_gotop').click(function(){
-    	$('html, body').animate({scrollTop:0},400);
-    	return false;
-    });
-    
-    </script>
-       
+<script src="./script.js"></script>
 </head>
-
 
 <style>
 
@@ -87,6 +73,7 @@
 }
 </style>
 <body>
+	<section id="2"></section>
 	<div id="header">
 		<!-- 네비게이션 -->
 		<% if(userID != null) {
@@ -112,9 +99,9 @@
 				<li onclick="location.href='../Movie/login.jsp'"><a href="#">로그인</a></li>
 				<li onclick="location.href='../Movie/memberJoin.jsp'"><a
 					href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/movie.jsp"><a
+				<li onclick="location.href='../ViewPage/movie.jsp'"><a
 					href="#">MOVIE</a></li>
-				<li onclick="location.href='../Music/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 
 			</ul>
@@ -143,16 +130,16 @@
 						</div>
 						<div class="spec" style="margin-top: 5px;">
 							<dl>
-								<dt>감독 : 조 루소, 앤서니 루소</dt>
-								<dt>배우 : 로버트 다우니 주니어, 크리스 에반스, 마크 러팔로, 크리스 헴스워스, 스칼렛 요한슨... </dt>
-								<dt>장르 : SF판타지,액션</dt>
-								<dt>개봉 : 2019</dt>
+								<dt>감독 : 김영탁</dt>
+								<dt>배우 : 차태현, 남상미, 오달수, 고창석... </dt>
+								<dt>장르 : 드라마</dt>
+								<dt>개봉 : 2014</dt>
 							</dl>
 						</div>
-						<div class="like" style="margin-top: 10px;">
-							<img src="./images/stillcut.png">
-							<a href="../Music/ost-search.jsp"><img src="./images/music.png" style="margin-left:-6px;"></a>
-							<img src="./images/reply.png" style="margin-left:-6px;">
+						<div id="like" class="like" style="margin-top: 48px;">
+							<img src="./images/stillcut.png" onclick="location.href=''">
+							<img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
+							<a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
 						</div>
 					</div>
 				</div>
@@ -161,7 +148,7 @@
 			<!--스토리 글-->
 			<br>
 			<h4 style="font-weight: bold; padding-top: 15px;">줄거리</h4>
-			<div class="story">인피니티 워 이후 절반만 살아남은 지구 <br>마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다! <br>위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!<br><br><br><br></div>
+			<div class="story">남들이 못 보는 찰나의 순간까지 볼 수 있는 남자 여장부(차태현). <br>뛰어난 순간포착 능력을 인정 받아 CCTV 관제센터 에이스로 떠오르게 된다. <br> 특별한 남자의 독.특.한 세상보기가 시작된다! <br><br><br><br></div>
 
 
 		<div class="slide">
@@ -198,7 +185,7 @@
 		<label style="margin-top: 15px;">전체 리플</label>
 		<hr style="border: 1.5px solid gray;">
 		<% 
-			
+			ArrayList<ReplyUserDTO> check = dao.replyList2(boardID);
 			ArrayList<Object> list = dao.replyList3(boardID2);
 			for(int i=0; i<list.size(); i++) {
 				dto = (ReplyDTO) list.get(i);
@@ -212,12 +199,34 @@
 
 				<td style="font-weight: bold;"><%=id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				<td style="color: gray;"><%=reply%></td>
-				<hr>	
 			</tr>
+			<hr>
+			<%	/*비회원 리스트를 가져와서 조인 테이블 리스트의 ID값과 비교해서 비회원 댓글만 삭제창이 나오도록함*/
+				for(int j=0; j<check.size(); j++) {
+				dto2 = check.get(j);
+				String checkId = dto2.getUserID();
+					if(checkId.equals(id)) { %>
+			<div class="cmt_mdf_del" data-type="cmt" style="float: right">
+				<button type="button" class="btn_cmt_delete" id="btn_cmt_delete" onclick="dis(<%=number%>)">삭제</button>
+				<div id="cmt_delpw_box" class="cmt_delpw_box" data-type="cmt" style="margin: -16px 0 0 -242px">
+					<input type="hidden" value="<%=checkId%>" name="cmt_ID" id="cmt_ID" class="cmt_ID">
+					<input type="password" title="비밀번호" placeholder="비밀번호" id="cmt_password" name="cmt_password" class="cmt_delpw">
+					<button type="button" id="btn_ok" class="btn_ok" onclick="deleteReply(<%=number%>)">확인</button> 
+					<!-- 매개변수를 j로 했을때 동일아이디를 같은 숫자로 인식하는 문제 발생, number 인트 변수를 따로 설정해서 1씩 증가하도록 해서 해결-->
+					<button type="button" class="btn_cmtpw_close" id="btn_cmtpw_close" onclick="appear(<%=number%>)">
+						<span class="blind">닫기</span>
+						<em class="sp_img icon_cmtpw_close"></em>
+					</button>
+				</div>
+			</div>
+			<% 
+			number+=1; /*넘버값 0부터 1씩 증가하도록 선처리 후증가로 */
+			break; } 
+			}%>
 		</table>
 
 		<% } %>
-
+	<hr>
 		<%-- <% 
 			ArrayList<ReplyUserDTO> list2 = dao.replyList2(1);
 			for(ReplyUserDTO reply : list2) {
@@ -239,7 +248,7 @@
 		<% if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 			%>
-		<section class="container">
+		<section ID="1" class="container">
 			<form action="replyAction.jsp" name="Form" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글</label> 
@@ -258,10 +267,9 @@
 
 		</section>
 		<% } else {
-			boardID = dto2.getBoardID();
 		%>
 		<!--비회원댓글작성-->
-		<section style="width: 980px;" class="container">
+		<section ID="1" style="width: 980px;" class="container">
 			<form action="replyAction.jsp" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글작성&nbsp;</label>
@@ -285,70 +293,19 @@
 		%>
 		<!--댓글 끝-->
 
-		<a href="" class="btn_gotop"> <img src="../images/topbutton.png"
+		<a href="#2" class="btn_gotop" id="btn_gotop"> <img src="../images/topbutton.png"
 			style="position: fixed; width: 80px;"> <span class="glyphicon glyphicon-chevron-up"> </span>
 		</a>
-	</div>
+		</div>
 	</div>
 	 <script type="text/javascript">
-   /*  var xhr = null;
-
-    function getXMLHttpRequest() {
-        if (window.ActiveXObject) {
-            try {
-                return new ActiveXObject("Msxml2.XMLHTTP");//IE 상위 버젼
-            } catch (e1) {
-                try {
-                    return new ActiveXObject("Microsoft.XMLHTTP");//IE 하위 버젼
-                } catch (e2) {
-                    return null;
-                }
-            }
-        } else if (window.XMLHttpRequest) {
-            return new XMLHttpRequest();//IE 이외의 브라우저(FireFox 등)
-        } else {
-            return null;
-        }
-    }// XMLHttpRequest 객체 얻기
-
-    var responseHello = function () {
-        if (xhr.readyState == 4) {//완료
-            if (xhr.status == 200) {//오류없이 OK
-                var str = xhr.responseText;//서버에서 보낸 내용 받기
-                document.getElementById("replyContent").innerHTML = str;//보여주기    
-            } else {
-                alert("Fail : " + xhr.status);
-            }
-        }
-    } 
-    
-    function requestHello(URL) {
-        var data = {value:Form.name.value};
-        console.log(data);
-        var URL = URL;
-        xhr = getXMLHttpRequest();//XMLHttpRequest 객체 얻기
-        xhr.onreadystatechange = responseHello;
-        xhr.open("POST", URL, true);//연결
-        xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
-        xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
-    }// 서버에 요청 */
-    
-    
-    $(function(){
-    	$("#Form").on("submit",function(){
-    		var d=$("#Form").serialize();
-    		
-    		$.ajax({
-    			url:"replyAction.jsp",
-    			type:"post",
-    			data:d,
-    			success: function() {
-    				location.reload(true);
-    			}
-    		});
-    		return false;
-    	});
-    });
+	 
+	 var deleteReply = function(i) {
+		 location.href = 'replyDelete.jsp?cmt_ID=' +replyID[i].value + '&cmt_password=' + replyPW[i].value +'&boardID='+<%=boardID%>;
+	 }
+	 
+	 
+	    
     
 </script>
 </body>

@@ -45,6 +45,10 @@ table {
 }
 
 
+.carousel-inner img {
+	width: 700px;
+	margin: 0 auto;
+}
 
 .container {
     width: 100%;
@@ -99,7 +103,7 @@ nav li {
 
 nav a {
     color: #fff;
-    display: inline-block;
+    display: inline-block;	
     width: 100px;
     text-align: center;
     text-decoration: none;
@@ -199,39 +203,138 @@ nav a#trigger {
 
 
 }
+	
+	
+	
+	#contents {
+		width: 980px;
+		margin: 0 auto;
+	}
+	
+	.movie-sector .box-contents {
+		width: 765px;
+		float: left;
+		position: relative;
+	}
+	
+	.thumb-image {
+		display: block;
+		position: relative;
+	}
+	
+	.movie-sector .box-image .thumb-image img {
+		display: inline-block;
+		width: 185px;
+		height: 260px;
+		margin-right: 30px;
+	}
+	
+	.movie-sector {
+		margin-top: 40px;
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	.title p {
+		font-size: 12px;
+	}
+	
+	.title strong {
+		font-size: 25px;
+		vertical-align: middle;
+	}
+	
+	.spec > dl > dt{
+		margin-top: 6px;
+	}
+	
+	dl dt {
+		font-size: 8px;
+		font-weight: bold;
+	}
+	
+	#contents .story {
+		margin-top: 40px;
+	}
+	
+	td {
+		font-size: 15px;
+	}
+	
+	
+	/*댓글삭제 디자인*/
+	
+.spec dt {
+	font-size: 13px;
+}
 
-    
-    
-    
-    /*  */
-    .swiper-container {
-      
-      width: 50%;
-      height: 100px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .swiper-slide {
-      background-size: cover;
-      background-position: center;
-    }
-    .gallery-top {
-      height: 50%;
-      width: 30%;
-    }
-    .gallery-thumbs {
-      height: 20%;
-      box-sizing: border-box;
-      padding: 10px 0;
-    }
-    .gallery-thumbs .swiper-slide {
-      height: 100%;
-      opacity: 0.4;
-    }
-    .gallery-thumbs .swiper-slide-thumb-active {
-      opacity: 1;
-    }
-    .gallery-thumbs .swiper-slide:hover {
-    	height: 120%;
-    	border: 3px solid purple;
-    }
+
+.cmt_mdf_del {
+	font-size: 11px;
+}
+
+.cmt_delpw_box {
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	width: 212px;
+	height: 31px;
+	border: 2px solid #3c4790;
+}
+
+.cmt_delpw {
+	float: left;
+	width: 129px;
+	height: 31px;
+	line-height: 34px;
+	padding: 0 5px;
+	border: 0;
+	background: #fff;
+	font-size: 14px;
+}
+
+.btn_ok {
+	float: left;
+	width: 49px;
+	height: 31px;
+	line-height: 32px;
+	background: #4a57a8;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0px 1px #343a8e;
+}
+
+.cmt_mdf_del button {
+	color: #999;
+}
+
+.btn_cmtpw_close {
+	width: 30px;
+	height: 31px;
+	background: #3c4790;
+}
+
+.blind {
+	position: absolute;
+	overflow: hidden;
+	visibility: hidden;
+	margin: -1px;
+	width: 0px;
+	height: 0px;
+	top: -9999px;
+	font-size: 0;
+}
+
+.icon_cmtpw_close {
+	display: inline-block;
+	width: 13px;
+	height: 14px;
+	margin: 3px 0 0 3px;
+	background-position: -138px -78px;
+}
+
+.sp_img {
+	background-image: url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);
+	background-repeat: no-repeat;
+}
+	
