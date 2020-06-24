@@ -42,134 +42,22 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery-2.1.3.min.js">
-    </script>
+<script src="../js/jquery-2.1.3.min.js"></script>
 <script src="../js/jquery.scrollTo.min.js"></script>
-<script>
-    $(window).scroll(function(){
-    	if ($(this).scrollTop() > 300){
-    		$('.btn_gotop').show();
-    	} else{
-    		$('.btn_gotop').hide();
-    	}
-    });
-    $('.btn_gotop').click(function(){
-    	$('html, body').animate({scrollTop:0},400);
-    	return false;
-    });
-    
-  //댓글삭제창 띄우기
-    var dis = function (i) {
-    	if($('.cmt_delpw_box').eq(i).css('display') == 'none') {
-    		$('.cmt_delpw_box').eq(i).show();
-    	}
-    }
-    
-    //댓글삭제창 닫기
-    var appear = function(i) {
-    		$('.cmt_delpw_box').eq(i).hide();
-    	}
-    </script>
-       
+<script src="./script.js"></script>
 </head>
-
 
 <style>
 
-#slider {
-	margin-top: 60px;
-}
-#slider .item {
-	height: 400px;
-	
-}
-#slide1 {
-	background: url(../images/endgame2.jpg);
-}
 
-#slide2 {
-	background: url(../images/endgame3.jpg);
-}
-
-#slide3 {
-	background: url(../images/endgame4.jpg);
-}
-
-.spec dt {
-	font-size: 13px;
+.carousel-control {
+	width: 0%;
 }
 
 
-.cmt_mdf_del {
-	font-size: 11px;
-}
-
-.cmt_delpw_box {
-	display: none;
-	overflow: hidden;
-	position: absolute;
-	width: 212px;
-	height: 31px;
-	border: 2px solid #3c4790;
-}
-
-.cmt_delpw {
-	float: left;
-	width: 129px;
-	height: 31px;
-	line-height: 34px;
-	padding: 0 5px;
-	border: 0;
-	background: #fff;
-	font-size: 14px;
-}
-
-.btn_ok {
-	float: left;
-	width: 49px;
-	height: 31px;
-	line-height: 32px;
-	background: #4a57a8;
-	color: #fff;
-	font-weight: bold;
-	text-shadow: 0px 1px #343a8e;
-}
-
-.cmt_mdf_del button {
-	color: #999;
-}
-
-.btn_cmtpw_close {
-	width: 30px;
-	height: 31px;
-	background: #3c4790;
-}
-
-.blind {
-	position: absolute;
-	overflow: hidden;
-	visibility: hidden;
-	margin: -1px;
-	width: 0px;
-	height: 0px;
-	top: -9999px;
-	font-size: 0;
-}
-
-.icon_cmtpw_close {
-	display: inline-block;
-	width: 13px;
-	height: 14px;
-	margin: 3px 0 0 3px;
-	background-position: -138px -78px;
-}
-
-.sp_img {
-	background-image: url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);
-	background-repeat: no-repeat;
-}
 </style>
 <body>
+	<section id="2"></section>
 	<div id="header">
 		<!-- 네비게이션 -->
 		<% if(userID != null) {
@@ -194,10 +82,9 @@
 				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#">HOME</a></li>
 				<li onclick="location.href='../Movie/login.jsp'"><a href="#">로그인</a></li>
 				<li onclick="location.href='../Movie/memberJoin.jsp'"><a href="#">회원가입</a></li>
-				<li onclick="location.href='../ViewPage/movie.jsp"><a href="#">MOVIE</a></li>
+				<li onclick="location.href='../ViewPage/movie.jsp'"><a href="#">MOVIE</a></li>
 				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
-
 			</ul>
 			<a href="" id="trigger"></a>
 		</nav>
@@ -208,8 +95,8 @@
 
 		<div id="contents">
 			<div id="select_main">
-				<div class="heading-wrap">
-					<h3>영화상세페이지</h3>
+				<div class="heading-wrap" style="margin-top: 50px;">
+					<h2 style="font-weight: bold;">영화상세페이지</h2>
 				</div>
 				<div class="movie-sector">
 					<div class="box-image">
@@ -233,7 +120,7 @@
 						<div class="like" style="margin-top: 10px;">
 							<a href="./UIcard/card-5.jsp"><img src="./images/stillcut.png"></a>
 							<a href="../Music/ost-5.jsp"><img src="./images/music.png" style="margin-left:-6px;"></a>
-							<img src="./images/reply.png" style="margin-right:-40px;">
+							<a href="#1"><img src="./images/reply.png" style="margin-right:-40px;"></a>
 						</div>
 					</div>
 				</div>
@@ -242,24 +129,27 @@
 			<!--스토리 글-->
 			<br>
 			<h4 style="font-weight: bold; padding-top: 15px;">줄거리</h4>
-			<div class="story">인피니티 워 이후 절반만 살아남은 지구 <br>마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다! <br>위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!<br><br><br><br></div>
+			<div class="story">서로가 최고의 친구였던 자매 ‘엘사’와 ‘안나’. 하지만 언니 ‘엘사’에게는 하나뿐인 동생에게조차 말 못할 비밀이 있다. 
+			<br>모든 것을 얼려버리는 신비로운 힘이 바로 그것. 
+			<br>‘엘사’는 통제할 수 없는 자신의 힘이 두려워 왕국을 떠나고, 얼어버린 왕국의 저주를 풀기 위해 ‘안나’는 언니를 찾아 환상적인 여정을 떠나는데…… <br><br><br><br>
+			</div>
 
 
 		<div class="slide">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
-				<%for(int i=0; i<9; i++) { %>
+				<%for(int i=0; i<5; i++) { %>
 				<li data-target="#myCarousel" data-slide-to="<%=i%>" class="active"></li>
 				<% } %>
 			</ol>
 			<div class="carousel-inner">
 				
 				<div class="item active">
-					<img style="width: 700px; margin:0 auto;" src="./images/F1.jpg">
+					<img src="./images/F1.jpg">
 				</div>
-				<%for(int i=2; i<11; i++) {%>
+				<%for(int i=2; i<6; i++) {%>
 				<div class ="item">
-					<img style="width: 700px; margin:0 auto;" src="./images/F<%=i%>.jpg" style="margin:0 auto;">
+					<img src="./images/F<%=i%>.jpg">
 				</div>
 				<% } %>
 			</div>
@@ -362,7 +252,7 @@
 		<% } else {
 		%>
 		<!--비회원댓글작성-->
-		<section style="width: 980px;" class="container">
+		<section ID="1" style="width: 980px;" class="container">
 			<form action="replyAction.jsp" id="Form" class="form-horizontal" method="post">
 				<div class="form-group">
 					<label>댓글작성&nbsp;</label>
@@ -386,15 +276,12 @@
 		%>
 		<!--댓글 끝-->
 
-		<a href="" class="btn_gotop"> <img src="../images/topbutton.png"
+		<a href="#2" class="btn_gotop" id="btn_gotop"> <img src="../images/topbutton.png"
 			style="position: fixed; width: 80px;"> <span class="glyphicon glyphicon-chevron-up"> </span>
 		</a>
 	</div>
 	</div>
 	 <script type="text/javascript">
-	 
-	 var replyPW = document.getElementsByClassName('cmt_delpw');
-	 var replyID = document.getElementsByClassName('cmt_ID');
 	 
 	 
 	 /*겪었던 함수실행문제 - id값을 담아서 함수를 실행했더니 자꾸 맨위의 댓글만 함수실행이 되어서 아래 댓글들은 함수실행이 안되는 문제를 겪음*/
@@ -404,46 +291,6 @@
 	 }
 		 
 	 
-	 /* $(function(){
-	    	$("#btn_ok").on("click",function(){
-	    		
-	    		$.ajax({
-	    			url:"replyDelete.jsp",
-	    			type:"cmt",
-	    			success: function() {
-	    				alert('입력되었습니다');
-	    			}
-	    		});
-	    		return false;
-	    	});
-	    }); */
-	 
-	 
-	 
-    
-    $(function(){
-    	$("#Form").on("submit",function(){
-    		var d=$("#Form").serialize();
-    		
-    		$.ajax({
-    			url:"replyAction.jsp",
-    			type:"post",
-    			data:d,
-    			success: function() {
-    				location.reload(true);
-    			}
-    		});
-    		return false;
-    	});
-    });
-    
-    /* function dis(){
-        if($('.btn_cmt_delete').css('display') == 'none'){
-        $('#cmt_delpw_box').show();
-    }else{
-        $('#cmt_delpw_box').hide();
-    	}
-    } */
     
     
 </script>

@@ -63,6 +63,22 @@ body::before {
 	margin: 0 auto;
 }
 
+h {
+	font-weight: bold;
+}
+
+p {
+	display: block;
+	position: relative;
+	text-align: center;
+	top: 226px;
+	color: white;
+	font-weight: bold;
+	font-size: 24px;
+	background-color: #34495e;
+	
+}
+
 </style>
 
 <body>
@@ -101,23 +117,27 @@ body::before {
 	</div>
 	<section id="container">
 		<!-- Swiper -->
-		<div class="contents">
+		<div class="contents" style="margin-top: 50px;">
+			<h1 style="text-align: center;">2010년</h1>
 			<div class="swiper-container gallery-top">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide"
-					style="background-image: url(../images/greenteck.jpg)"
-					onclick="location.href='detailMovie.jsp'">
-					</div>
-					<div class="swiper-slide" style="background-image: url(../Movie-inform/images/F2.jpg)"
-					onclick=""></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
-					<div class="swiper-slide" style="background-image: url()"></div>
+					style="background-image: url(./images/2010/1.jpg)"
+					onclick=""><p>나잇&데이</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/2.jpg)"
+					onclick=""><p>드래곤 길들이기</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/3.jpg)">
+					<p>버레스크</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/4.jpg)">
+					<p>시라노:연애조작단</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/5.jpg)">
+					<p>아이언맨2</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/6.jpg)">
+					<p>아저씨</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/7.jpg)">
+					<p>이끼</p></div>
+					<div class="swiper-slide" style="background-image: url(./images/2010/8.png)">
+					<p>인셉션</p></div>
 				</div>
 				<!-- Add Arrows -->
 				<div class="swiper-button-next swiper-button-white"></div>
@@ -125,26 +145,14 @@ body::before {
 			</div>
 			<div class="swiper-container gallery-thumbs">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
-					<div class="swiper-slide"
-						style="background-image: url(../images/greenteck.jpg)"></div>
+						<%for(int i=1; i<8; i++) { %>
+						<div class="swiper-slide"
+						style="background-image: url(./images/2010/<%=i%>.jpg)">
+						</div>
+						<% } %>
+						<div class="swiper-slide"
+						style="background-image: url(./images/2010/8.png)">
+						</div>
 				</div>
 			</div>
 		</div>

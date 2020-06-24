@@ -1,11 +1,12 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="Music.musicDao" %>
-<%@ page import="Music.musicDTO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="Music.musicDao"%>
+<%@ page import="Music.musicDTO"%>
 
 <jsp:useBean id="dto" class="Music.musicDTO"></jsp:useBean>
-<jsp:setProperty property="movieTitle" name="dto" param="m_search"/>
+<jsp:setProperty property="movieTitle" name="dto" param="m_search" />
 
 <%
 	String movie = dto.getMovieTitle();
@@ -96,7 +97,6 @@ h1 {
 	padding: 14px 2px 15px 50px;
 }
 
-
 .image {
 	position: absolute;
 	left: 770px;
@@ -105,31 +105,44 @@ h1 {
 
 </head>
 <body>
-<%  
+	<%  	
 			musicDao dao = musicDao.getInstance();
-			ArrayList<musicDTO> list = dao.getProperty(movie);
+			 
+
+			if(movie == null || "".equals(movie.trim())) {
+				PrintWriter script = response.getWriter();
+				String result = "<script> alert('내용을 입력해주세요'); history.back(); </script>";
+				script.println(result);
+				return;
+			}
+			
+			ArrayList<musicDTO> list = dao.getProperty(movie); 
+			
+			
+			
 			
 %>
 
-<div class="header">
+	<div class="header">
 		<form action="ostAction.jsp" method="get">
 			<div class="form-box">
-				<input type="text" class="search-field business" name="m_search" placeholder="영화제목">
-				<input type="submit" class="search-btn" value="search">
+				<input type="text" class="search-field business" name="m_search"
+					placeholder="영화제목"> <input type="submit" class="search-btn"
+					value="search">
 			</div>
 		</form>
 	</div>
 	<% for(int i=0; i<list.size(); i++) { 
 			dto = list.get(i);
 		%>
-		<table border="1" style="margin: 0 auto;">
-			<tr>
-				<td>영화 : <%= dto.getMovieTitle() %></td>
-				<td>음악 : <a href="ost-<%=dto.getBoardID()%>.jsp"><%= dto.getMusicName()%></a></td>
-				<hr>
-			</tr>
-		</table>
-		<% } %>
-	
+	<table border="1" style="margin: 0 auto;">
+		<tr>
+			<td>영화 : <%= dto.getMovieTitle() %></td>
+			<td>음악 : <a href="ost-<%=dto.getBoardID()%>.jsp"><%= dto.getMusicName()%></a></td>
+			<hr>
+		</tr>
+	</table>
+	<% } %>
+
 </body>
 </html>

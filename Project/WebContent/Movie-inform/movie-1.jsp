@@ -48,28 +48,8 @@
 </head>
 
 <style>
-
-#slider {
-	margin-top: 60px;
-}
-#slider .item {
-	height: 400px;
-	
-}
-#slide1 {
-	background: url(../images/endgame2.jpg);
-}
-
-#slide2 {
-	background: url(../images/endgame3.jpg);
-}
-
-#slide3 {
-	background: url(../images/endgame4.jpg);
-}
-
-.spec dt {
-	font-size: 13px;
+.carousel-control {
+	width: 0%;
 }
 </style>
 <body>
@@ -114,8 +94,8 @@
 
 		<div id="contents">
 			<div id="select_main">
-				<div class="heading-wrap">
-					<h3>영화상세페이지</h3>
+				<div class="heading-wrap" style="margin-top: 50px;">
+					<h2 style="font-weight: bold;">영화상세페이지</h2>
 				</div>
 				<div class="movie-sector">
 					<div class="box-image">
@@ -178,8 +158,6 @@
 			</a>
 		</div>
 	</div>
-			
-	
 	
 		<!--댓글-->
 		<label style="margin-top: 15px;">전체 리플</label>

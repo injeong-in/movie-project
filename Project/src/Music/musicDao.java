@@ -72,7 +72,7 @@ public class musicDao {
 		String sql = "SELECT music_name, artist_name, movie_title, board_id FROM music WHERE movie_title LIKE ?";
 		
 		ArrayList<musicDTO> list = new ArrayList<>();
-		char[] text = new char[17];
+		char[] text = new char[50];
 		movie = movie.replaceAll(" ", "");
 		text = movie.toCharArray();
 		String str = "";
@@ -98,6 +98,9 @@ public class musicDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return "-1";
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "-2";
 		}
 	}
 	

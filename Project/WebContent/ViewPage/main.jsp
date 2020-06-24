@@ -95,7 +95,7 @@
     <h1 style="font-size: 25px; color: white; font-weight: bold;">The Best Movie</h1>
     <h1 style="font-size: 33px; color: white; font-weight: bold;">in the world</h1>
     </section>
-    <section id="1" class="page1">
+    <section id="1" class="page1" onclick="location.href='./movie.jsp'">
     </section>
     <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../Music/ost-search.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>

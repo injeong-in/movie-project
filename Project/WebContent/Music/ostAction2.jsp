@@ -109,6 +109,14 @@ h1 {
 <body>
 <%  
 			musicDao dao = musicDao.getInstance();
+
+			if(title == null || "".equals(title.trim())) {
+				PrintWriter script = response.getWriter();
+				String result = "<script> alert('내용을 입력해주세요'); history.back(); </script>";
+				script.println(result);
+				return;
+			}
+			
 			String value = dao.goStraight(title);
 			PrintWriter script = response.getWriter();
 			if(value.equals("0")) {
@@ -126,6 +134,14 @@ h1 {
 				script.println("location.href='ost-search.jsp'");
 				script.println("</script>");
 			}
+			
+			if(value.equals("-2")) {
+				String result = "<script> alert('잘못된 검색어입니다'); history.back(); </script>";
+				script.println(result);
+				return;
+			}
+			
+			
 			
 %>
 	

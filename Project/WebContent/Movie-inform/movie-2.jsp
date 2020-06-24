@@ -49,28 +49,11 @@
 
 <style>
 
-#slider {
-	margin-top: 60px;
-}
-#slider .item {
-	height: 400px;
-	
-}
-#slide1 {
-	background: url(../images/endgame2.jpg);
+.carousel-control {
+	width: 0%;
+
 }
 
-#slide2 {
-	background: url(../images/endgame3.jpg);
-}
-
-#slide3 {
-	background: url(../images/endgame4.jpg);
-}
-
-.spec dt {
-	font-size: 13px;
-}
 </style>
 <body>
 	<section id="2"></section>
@@ -87,7 +70,7 @@
 					href="#">회원가입</a></li>
 				<li onclick="location.href='../ViewPage/movie.jsp'"><a
 					href="#">MOVIE</a></li>
-				<li onclick="location.href='../Music/ost.jsp'"><a href="#">OST</a></li>
+				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#">OST</a></li>
 				<li><a href="#">LOCATION</a></li>
 			</ul>
 			<a href="" id="trigger"></a>
@@ -114,60 +97,62 @@
 
 		<div id="contents">
 			<div id="select_main">
-				<div class="heading-wrap">
-					<h3>영화상세페이지</h3>
+				<div class="heading-wrap" style="margin-top: 50px;">
+					<h2 style="font-weight: bold;">영화상세페이지</h2>
 				</div>
 				<div class="movie-sector">
 					<div class="box-image">
 						<span class="thumb-image"> 
-						<img src="./images/7Beon.jpg" onclick="location.href='./images/7Beon.jpg'">
+							<img src="./images/7Beon.jpg" onclick="location.href='./images/7Beon.jpg'">
 						</span>
 					</div>
 					<div class="box-contents">
-						<div class="title">
-							<strong>7번방의 선물</strong>
-							<p style="margin-top: 10px;">Miracle in Cell No.7</p>
-						</div>
-						<div class="spec" style="margin-top: 5px;">
-							<dl>
-								<dt>감독 : 이환경</dt>
-								<dt>배우 : 류승룡, 박신혜, 갈소원... </dt>
-								<dt>장르 : 코미디</dt>
-								<dt>개봉 : 2013</dt>
-							</dl>
-						</div>
-						<div class="like" style="margin-top: 10px;">
-							<img src="./images/stillcut.png">
-							<img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
-							<a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!--스토리 글-->
-			<br>
-			<h4 style="font-weight: bold; padding-top: 15px;">줄거리</h4>
-			<div class="story">최악의 흉악범들이 모인 교도소 7번방에 이상한 놈이 들어왔다! <br>그는 바로 6살 지능의 딸바보 '용구'! <br>평생 죄만 짓고 살아온 7번방 패밀리들에게 떨어진 미션은 바로 <br>
-			'용구' 딸 '예승'이를 외부인 절대 출입금지 교도소에 반.입.하.는.것!<br><br><br></div>
+    <div class="title">
+        <strong>7번방의 선물</strong>
+        <p style="margin-top: 10px;">Miracle in Cell No.7</p>
+    </div>
+    <div class="spec" style="margin-top: 5px;">
+        <dl>
+            <dt>감독 : 이환경</dt>
+            <dt>배우 : 갈소원, 류승룡, 박상면, 박신혜, 정진영... </dt>
+            <dt>장르 : 코미디</dt>
+            <dt>개봉 : 2013</dt>
+        </dl>
+    </div>
+    <div id="like" class="like" style="margin-top: 48px;">
+        <img src="./images/stillcut.png" onclick="location.href=''">
+        <img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
+        <a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
+    </div>
+</div>
+</div>
+</div>
+​
+<!--스토리 글-->
+<br>
+<h4 style="font-weight: bold; padding-top: 15px;">줄거리</h4>
+<div class="story">대한민국 전국 최악의 흉악범들이 모인 교도소 7번방에 6살 지능의 딸바보 용구(류승룡). 
+<br>그의 죄명은 아동 유괴 강간 살해으로 죄명만 놓고 봤을 땐 사형이 당연한 흉악범. 
+<br> 하지만 시도때도 없이 딸 예승이를 찾아대는 용구가 그런 흉악범일 리 없다 생각한 7번방 멤버들은 기회를 틈타 7번방으로 용구의 딸 예승이를 데리고 오는데... <br><br><br><br>
+</div>
 
 
 		<div class="slide">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				
-				<%for(int i=0; i<9; i++) { %>
+				<%for(int i=0; i<5; i++) { %>
 				<li data-target="#myCarousel" data-slide-to="<%=i%>" class="active"></li>
 				<% } %>
 			</ol>
 			<div class="carousel-inner">
 				
 				<div class="item active">
-					<img style="width: 700px; margin:0 auto;" src="./images/7Beon1.jpg">
+					<img src="./images/7Beon1.jpg">
 				</div>
-				<%for(int i=2; i<10; i++) {%>
+				<%for(int i=2; i<6; i++) {%>
 				<div class ="item">
-					<img style="width: 700px; margin:0 auto;" src="./images/7Beon<%=i%>.jpg" style="margin:0 auto;">
+					<img src="./images/7Beon<%=i%>.jpg" style="margin:0 auto;">
 				</div>
 				<% } %>
 			</div>
@@ -179,8 +164,6 @@
 			</a>
 		</div>
 	</div>
-			
-	
 	
 		<!--댓글-->
 		<label style="margin-top: 15px;">전체 리플</label>
