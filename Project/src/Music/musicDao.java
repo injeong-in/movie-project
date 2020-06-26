@@ -67,12 +67,12 @@ public class musicDao {
 		return list;
 	}
 	
-	public String goStraight(String movie) {
+	public String getProperty2(String movie) {
 
 		String sql = "SELECT music_name, artist_name, movie_title, board_id FROM music WHERE movie_title LIKE ?";
 		
 		ArrayList<musicDTO> list = new ArrayList<>();
-		char[] text = new char[50];
+		char[] text = new char[17];
 		movie = movie.replaceAll(" ", "");
 		text = movie.toCharArray();
 		String str = "";
@@ -97,10 +97,41 @@ public class musicDao {
 			return "0";
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "-1";
-		} catch(Exception e) {
+		}
+		return "-1";
+	}
+	
+	public String goStraight(String movie) {
+
+		String sql = "SELECT music_name, artist_name, movie_title, board_id FROM music WHERE movie_title LIKE ?";
+		
+		ArrayList<musicDTO> list = new ArrayList<>();
+		char[] text = new char[50];
+		movie = movie.replaceAll(" ", ""); //검색어 공백제거
+		text = movie.toCharArray();
+		String str = "";
+		for(int i=0; i<text.length; i++) {
+			str += String.valueOf(text[i]+"%");
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, str);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				musicDTO dto = new musicDTO();
+				dto.setMusicName(rs.getString(1));
+				dto.setArtistName(rs.getString(2));
+				dto.setMovieTitle(rs.getString(3));
+				dto.setBoardID(rs.getInt(4));
+				list.add(dto);
+			}
+			return "0";
+		} catch (SQLException e) {
 			e.printStackTrace();
-			return "-2";
+			return "-1";
 		}
 	}
 	

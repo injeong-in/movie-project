@@ -231,5 +231,6 @@ nav a#trigger {
 		background-color: fuchsia;
 	}
 	.page4 {
-		background-color: olive;
+		background-color: white;
+		height: 100px;
 	}

@@ -1,6 +1,9 @@
 	var replyPW = document.getElementsByClassName('cmt_delpw');
 	 var replyID = document.getElementsByClassName('cmt_ID');
 	 
+	/*window.onload = function() {
+	document.getElementById('like').getElementsByTagName('img')[1].onclick = "location.href='../Music/ost-<%=boardID%>.jsp";
+}*/
 	 
 	 /*겪었던 함수실행문제 - id값을 담아서 함수를 실행했더니 자꾸 맨위의 댓글만 함수실행이 되어서 아래 댓글들은 함수실행이 안되는 문제를 겪음*/
 	 

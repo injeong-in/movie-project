@@ -117,16 +117,29 @@ h1 {
 				return;
 			}
 			
+			
+			
 			String value = dao.goStraight(title);
+			String judge = dao.getProperty2(title);
 			PrintWriter script = response.getWriter();
 			if(value.equals("0")) {
+				
 				ArrayList<musicDTO> list = dao.getProperty(title);
+				if(list.size() == 0) {
+					script.println("<script>");
+					script.println("alert('잘못된 검색어입니다');");
+					script.println("history.back();");
+					script.println("</script>");
+					return;
+				}
+				
 				dto = list.get(0);
 				int url = dto.getBoardID();
 				script.println("<script>");
 				script.println("location.href='ost-"+url+".jsp'");
 				script.println("</script>");
-				return;
+				return; 
+				
 			}
 			
 			if(value.equals("-1")) {
@@ -135,11 +148,11 @@ h1 {
 				script.println("</script>");
 			}
 			
-			if(value.equals("-2")) {
+			/* if(value.equals("-2")) {
 				String result = "<script> alert('잘못된 검색어입니다'); history.back(); </script>";
 				script.println(result);
 				return;
-			}
+			} */
 			
 			
 			

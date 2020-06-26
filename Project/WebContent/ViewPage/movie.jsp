@@ -120,7 +120,7 @@ p {
 				<li onclick="location.href='../Movie/memberJoin.jsp'"><a href="#3">회원가입</a></li>
 				<li onclick="location.href='./movie.jsp'"><a href="#4">MOVIE</a></li>
 				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#5">OST</a></li>
-				<li><a href="#">LOCATION</a></li>
+				<li><a href="#"></a></li>
 			</ul>
 			<a href="" id="trigger"></a>
 		</nav>
@@ -132,7 +132,7 @@ p {
 				<li onclick="location.href='../ViewPage/main.jsp'"><a href="#3">회원가입</a></li>
 				<li onclick="location.href='./movie.jsp'"><a href="#4">MOVIE</a></li>
 				<li onclick="location.href='../Music/ost-search.jsp'"><a href="#5">OST</a></li>
-				<li><a href="#">LOCATION</a></li>
+				<!-- <li><a href="#">LOCATION</a></li> -->
 
 			</ul>
 			<% } %>

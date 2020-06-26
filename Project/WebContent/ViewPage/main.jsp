@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>2010~2019 The Best Movie</title>
     <link rel="stylesheet" href="style2.css">
     <script src="../js/jquery-2.1.3.min.js">
     </script>
@@ -66,7 +66,7 @@
             <li onclick="location.href='../Movie/memberJoin.jsp'"><a href="">회원가입</a></li>
             <li><a href="#1">MOVIE</a></li>
             <li><a href="#2">OST</a></li>
-            <li><a href="#3">LOCATION</a></li>
+            <li><a href="#3"></a></li>
             
         </ul>
         <a href="" id="trigger"></a>
@@ -77,7 +77,7 @@
             <li onclick="location.href='../ViewPage/main.jsp'"><a href="">회원가입</a></li>
             <li><a href="#1">MOVIE</a></li>
             <li><a href="#2">OST</a></li>
-            <li><a href="#3">LOCATION</a></li>
+            <li><a href="#3"></a></li>
             
         </ul>
         <% } %>
@@ -96,14 +96,15 @@
     <h1 style="font-size: 33px; color: white; font-weight: bold;">in the world</h1>
     </section>
     <section id="1" class="page1" onclick="location.href='./movie.jsp'">
+    <h1 style="font-size: 45px; color: white; font-weight: bold;">Choice the Movie</h1>
     </section>
     <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../Music/ost-search.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>
     </section>
-    <section id="3" class="page3">
-    </section>
+    <!-- <section id="3" class="page3">
+    </section> -->
     <section id="4" class="page4">
-    <h1 style="font-size: 100px; color: white; display: inline-block;">FOOTER</h1>
+    <h1 style="font-size: 100px; color: white; display: inline-block;"></h1>
     </section>
     
     <a href="#5" id="btn_gotop" class="btn_gotop">

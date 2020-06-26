@@ -18,7 +18,9 @@
 		ArrayList<String> list = dao.idCheck(); //아이디 리스트 가져오기
 		PrintWriter script = response.getWriter();
 		String id = member.getUserID(); //브라우저 리퀘스트 입력값 담기
-
+		
+		int j = list.size()-1;
+		
 		String result = "<script> alert('중복된 아이디 입니다');" 
 		+ "history.back(); </script>";
 		
@@ -34,6 +36,16 @@
 				return;
 			}
 		}
+		
+		for(int i=0; i<list.size(); i++) {
+			String str = list.get(i);
+			
+			if(!str.equals(id) && j==i) {
+				script.println(result2);
+				return;
+			}
+		}
+		
 	%>
 </body>
 </html>
