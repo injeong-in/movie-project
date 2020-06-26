@@ -224,7 +224,8 @@ nav a#trigger {
 	}
 	
 	.page1 {
-		background-color: aqua;
+		background-image: url("./images/Bestmovie.jpg");
+		background-repeat: none;
 	}
 	.page3 {
 		background-color: fuchsia;

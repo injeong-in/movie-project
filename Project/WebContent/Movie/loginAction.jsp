@@ -48,8 +48,9 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('이미 로그인 되어 있습니다.')");
-			script.println("location.href = 'memberJoin.jsp'");
+			script.println("history.back();");
 			script.println("</script>");
+			return;
 		}
 		
 		if(result == 1) {
@@ -57,8 +58,9 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인 성공입니다.')");
-			script.println("location.href = 'memberJoin.jsp'");
+			script.println("location.href='../ViewPage/main.jsp'");
 			script.println("</script>");
+			return;
 		} 
 		
 		else if(result == 0) {
@@ -67,6 +69,7 @@
 			script.println("alert('패스워드가 일치하지 않습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
+			return;
 		}
 		
 		else if(result == -1) {
@@ -83,6 +86,7 @@
 				script.println("alert('데이터베이스 오류입니다.')");
 				script.println("history.back()");
 				script.println("</script>");
+				return;
 			}
 		
 		

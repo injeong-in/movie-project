@@ -74,7 +74,7 @@
         <ul class="clearfix">
             <li onclick="location.href='../ViewPage/main.jsp'"><a href="">HOME</a></li>
             <li onclick="location.href='../Movie/logoutAction.jsp'"><a href="">로그아웃</a></li>
-            <li onclick="location.href='../Movie/memberJoin.jsp'"><a href="">회원가입</a></li>
+            <li onclick="location.href='../ViewPage/main.jsp'"><a href="">회원가입</a></li>
             <li><a href="#1">MOVIE</a></li>
             <li><a href="#2">OST</a></li>
             <li><a href="#3">LOCATION</a></li>
@@ -103,7 +103,7 @@
     <section id="3" class="page3">
     </section>
     <section id="4" class="page4">
-    <h1 style="font-size: 100px; color: white; display: inline-block; ">FOOTER</h1>
+    <h1 style="font-size: 100px; color: white; display: inline-block;">FOOTER</h1>
     </section>
     
     <a href="#5" id="btn_gotop" class="btn_gotop">

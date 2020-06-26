@@ -1,5 +1,11 @@
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	
+window.onload = function() {
+	document.getElementsByClassName('image')[0].getElementsByTagName('img')[0].src = "./image/music-image.png";
+}
+
+
+
 	/* window.onload = function() {
 		
 		function fnc1() {

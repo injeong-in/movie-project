@@ -20,8 +20,8 @@ if (session.getAttribute("userID") != null) {
 ReplyDao dao = ReplyDao.getInstance();
 
 /*게시물 ID번호 세팅*/
-dto.setBoardID(22);
-dto2.setBoardID(22);
+dto.setBoardID(21);
+dto2.setBoardID(21);
 
 int boardID = dto2.getBoardID();
 int boardID2 = dto.getBoardID();
@@ -104,26 +104,26 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 				</div>
 				<div class="movie-sector">
 					<div class="box-image">
-						<span class="thumb-image"> <img src="./images/LLL.jpg">
+						<span class="thumb-image"> <img src="./images/LM.jpg">
 							<!--포스터-->
 						</span>
 					</div>
 					<!--박스콘텐츠-->
-   <div class="box-contents">
+    <div class="box-contents">
     <div class="title">
-        <strong>라라랜드</strong>
-        <p style="margin-top: 10px;">La La Land</p>
+        <strong>레미제라블</strong>
+        <p style="margin-top: 10px;">Les Miserables</p>
     </div>
     <div class="spec" style="margin-top: 5px;">
         <dl>
-            <dt>감독 : 데이미언 셔젤</dt>
-            <dt>배우 : 엠마 스톤, 라이언 고슬링... </dt>
+            <dt>감독 : 톰 후퍼</dt>
+            <dt>배우 : 헬레나 본햄 카터, 휴 잭맨, 앤 해서웨이, 아만다 사이프리드, 러셀 크로우... </dt>
             <dt>장르 : 뮤지컬</dt>
-            <dt>개봉 : 2016</dt>
+            <dt>개봉 : 2012</dt>
         </dl>
     </div>
     <div id="like" class="like" style="margin-top: 48px;">
-        <img src="./images/stillcut.png" onclick="location.href=''">
+        <img src="./images/stillcut.png" onclick="location.href='./UIcard/card-21.jsp'">
         <img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
         <a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
     </div>
@@ -134,11 +134,10 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 <!--스토리 글-->
 <br>
 <h4 style="font-weight: bold; padding-top: 15px;">줄거리</h4>
-<div class="story"> 황홀한 사랑, 순수한 희망, 격렬한 열정…
-    꿈을 꾸는 사람들을 위한 별들의 도시 ‘라라랜드’.<br>
-    재즈 피아니스트 ‘세바스찬’(라이언 고슬링)과 배우 지망생 ‘미아’(엠마 스톤)
-<br>  인생에서 가장 빛나는 순간 만난 두 사람은
-미완성인 서로의 무대를 만들어가기 시작한다.<br><br><br><br>
+<div class="story"> 올 겨울, 당신의 영혼을 울리는 감동 대작!
+    사랑과 용서, 구원과 희망을 향한 노래가 시작된다!<br>
+    빵 한 조각을 훔친 죄로 19년의 감옥살이를 한 장발장(휴 잭맨). 전과자라는 이유만으로 모두의 박해를 받던 장발장은 우연히 만난 신부의 손길 아래 구원을 받고 새로운 삶을 결심한다.
+<br>  오래된 누명으로 다시 체포된 장발장은 코제트를 찾아 탈옥을 감행하는데…<br><br><br><br>
 </div>
 
 
@@ -158,14 +157,14 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 					<div class="carousel-inner">
 
 						<div class="item active">
-							<img src="./images/LLL1.jpg">
+							<img src="./images/LM1.jpg">
 							<!--이미지1-->
 						</div>
 						<%
 							for (int i = 2; i < 6; i++) {
 						%>
 						<div class="item">
-							<img src="./images/LLL<%=i%>.jpg" style="margin: 0 auto;">
+							<img src="./images/LM<%=i%>.jpg" style="margin: 0 auto;">
 						</div>
 						<!--나머지 이미지-->
 						<%

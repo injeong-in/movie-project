@@ -25,6 +25,16 @@
 </head>
 <body>
 	<%
+	if (session.getAttribute("userID") != null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인 상태입니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+		return;
+	}
+		
+		
 		if (member.getUserID() == null || member.getUserPW() == null || member.getUserName() == null
 				|| member.getEmail() == null || member.getPhoneNumber() == null) {
 			PrintWriter script = response.getWriter();
@@ -51,7 +61,7 @@
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('회원가입이 완료되었습니다.')");
-				script.println("location.href='../chat/ChatPage.jsp'");
+				script.println("location.href='./login.jsp'");
 				script.println("</script>");
 			}
 		

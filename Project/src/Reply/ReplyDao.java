@@ -234,25 +234,48 @@ public class ReplyDao implements PrototypeReply{
 		pstmt.close();
 		return list;
 	}
-
-
-	public static void main(String[] args) {
-		
-		ReplyDao dao = ReplyDao.getInstance();
-		int j = 0;
+	
+	
+	
+	//게시물의 댓글수 카운트
+	public String getCount(int boardID) {
 		try {
-			ArrayList<Object> list = dao.replyList3(2);
+			ArrayList<Object> list = replyList3(boardID);
+			int count = 0;
 			for(int i=0; i<list.size(); i++) {
-				ReplyDTO dto = (ReplyDTO) list.get(i);
-				++j;
-				System.out.print(j +" "+ dto.getUserID()+" ");
-				System.out.println(dto.getReplyContent());
+				count++;
 			}
-			
+			return String.valueOf(count);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "-1";
+	}
+
+	public static void main(String[] args) {
+		
+		
+		
+		
+		ReplyDao dao = ReplyDao.getInstance();
+		
+		System.out.println(dao.getCount(2));
+		
+//		int j = 0;
+//		try {
+//			ArrayList<Object> list = dao.replyList3(2);
+//			for(int i=0; i<list.size(); i++) {
+//				ReplyDTO dto = (ReplyDTO) list.get(i);
+//				++j;
+//				System.out.print(j +" "+ dto.getUserID()+" ");
+//				System.out.println(dto.getReplyContent());
+//			}
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 		
 //		try {

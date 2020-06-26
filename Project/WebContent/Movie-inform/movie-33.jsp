@@ -104,26 +104,26 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 				</div>
 				<div class="movie-sector">
 					<div class="box-image">
-						<span class="thumb-image"> <img src="./images/Bi.jpg">
+						<span class="thumb-image"> <img src="./images/BR.jpg">
 							<!--포스터-->
 						</span>
 					</div>
 					<!--박스콘텐츠-->
 		<div class="box-contents">
     <div class="title">
-        <strong>뷰티 인사이드</strong>
-        <p style="margin-top: 10px;">The Beauty Inside</p>
+        <strong>보헤미안랩소디</strong>
+        <p style="margin-top: 10px;">Bohemian Rhapsody</p>
     </div>
     <div class="spec" style="margin-top: 5px;">
         <dl>
-            <dt>감독 : 백종열</dt>
-            <dt>배우 : 박서준, 박신혜, 한효주... </dt>
-            <dt>장르 : 로맨스</dt>
-            <dt>개봉 : 2015</dt>
+            <dt>감독 : 브라이언 싱어</dt>
+            <dt>배우 : 조셉 마젤로, 벤 하디, 루시 보인턴, 라미 말렉, 귈림 리... </dt>
+            <dt>장르 : 드라마</dt>
+            <dt>개봉 : 2018</dt>
         </dl>
     </div>
     <div id="like" class="like" style="margin-top: 48px;">
-        <img src="./images/stillcut.png" onclick="location.href=''">
+        <img src="./images/stillcut.png" onclick="location.href='./UIcard/card-33.jsp'">
         <img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
         <a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
     </div>
@@ -134,11 +134,13 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 <!--스토리 글-->
 <br>
 <h4 style="font-weight: bold; padding-top: 15px;">줄거리</h4>
-<div class="story">남자, 여자, 아이, 노인.. 심지어 외국인까지! 자고 일어나면 매일 다른 모습으로 변하는 남자, ‘우진’.<br>
-    그에게 처음으로 비밀을 말하고 싶은 단 한 사람이 생겼다.
+<div class="story">“나는 스타가 되지 않을 것이다, 전설이 될 것이다”<br>
+ 공항에서 수하물 노동자로 일하며 음악의 꿈을 키우던 이민자 출신의 아웃사이더 ‘파록버사라’
+ 보컬을 구하던 로컬 밴드에 들어가게 되면서 ‘프레디 머큐리’라는 이름으로 밴드 ‘퀸’을 이끌게 된다.
     <br>
-    드디어 D-DAY! ‘우진’은 그녀에게 자신의 마음을 고백하기로 하는데…
-    <br><br><br><br>
+ 세상에서 소외된 아웃사이더에서 전설의 록밴드 ‘퀸’이 되기까지,
+ 우리가 몰랐던 그들의 진짜 이야기가 시작된다!
+<br><br><br><br>
 </div>
 
 
@@ -158,14 +160,14 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 					<div class="carousel-inner">
 
 						<div class="item active">
-							<img src="./images/Bi1.jpg">
+							<img src="./images/BR1.jpg">
 							<!--이미지1-->
 						</div>
 						<%
 							for (int i = 2; i < 6; i++) {
 						%>
 						<div class="item">
-							<img src="./images/Bi<%=i%>.jpg" style="margin: 0 auto;">
+							<img src="./images/BR<%=i%>.jpg" style="margin: 0 auto;">
 						</div>
 						<!--나머지 이미지-->
 						<%

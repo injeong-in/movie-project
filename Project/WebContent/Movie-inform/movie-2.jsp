@@ -45,6 +45,7 @@
     </script>
 <script src="../js/jquery.scrollTo.min.js"></script>
 <script src="./script.js"></script>
+
 </head>
 
 <style>
@@ -168,6 +169,7 @@
 		<!--댓글-->
 		<label style="margin-top: 15px;">전체 리플</label>
 		<hr style="border: 1.5px solid gray;">
+		<div id="replyList">
 		<% 
 			ArrayList<ReplyUserDTO> check = dao.replyList2(boardID);
 			ArrayList<Object> list = dao.replyList3(boardID2);
@@ -176,7 +178,7 @@
 				String id = dto.getUserID();
 				String reply = dto.getReplyContent();
 			%>
-
+	
 		<table>
 			<tr>
 				<%-- <%if(userID == null) id = "***"; %> --%>
@@ -210,7 +212,12 @@
 		</table>
 
 		<% } %>
+		
 	<hr>
+	</div>
+	
+	
+	<!-- <input type="button" onclick="myFunction()" value="댓글 더보기"> -->
 		<%-- <% 
 			ArrayList<ReplyUserDTO> list2 = dao.replyList2(1);
 			for(ReplyUserDTO reply : list2) {
@@ -283,7 +290,28 @@
 		</div>
 	</div>
 	 <script type="text/javascript">
+	    
+	<%--  function myFunction() {
+	   var parentNode = document.createElement("table")
+	   var node = document.createElement("tr");
+	   var childNode = document.createElement("td");
+	   
+	   <% 
+	   for(int i=4; i<8; i++) {
+	   dto = (ReplyDTO) list.get(i);
+				String id = dto.getUserID();
+				String reply = dto.getReplyContent();%>
+	   
+	   var textnode = document.createTextNode("<%=id%>       <%=reply%>      ");
+	   node.appendChild(textnode);
+	   document.getElementById("replyList").appendChild(childNode).appendChild(node).appendChild(parentNode);
+	   <% } %>
+	 } --%>
+		
+
 	 
+	 
+	
 	 var deleteReply = function(i) {
 		 location.href = 'replyDelete.jsp?cmt_ID=' +replyID[i].value + '&cmt_password=' + replyPW[i].value +'&boardID='+<%=boardID%>;
 	 }

@@ -147,7 +147,7 @@
 				<div class="item active">
 					<img src="./images/F1.jpg">
 				</div>
-				<%for(int i=2; i<6; i++) {%>
+				<%for(int i=3; i<6; i++) {%>
 				<div class ="item">
 					<img src="./images/F<%=i%>.jpg">
 				</div>
@@ -279,8 +279,8 @@
 		<a href="#2" class="btn_gotop" id="btn_gotop"> <img src="../images/topbutton.png"
 			style="position: fixed; width: 80px;"> <span class="glyphicon glyphicon-chevron-up"> </span>
 		</a>
-	</div>
-	</div>
+		</div>
+			</div>
 	 <script type="text/javascript">
 	 
 	 

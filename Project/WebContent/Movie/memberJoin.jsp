@@ -37,57 +37,159 @@ table {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: montserrat;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	background-image: linear-gradient(120deg, #3498db, #8e44ad);
+}
+
+.login-form {
+	width: 360px;
+	background: #f1f1f1;
+	height: 720px;
+	padding: 80px 40px;
+	border-radius: 10px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.login-form h1 {
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+.txtb {
+	border-bottom: 2px solid #adadad;
+	position: relative;
+	margin: 30px 0;
+}
+
+.txtb input {
+	font-size: 15px;
+	color: #333;
+	border: none;
+	width: 100%;
+	outline: none;
+	background: none;
+	padding: 0 5px;
+	height: 20px;
+}
+
+.txtb span::before {
+	content: attr(data-placeholder);
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	color: #adadad;
+	transform: translateY(-50%);
+	z-index: -1;
+	transition: .5s;
+}
+
+.txtb span::after {
+	content: '';
+	position: absolute;
+	width: 0%;
+	height: 2px;
+	background: linear-gradient(120deg, #3498db, #8e44ad);
+	transition: .5s;
+}
+
+.focus+span::before {
+	top: -5px;
+}
+
+.focus+span::after {
+	width: 100%;
+}
+
+.logbtn {
+	display: block;
+	width: 100%;
+	height: 50px;
+	border: none;
+	background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+	background-size: 200%;
+	color: #fff;
+	outline: none;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.logbtn:hover {
+	background-position: right;
+}
+
+.bottom-text {
+	margin-top: 60px;
+	text-align: center;
+	font-size: 13px;
+}
+
+
+
 </style>
 
 </head>
 <body>
 
 	<form id="fm" onsubmit="return check(this);"
-		action="memberJoinAction.jsp" method="post">
-		<table border="1">
-			<h1 style="text-align: center; margin-top: 190px;">회원가입</h1>
-			<th colspan="2" align="center" bgcolor="darkgray" spanstyle="color: white">회원 기본 정보</th>
-			<tr>
-				<td align="center">ID</td>
-				<td><input type="text" name="userID" id="userID"></td>
-			</tr>
+		action="memberJoinAction.jsp" class="login-form" method="post">
+			<h1>회원가입</h1>
+				
+				<div class="txtb">
+					<input type="text" name="userID" id="userID">
+					<span data-placeholder="아이디 입력"></span>
+				</div>
+				
+				<div class="bottom-text" style="margin-top: -20px;">
+					아이디 중복검사 <input type="button" value="확인" onclick="idFind()">
+				</div>
 			
-			<tr>
-				<td align="center">아이디 중복검사</td>
-				<td><input type="button" value="확인" onclick="idFind2()"></td>
-			</tr>
-			
-			<tr>
-				<td align="center">PW</td>
-				<td><input type="password" name="userPW"></td>
-			</tr>
-			<tr>
-				<td align="center">PW확인</td>
-				<td><input type="password" placeholder="영어+특수문자+숫자를 섞어서 (8~16)자리" name="correctPassword"></td>
-			</tr>
-			<tr>
-				<td align="center">이름</td>
-				<td><input type="text" name="userName"></td>
-			</tr>
-			<tr>
-				<td align="center">이메일</td>
-				<td><input type="email" name="email"></td>
-			</tr>
-			<tr>
-				<td align="center">연락처</td>
-				<td><input type="text" name="phone"></td>
-			</tr>
-			<tr>
+				<div class="txtb">
+				<input type="password" name="userPW">
+				<span data-placeholder="비밀번호 입력"></span>
+				</div>
+				<div class="bottom-text" style="margin-top: -20px;">영어+특수문자+숫자를 섞어서 (8~16)자리</div>
+				
+				<div class="txtb">
+				<input type="password" name="correctPassword">
+				<span data-placeholder="비밀번호 입력 확인"></span>
+				</div>
+				
+				<div class="txtb">
+				<input type="text" name="userName">
+				<span data-placeholder="이름"></span>
+				</div>
+				
+				<div class="txtb">
+				<input type="email" name="email">
+				<span data-placeholder="이메일 주소"></span>
+				</div>
+				
+				<div class="txtb">
+				<input type="text" name="phone">
+				<span data-placeholder="연락처"></span>
+				</div>
 
-				<td colspan="2" align="center"><input type="submit"
-					name="join-button" value="회원가입"> <input type="button"
-					value="검사" onclick="check()"> <input type="button"
-					value="초기화" onclick="inputClear()"></td>
-			</tr>
+				   <input type="submit" class="logbtn"
+					name="join-button" value="회원가입">
 
-		</table>
+				<div class="bottom-text">
+					계정이 이미 있으신가요? <a href="http://localhost/Project/Movie/login.jsp">로그인 하러가기</a>
+				</div>
 	</form>
-	<%
+	<%-- <%
 		if (userID != null) {
 	%>
 	<div class="logout">
@@ -110,8 +212,17 @@ table {
 
 	<%
 		}
-	%>
-
+	%> --%>
+	<script type="text/javascript">
+		$(".txtb input").on("focus",function(){
+			$(this).addClass("focus");
+		});
+		
+		$(".txtb input").on("blur",function(){
+			if($(this).val() == "")
+			$(this).removeClass("focus");
+		});	
+	</script>
 	<script>
 	var text ="";
 	var count = 0;

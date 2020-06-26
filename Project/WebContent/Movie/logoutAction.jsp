@@ -24,7 +24,7 @@
 		script.println("</script>");
 	%>
 	<script>
-		location.href = 'memberJoin.jsp';
+		history.back();
 	</script>
 </body>
 </html>

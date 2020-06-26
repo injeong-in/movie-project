@@ -20,11 +20,18 @@
 		String id = member.getUserID(); //브라우저 리퀘스트 입력값 담기
 
 		String result = "<script> alert('중복된 아이디 입니다');" 
-		+ "location.href='memberJoin.jsp'</script>";
-
+		+ "history.back(); </script>";
+		
+		String result2 = "<script> alert('사용가능한 아이디 입니다');" 
+				+ "history.back(); </script>";
+		
+		int num = list.size();
+				
+				
 		for (String str : list) {
 			if (str.equals(id)) {
 				script.println(result);
+				return;
 			}
 		}
 	%>

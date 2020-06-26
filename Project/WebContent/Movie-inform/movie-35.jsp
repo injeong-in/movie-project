@@ -104,7 +104,7 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 				</div>
 				<div class="movie-sector">
 					<div class="box-image">
-						<span class="thumb-image"> <img src="./images/BA.jpg">
+						<span class="thumb-image"> <img src="./images/Bi.jpg">
 							<!--포스터-->
 						</span>
 					</div>
@@ -123,7 +123,7 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
         </dl>
     </div>
     <div id="like" class="like" style="margin-top: 48px;">
-        <img src="./images/stillcut.png" onclick="location.href=''">
+        <img src="./images/stillcut.png" onclick="location.href='./UIcard/card-35.jsp'">
         <img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
         <a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
     </div>
@@ -158,14 +158,14 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 					<div class="carousel-inner">
 
 						<div class="item active">
-							<img src="./images/BA1.jpg">
+							<img src="./images/Bi1.jpg">
 							<!--이미지1-->
 						</div>
 						<%
 							for (int i = 2; i < 6; i++) {
 						%>
 						<div class="item">
-							<img src="./images/BA<%=i%>.jpg" style="margin: 0 auto;">
+							<img src="./images/Bi<%=i%>.jpg" style="margin: 0 auto;">
 						</div>
 						<!--나머지 이미지-->
 						<%
