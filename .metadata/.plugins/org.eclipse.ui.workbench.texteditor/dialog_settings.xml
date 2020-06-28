@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="page4"/>
+		<item key="selection" value="hover"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="hover"/>
+			<item value="container"/>
+			<item value="40px"/>
+			<item value="nav"/>
+			<item value="Best"/>
+			<item value="best"/>
 			<item value="page4"/>
 			<item value="login.jsp"/>
 			<item value=".jsp"/>
@@ -17,12 +23,6 @@
 			<item value="member"/>
 			<item value="image"/>
 			<item value="deleteReply"/>
-			<item value="h1"/>
-			<item value="place"/>
-			<item value="search-bar"/>
-			<item value="nav a"/>
-			<item value=".pad img"/>
-			<item value="img"/>
 		</list>
 		<list key="replacehistory">
 		</list>
