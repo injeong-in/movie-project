@@ -91,13 +91,13 @@
         <div><a href="">회원가입</a></div>
     </div> -->
     
-    <section id="container" data-vide-bg="stream">
+    <section id="container" class="page1" style="height: 760px;">
+    </section>
+    <section id="1" data-vide-bg="stream" onclick="location.href='./movie.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">The Best Movie</h1>
     <h1 style="font-size: 33px; color: white; font-weight: bold;">in the world</h1>
     </section>
-    <section id="1" class="page1" onclick="location.href='./movie.jsp'">
-    <h1 style="font-size: 45px; color: white; font-weight: bold;">Choice the Movie</h1>
-    </section>
+    
     <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../Music/ost-search.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>
     </section>
@@ -106,7 +106,9 @@
     <section id="4" class="page4">
     <h1 style="font-size: 100px; color: white; display: inline-block;"></h1>
     </section>
-    
+    <section id="5" class="page5">
+    <h1 style="font-size: 100px; color: white; display: inline-block;"></h1>
+    </section>
     <a href="#5" id="btn_gotop" class="btn_gotop">
     <img src="../images/topbutton.png" style="width:80px; display: block; margin: 240px; "> 
   	<span class="glyphicon glyphicon-chevron-up">

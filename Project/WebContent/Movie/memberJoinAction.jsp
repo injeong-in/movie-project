@@ -57,7 +57,6 @@
 				script.println("history.back()");
 				script.println("</script>");
 			} else {
-				request.getSession().setAttribute("userID",userID);
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('회원가입이 완료되었습니다.')");

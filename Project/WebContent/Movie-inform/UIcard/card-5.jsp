@@ -72,7 +72,7 @@
 <body>
 		<div id="wrapper">
 				<div id="columns">
-					<%for(int i=1; i<10; i++) { %>
+					<%for(int i=3; i<10; i++) { %>
 					<div class="card">
 						<a href="../images/F<%=i%>.jpg"><img alt="" src="../images/F<%=i%>.jpg"></a>
 						<p></p>

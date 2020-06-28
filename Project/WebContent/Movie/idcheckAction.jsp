@@ -28,7 +28,15 @@
 				+ "history.back(); </script>";
 		
 		int num = list.size();
-				
+		
+		if (member.getUserID() == null || member.getUserPW() == null || member.getUserName() == null
+				|| member.getEmail() == null || member.getPhoneNumber() == null) {
+			script.println("<script>");
+			script.println("alert('아이디를 입력해주세요')");
+			script.println("history.back()");
+			script.println("</script>");
+			return;
+		}		
 				
 		for (String str : list) {
 			if (str.equals(id)) {

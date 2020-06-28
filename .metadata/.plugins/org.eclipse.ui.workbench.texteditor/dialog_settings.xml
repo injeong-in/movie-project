@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="org.eclipse.jst.jsp.ui.internal.preferences.ui.JSPTemplatePreferencePage$JSPEditTemplateDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="861"/>
-		<item key="DIALOG_Y_ORIGIN" value="288"/>
-		<item key="DIALOG_WIDTH" value="612"/>
-		<item key="DIALOG_HEIGHT" value="436"/>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="page4"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="true"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="page4"/>
+			<item value="login.jsp"/>
+			<item value=".jsp"/>
+			<item value="page1"/>
+			<item value="#2"/>
+			<item value="section"/>
+			<item value="member"/>
+			<item value="image"/>
+			<item value="deleteReply"/>
+			<item value="h1"/>
+			<item value="place"/>
+			<item value="search-bar"/>
+			<item value="nav a"/>
+			<item value=".pad img"/>
+			<item value="img"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="903"/>
+		<item key="DIALOG_Y_ORIGIN" value="152"/>
+		<item key="DIALOG_WIDTH" value="288"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

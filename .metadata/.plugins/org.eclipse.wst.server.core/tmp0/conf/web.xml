@@ -508,19 +508,6 @@
 -->
 
   <!-- A filter that triggers request parameters parsing and rejects the    -->
-  <filter>
-		<filter-name>CharacterEncoding</filter-name>
-		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>CharacterEncoding</filter-name>
-		<url-pattern>/*</url-pattern>
-</filter-mapping>
   <!-- request if some parameters were skipped because of parsing errors or -->
   <!-- request size limitations.                                            -->
 <!--

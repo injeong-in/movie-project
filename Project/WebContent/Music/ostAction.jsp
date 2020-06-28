@@ -135,9 +135,9 @@ h1 {
 	<% for(int i=0; i<list.size(); i++) { 
 			dto = list.get(i);
 		%>
-	<table border="1" style="margin: 0 auto;">
+	<table border="0.5" style="margin: 0 auto;">
 		<tr>
-			<td>영화 : <%= dto.getMovieTitle() %></td>
+			<td>영화 : <%= dto.getMovieTitle() %> / </td>
 			<td>음악 : <a href="ost-<%=dto.getBoardID()%>.jsp"><%= dto.getMusicName()%></a></td>
 			<hr>
 		</tr>
