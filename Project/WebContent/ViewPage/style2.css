@@ -73,7 +73,6 @@ nav li {
     
 }
 
-/* �겢由ъ뼱�뵿�뒪 �빑 CSS 吏��젙(nav li�뿉 �젙�쓽�뻽�뜕 float:left�빐�젣) */
 .clearfix:before,
 .clearfix:after {
     content: " ";
@@ -89,7 +88,6 @@ nav li {
 }
 
 
-/* 硫붾돱�빆紐⑹뿉 ���븳 �뒪���씪 */
 nav a {
     color: #fff;
     display: inline-block;
@@ -116,12 +114,10 @@ nav a:hover, nav a:active {
     background-color: #fb00b7;
 }
 
-/* trigger�슂�냼濡� �뒪留덊듃�룿 �솕硫댁뿉留� �몴�떆 */
 nav a#trigger {
     display: none;
 }
 
-/* �깭釉붾┸ �꽕鍮꾧쾶�씠�뀡 */
 @media screen and (max-width:600px) {
     nav {
         height: auto;
@@ -174,7 +170,6 @@ nav a#trigger {
     }
 
 
-    /*�뒪留덊듃�룿 �솕硫� �듃由ш굅 */
     nav a#trigger {
         display: block;
         background-color: #283744;

@@ -91,9 +91,9 @@
         <div><a href="">회원가입</a></div>
     </div> -->
     
-    <section id="container" class="page1" style="margin: 0">
-    <img alt="" src="./images/Bestmovie.jpg" style="width: 100%;">
-    </section>
+    <div id="container" class="page1">
+    <img src="./images/Bestmovie.jpg" style="width: 100%;">
+    </div>
     <section id="1" data-vide-bg="stream" onclick="location.href='./movie.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">The Best Movie</h1>
     <h1 style="font-size: 33px; color: white; font-weight: bold;">in the world</h1>
