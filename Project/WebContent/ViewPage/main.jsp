@@ -91,12 +91,13 @@
         <div><a href="">회원가입</a></div>
     </div> -->
     
-    <section id="container" class="page1" style="height: 760px;">
+    <section id="container" class="page1" style="margin: 0">
+    <img alt="" src="./images/Bestmovie.jpg" style="width: 100%;">
     </section>
     <section id="1" data-vide-bg="stream" onclick="location.href='./movie.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">The Best Movie</h1>
     <h1 style="font-size: 33px; color: white; font-weight: bold;">in the world</h1>
-    </section>
+    </section>http://localhost/Project/ViewPage/main.jsp#5
     
     <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../Music/ost-search.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>

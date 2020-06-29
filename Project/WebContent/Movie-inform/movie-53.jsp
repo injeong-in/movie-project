@@ -124,7 +124,11 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
     </div>
     <div id="like" class="like" style="margin-top: 48px;">
         <img src="./images/stillcut.png" onclick="location.href='./UIcard/card-53.jsp'">
+<<<<<<< Updated upstream
         <img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-53.jsp'">
+=======
+        <img src="./images/music.png" style="margin-left:-6px;" onclick="location.href='../Music/ost-search.jsp'">
+>>>>>>> Stashed changes
         <a href="#1"><img id="reply" src="./images/reply.png" style="margin-left:-3px;"></a>
     </div>
 </div>

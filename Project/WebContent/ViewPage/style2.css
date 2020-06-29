@@ -41,18 +41,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* �뿬湲곌퉴吏� css 珥덇린�솕 */
 
 
 
-/* �뵒�옄�씤 �쁺�뿭 */
-.container {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: right;
-    
-}
 
 .container div a {
     margin-left: 20px;
@@ -224,8 +215,8 @@ nav a#trigger {
 	}
 	
 	.page1 {
-		background-image: url("./images/Bestmovie.jpg");
-		background-repeat: none;
+		height: 100%;
+		background-repeat: no-repeat;
 	}
 	.page3 {
 		background-color: fuchsia;
@@ -236,5 +227,6 @@ nav a#trigger {
 	}
 	.page5 {
 		background-image: url("./images/footer2.png");
+		background-color: white;
 		height: 100px;
 	}

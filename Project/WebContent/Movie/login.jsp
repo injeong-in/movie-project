@@ -127,7 +127,7 @@ body {
 		<input type="submit" class="logbtn" value="Login">
 
 		<div class="bottom-text">
-			Don't have account? <a href="http://192.168.0.54/Project/Movie/memberJoin.jsp">Sign up</a>
+			Don't have account? <a href="http://localhost/Project/Movie/memberJoin.jsp">Sign up</a>
 		</div>
 	</form>
 	<script type="text/javascript">

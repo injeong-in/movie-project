@@ -29,15 +29,17 @@
 		
 		int num = list.size();
 		
-		if (member.getUserID() == null || member.getUserPW() == null || member.getUserName() == null
-				|| member.getEmail() == null || member.getPhoneNumber() == null) {
+		
+		/*아무것도 입력하지 않았을때*/
+		if (member.getUserID() == null) {
 			script.println("<script>");
 			script.println("alert('아이디를 입력해주세요')");
 			script.println("history.back()");
 			script.println("</script>");
 			return;
 		}		
-				
+		
+		/*아이디 중복 체크*/
 		for (String str : list) {
 			if (str.equals(id)) {
 				script.println(result);
@@ -45,9 +47,12 @@
 			}
 		}
 		
+		
+		/*아이디 중복값 없을때*/
 		for(int i=0; i<list.size(); i++) {
 			String str = list.get(i);
 			
+			//j는 리스트의 사이즈 숫자와 같다. 즉 for문의 i가 리스트사이즈만큼 끝까지 돌았을때만 중복값이 없는것으로 확인한다.
 			if(!str.equals(id) && j==i) {
 				script.println(result2);
 				return;

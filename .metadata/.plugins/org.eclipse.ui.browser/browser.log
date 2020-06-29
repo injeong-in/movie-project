@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 6월 02, 2020 09:12:12.12 NEW SESSION
 6월 02, 2020 09:12:12.12 [12308:9604:0602/091212.124:ERROR:device_event_log_impl.cc(208)] [09:12:12.125] Bluetooth: bluetooth_adapter_winrt.cc:1060 Getting Default Adapter failed.
 6월 02, 2020 13:06:56.72 [12308:5448:0602/130656.719:ERROR:socket_stream.cc(218)] Closing stream with result -2
@@ -134,3 +135,38 @@
 6월 26, 2020 16:03:35.622 [18200:13532:0626/160335.622:ERROR:page_load_metrics_update_dispatcher.cc(165)] Invalid first_paint 0.481 s for first_image_paint 0.465 s
 6월 26, 2020 16:03:36.651 [18200:13532:0626/160336.651:ERROR:page_load_metrics_update_dispatcher.cc(165)] Invalid first_paint 0.481 s for first_image_paint 0.465 s
 6월 26, 2020 16:35:56.896 [18200:2208:0626/163556.895:ERROR:socket_stream.cc(218)] Closing stream with result -2
+=======
+5월 06, 2020 09:23:25.14 NEW SESSION
+5월 06, 2020 09:23:25.14 [9640:208:0506/092325.142:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 06, 2020 09:23:35.37 [9640:208:0506/092335.376:ERROR:device_event_log_impl.cc(162)] [09:23:35.376] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+5월 18, 2020 21:42:03.16 NEW SESSION
+5월 18, 2020 21:42:03.16 [10416:13020:0518/214203.150:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 18, 2020 21:42:05.64 [10416:13020:0518/214205.639:ERROR:account_info_fetcher.cc(60)] OnGetTokenFailure: Invalid credentials (credentials rejected by server).
+5월 18, 2020 21:42:16.70 [10416:13020:0518/214216.701:ERROR:device_event_log_impl.cc(162)] [21:42:16.701] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 18, 2020 21:53:00.86 [10416:13020:0518/215300.862:ERROR:event_router.cc(707)] Event dispatched while shutting down extensions browser client.
+5월 18, 2020 21:53:01.34 [0518/215301.334:ERROR:process_info.cc(329)] VirtualQueryEx: 액세스가 거부되었습니다. (0x5)
+5월 18, 2020 21:53:01.35 [0518/215301.348:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+5월 18, 2020 21:53:01.37 [0518/215301.351:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+5월 18, 2020 21:53:01.38 [0518/215301.352:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: 기존 프로세스에 액세스하려고 했습니다. (0xc000010a)
+
+5월 21, 2020 16:23:58.24 NEW SESSION
+5월 21, 2020 16:23:58.24 [8288:7752:0521/162358.240:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 16:24:00.66 [8288:7752:0521/162400.668:ERROR:account_info_fetcher.cc(60)] OnGetTokenFailure: Invalid credentials (credentials rejected by server).
+5월 21, 2020 16:24:12.66 [8288:7752:0521/162412.663:ERROR:device_event_log_impl.cc(162)] [16:24:12.663] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+5월 21, 2020 18:26:42.65 [0521/182642.654:ERROR:process_info.cc(329)] VirtualQueryEx: 액세스가 거부되었습니다. (0x5)
+5월 21, 2020 18:26:42.67 [0521/182642.657:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+5월 21, 2020 18:26:42.68 [0521/182642.659:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: 기존 프로세스에 액세스하려고 했습니다. (0xc000010a)
+5월 21, 2020 19:12:31.17 [6308:1164:0521/191231.178:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 19:12:47.29 [6308:1164:0521/191247.298:ERROR:device_event_log_impl.cc(162)] [19:12:47.298] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+5월 21, 2020 22:01:48.96 NEW SESSION
+5월 21, 2020 22:01:48.96 [1632:6072:0521/220148.962:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 22:01:58.50 [1632:6072:0521/220158.502:ERROR:device_event_log_impl.cc(162)] [22:01:58.501] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+
+6월 26, 2020 17:17:37.07 NEW SESSION
+6월 26, 2020 17:17:37.07 [13660:10932:0626/171737.068:ERROR:device_event_log_impl.cc(208)] [17:17:37.068] Bluetooth: bluetooth_adapter_winrt.cc:1060 Getting Default Adapter failed.
+
+6월 29, 2020 11:02:51.34 NEW SESSION
+6월 29, 2020 11:02:51.34 [1580:6572:0629/110251.344:ERROR:device_event_log_impl.cc(208)] [11:02:51.344] Bluetooth: bluetooth_adapter_winrt.cc:1060 Getting Default Adapter failed.
+>>>>>>> Stashed changes
