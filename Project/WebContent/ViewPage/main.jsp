@@ -97,7 +97,7 @@
     <section id="1" data-vide-bg="stream" onclick="location.href='./movie.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">The Best Movie</h1>
     <h1 style="font-size: 33px; color: white; font-weight: bold;">in the world</h1>
-    </section>http://localhost/Project/ViewPage/main.jsp#5
+    </section>
     
     <section data-vide-bg="waterfall" id="2" class="page2" onclick="location.href='../Music/ost-search.jsp'">
     <h1 style="font-size: 25px; color: white; font-weight: bold;">Listen to OST</h1>
