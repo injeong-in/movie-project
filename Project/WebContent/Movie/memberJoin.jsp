@@ -186,7 +186,7 @@ body {
 					name="join-button" value="회원가입">
 
 				<div class="bottom-text">
-					계정이 이미 있으신가요? <a href="http://localhost/Project/Movie/login.jsp">로그인 하러가기</a>
+					계정이 이미 있으신가요? <a href="./login.jsp">로그인 하러가기</a>
 				</div>
 	</form>
 	<%-- <%
@@ -233,7 +233,7 @@ body {
 	
 	function idFind() {
 	      let inputId = document.getElementsByName('userID');
-	      location.href = 'idcheckAction.jsp?userID=' + inputId[0].value;
+	      location.href = './idcheckAction.jsp?userID=' + inputId[0].value;
 	   }
 	
 	function idFind2() {
