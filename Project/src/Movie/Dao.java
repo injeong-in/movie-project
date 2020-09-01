@@ -17,10 +17,10 @@ public class Dao {
 
 	public Dao() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/movie?"; //
-			String dbID = "root"; //mysql 계정
-			String dbPassword = "1234"; //mysql 비밀번호
-			String driver = "org.gjt.mm.mysql.Driver";
+			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
+			String dbID = "winuser"; //mysql 계정
+			String dbPassword = "4321"; //mysql 비밀번호
+			String driver = "org.mariadb.jdbc.Driver";
 
 			Class.forName(driver);
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);

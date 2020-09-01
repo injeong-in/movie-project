@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import Movie.UserDTO;
@@ -19,11 +21,11 @@ public class ReplyDao implements PrototypeReply{
 
 	public ReplyDao() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/movie?"; //
-			String dbID = "root"; //mysql 계정
-			String dbPassword = "1234"; //mysql 비밀번호
-			String driver = "org.gjt.mm.mysql.Driver";
-
+			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
+			String dbID = "winuser"; //mysql 계정
+			String dbPassword = "4321"; //mysql 비밀번호
+			String driver = "org.mariadb.jdbc.Driver";
+			
 			Class.forName(driver);
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
 
@@ -154,10 +156,10 @@ public class ReplyDao implements PrototypeReply{
 	
 	//댓글 리스트 가져오기
 	@Override
-	public ArrayList<ReplyDTO> replyList(int boardID) throws Exception {
+	public List<ReplyDTO> replyList(int boardID) throws Exception {
 	
 		String sql = "SELECT reply_id, user_id,reply_content FROM reply_tb where board_id=?";
-		ArrayList<ReplyDTO> list = new ArrayList<>();
+		LinkedList<ReplyDTO> list = new LinkedList<>();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, boardID);
 		rs = pstmt.executeQuery();
@@ -179,12 +181,12 @@ public class ReplyDao implements PrototypeReply{
 
 
 	//비회원 댓글 리스트 가져오기
-	public ArrayList<ReplyUserDTO> replyList2(int boardID) throws Exception {
+	public List<ReplyUserDTO> replyList2(int boardID) throws Exception {
 	
 		String sql = "SELECT user_id,reply_content FROM reply_user where board_id=?";
 	
 		pstmt = conn.prepareStatement(sql);
-		ArrayList<ReplyUserDTO> list = new ArrayList<>();
+		LinkedList<ReplyUserDTO> list = new LinkedList<>();
 		pstmt.setInt(1, boardID);
 		rs = pstmt.executeQuery();
 		
@@ -204,7 +206,7 @@ public class ReplyDao implements PrototypeReply{
 	}
 	
 	//통합 댓글리스트 가져오기
-	public ArrayList<Object> replyList3(int boardID) throws Exception {
+	public List<Object> replyList3(int boardID) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT user_id, reply_content,reply_date");
 		sql.append("    FROM reply_tb WHERE board_id = ? UNION");
@@ -240,7 +242,7 @@ public class ReplyDao implements PrototypeReply{
 	//게시물의 댓글수 카운트
 	public String getCount(int boardID) {
 		try {
-			ArrayList<Object> list = replyList3(boardID);
+			List<Object> list = replyList3(boardID);
 			int count = 0;
 			for(int i=0; i<list.size(); i++) {
 				count++;

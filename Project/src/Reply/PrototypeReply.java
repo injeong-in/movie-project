@@ -1,6 +1,7 @@
 package Reply;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Movie.UserDTO;
 
@@ -17,7 +18,7 @@ public interface PrototypeReply {
 	
 	public String replyInsert(ReplyDTO dto, String sessionID) throws Exception;
 	
-	ArrayList<ReplyDTO> replyList(int replyID) throws Exception;
+	List<ReplyDTO> replyList(int replyID) throws Exception;
 	
 	
 }

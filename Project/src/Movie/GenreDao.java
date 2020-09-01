@@ -21,10 +21,10 @@ public class GenreDao {
 
 	public GenreDao() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/movie?"; //
-			String dbID = "root"; //mysql 계정
-			String dbPassword = "1234"; //mysql 비밀번호
-			String driver = "org.gjt.mm.mysql.Driver";
+			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
+			String dbID = "winuser"; //mysql 계정
+			String dbPassword = "4321"; //mysql 비밀번호
+			String driver = "org.mariadb.jdbc.Driver";
 
 			Class.forName(driver);
 			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
@@ -110,5 +110,13 @@ public class GenreDao {
 		return list;
 	}
 
+	
+	public static void main(String[] args) {
+		GenreDao dao = getInstance();
+		ArrayList<String> list = dao.getProperty(2013);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+	}
 
 }

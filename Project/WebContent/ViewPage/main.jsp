@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%  
-		request.setCharacterEncoding("UTF-8");
 		
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
@@ -85,11 +84,6 @@
 
 
 
-    <!-- <div class="container">
-        <div><a href="">HOME</a></div>
-        <div><a href="">로그인</a></div>
-        <div><a href="">회원가입</a></div>
-    </div> -->
     
     <div id="container" class="page1">
     <img src="./images/Bestmovie.jpg" style="width: 100%;">
