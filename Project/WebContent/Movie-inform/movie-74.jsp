@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="Reply.ReplyDao"%>
@@ -191,8 +191,8 @@ int number = 0; //비회원 댓글삭제 인덱스넘버링 변수
 			<label style="margin-top: 15px;">전체 리플</label>
 			<hr style="border: 1.5px solid gray;">
 			<%
-			ArrayList<ReplyUserDTO> check = dao.replyList2(boardID);
-			ArrayList<Object> list = dao.replyList3(boardID2);
+			List<ReplyUserDTO> check = dao.replyList2(boardID);
+			List<Object> list = dao.replyList3(boardID2);
 			for (int i = 0; i < list.size(); i++) {
 				dto = (ReplyDTO) list.get(i);
 				String id = dto.getUserID();

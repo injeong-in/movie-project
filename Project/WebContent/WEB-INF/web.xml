@@ -54,8 +54,8 @@
 	
 	
 	<resource-ref>
-		<description>Connection</description>
-		<res-ref-name>jdbc/mysql</res-ref-name>
+		<description></description>
+		<res-ref-name>jdbc/Project</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>

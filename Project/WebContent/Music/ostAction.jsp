@@ -1,3 +1,7 @@
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -107,7 +111,6 @@ h1 {
 <body>
 	<%  	
 			musicDao dao = musicDao.getInstance();
-			 
 
 			if(movie == null || "".equals(movie.trim())) {
 				PrintWriter script = response.getWriter();
@@ -117,8 +120,6 @@ h1 {
 			}
 			
 			ArrayList<musicDTO> list = dao.getProperty(movie); 
-			
-			
 			
 			
 %>

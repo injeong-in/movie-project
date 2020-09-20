@@ -210,6 +210,7 @@ public class ReplyDao implements PrototypeReply{
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT user_id, reply_content,reply_date");
 		sql.append("    FROM reply_tb WHERE board_id = ? UNION");
+		
 		sql.append("       SELECT user_id, reply_content,reply_date");
 		sql.append("           FROM reply_user WHERE board_id = ?");
 		sql.append("       ORDER BY reply_date ASC;");
