@@ -32,7 +32,7 @@
 		username="winuser"
 		password="4321"
 		driverClassName="org.mariadb.jdbc.Driver"
-		url="jdbc:mariadb://137.128.100.106:3306/movie"
+		url="jdbc:mariadb://137.128.100.106:3306/movie?autoReconnect=true"
 		maxActive="500"
 		maxIdle="100"
 		/>

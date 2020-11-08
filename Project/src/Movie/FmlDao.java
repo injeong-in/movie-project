@@ -22,7 +22,7 @@ public class FmlDao {
 	
 	public FmlDao() {
 		try {
-			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
+			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?autoReconnect=true"; //
 			String dbID = "winuser"; //mysql 계정
 			String dbPassword = "4321"; //mysql 비밀번호
 			String driver = "org.mariadb.jdbc.Driver";
