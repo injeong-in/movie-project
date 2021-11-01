@@ -54,7 +54,7 @@
 	
 	
 	<resource-ref>
-		<description></description>
+		<description>connection</description>
 		<res-ref-name>jdbc/Project</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>

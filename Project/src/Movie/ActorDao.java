@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class ActorDao {
 
 	private Connection conn;
@@ -16,17 +20,22 @@ public class ActorDao {
 	static private ActorDao dao = new ActorDao();
 
 	public ActorDao() {
+		/* JNDI 연결방식으로 교체 */
 		try {
-			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?autoReconnect=true"; //
-			String dbID = "winuser"; //mysql 계정
-			String dbPassword = "4321"; //mysql 비밀번호
-			String driver = "org.mariadb.jdbc.Driver";
-
-			Class.forName(driver);
-			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
-
-		} catch (Exception e) {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/Project");
+			conn = ds.getConnection();
+		} catch(Exception e) {
 			e.printStackTrace();
+		} 
+			finally {
+			try{
+				pstmt.close();
+				rs.close();
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

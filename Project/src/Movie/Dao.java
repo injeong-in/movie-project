@@ -20,26 +20,7 @@ public class Dao {
 	static private Dao dao = new Dao();
 
 	public Dao() {
-//		try {
-//			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
-//			String dbID = "winuser"; //mysql 계정
-//			String dbPassword = "4321"; //mysql 비밀번호
-//			String driver = "org.mariadb.jdbc.Driver";
-//
-//			Class.forName(driver);
-//			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try{
-//				pstmt.close();
-//				rs.close();
-//				conn.close();
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+
 		
 		
 		/* JNDI 연결방식으로 교체 */
@@ -49,7 +30,8 @@ public class Dao {
 			conn = ds.getConnection();
 		} catch(Exception e) {
 			e.printStackTrace();
-		} finally {
+		} 
+			finally {
 			try{
 				pstmt.close();
 				rs.close();
@@ -200,5 +182,8 @@ public class Dao {
 		return null; //DB오류
 	}
 
-
+	public static void main(String[] args) {
+		Dao dao = getInstance();
+		
+	}
 }

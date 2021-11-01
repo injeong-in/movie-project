@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="hover"/>
+		<item key="selection" value="pstmt"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="pstmt"/>
+			<item value="preparedStatement"/>
+			<item value="prepareStatement"/>
 			<item value="hover"/>
 			<item value="container"/>
 			<item value="40px"/>
@@ -20,9 +23,6 @@
 			<item value="page1"/>
 			<item value="#2"/>
 			<item value="section"/>
-			<item value="member"/>
-			<item value="image"/>
-			<item value="deleteReply"/>
 		</list>
 		<list key="replacehistory">
 		</list>

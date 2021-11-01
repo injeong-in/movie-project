@@ -75,8 +75,8 @@
 		<div>
 			<h1>영화정보 리스트</h1>
 			<table border="1">
-				<%
-					ArrayList<String> list = dao.getProperty();
+				<%-- <%
+					ArrayList<String> list = String.valueOf(dao.getProperty());
 				for (int i=0; i<list.size(); i++) { 
 					String str = list.get(i);
 				%>
@@ -93,7 +93,7 @@
 						<% }
 						}
 						%>
-					
+					 --%>
 			</table>
 		</div>
 	</section>

@@ -9,6 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import Movie.UserDTO;
 
 public class ReplyDao implements PrototypeReply{
@@ -21,16 +25,21 @@ public class ReplyDao implements PrototypeReply{
 
 	public ReplyDao() {
 		try {
-			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
-			String dbID = "winuser"; //mysql 계정
-			String dbPassword = "4321"; //mysql 비밀번호
-			String driver = "org.mariadb.jdbc.Driver";
-			
-			Class.forName(driver);
-			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
 
-		} catch (Exception e) {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/Project");
+			conn = ds.getConnection();
+		} catch(Exception e) {
 			e.printStackTrace();
+		} 
+			finally {
+			try{
+				pstmt.close();
+				rs.close();
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -258,12 +267,9 @@ public class ReplyDao implements PrototypeReply{
 
 	public static void main(String[] args) {
 		
+		ReplyDao dao = getInstance();
 		
-		
-		
-		ReplyDao dao = ReplyDao.getInstance();
-		
-		System.out.println(dao.getCount(2));
+		System.out.println(dao.conn);
 		
 //		int j = 0;
 //		try {
@@ -304,5 +310,7 @@ public class ReplyDao implements PrototypeReply{
 	    return false;
 	}
 
+	
+	
 }
 	

@@ -7,36 +7,45 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class FmlDao {
-	
+
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
 	static private FmlDao dao = new FmlDao();
-	
+
 	public static FmlDao getInstance() {
 		return dao;
 	}
-	
-	
+
+
 	public FmlDao() {
+		/* JNDI 연결방식으로 교체 */
 		try {
-			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?autoReconnect=true"; //
-			String dbID = "winuser"; //mysql 계정
-			String dbPassword = "4321"; //mysql 비밀번호
-			String driver = "org.mariadb.jdbc.Driver";
-
-			Class.forName(driver);
-			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
-
-		} catch (Exception e) {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/Project");
+			conn = ds.getConnection();
+		} catch(Exception e) {
 			e.printStackTrace();
+		} 
+		finally {
+			try{
+				pstmt.close();
+				rs.close();
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	
+
 	public int insertProperty(FmlDTO dto) {
-		
+
 		String sql = "INSERT INTO filming_location VALUES(?,?,?,?,?);";
 
 		try {
@@ -54,19 +63,19 @@ public class FmlDao {
 		}
 		return -1;
 	}
-	
-	
+
+
 	public String deleteProperty(FmlDTO dto) {
-		
+
 		String sql = "DELETE FROM filming_location WHERE location_name=? && movie_name=?;";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getDeleteLocation());
 			pstmt.setString(2, dto.getDeleteMovie());
 			pstmt.executeUpdate();
-			
+
 			return "0";
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			//Can not issue data manipulation statements with executeQuery().
@@ -74,9 +83,9 @@ public class FmlDao {
 		}
 		return "-1";
 	}
-	
-	
-	
+
+
+
 	public ArrayList<String> getProperty(int id) {
 
 		String sql = "SELECT * FROM filming_location where l_id=?";
@@ -99,20 +108,20 @@ public class FmlDao {
 		}
 		return list;
 	}
-	
+
 	//id번호 갱신기능
-		public String modifyIdNumber(int number) {
-			String sql = "ALTER TABLE FmlDao AUTO_INCREMENT = ?;";
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, number);
-				pstmt.executeUpdate();
-				return String.valueOf(pstmt.executeUpdate());
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			return "-1";
+	public String modifyIdNumber(int number) {
+		String sql = "ALTER TABLE FmlDao AUTO_INCREMENT = ?;";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, number);
+			pstmt.executeUpdate();
+			return String.valueOf(pstmt.executeUpdate());
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+		return "-1";
+	}
 
 }

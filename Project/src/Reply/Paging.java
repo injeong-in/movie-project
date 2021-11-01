@@ -36,17 +36,17 @@ public class Paging {
     }
 
     // 총 페이지의 마지막 번호
-    public void makeLastPageNum() {
-    	ReplyDao dao = new ReplyDao();
-        int total = dao.getCount();
-
-        if( total % pageCount == 0 ) {
-            lastPageNum = (int)Math.floor(total/pageCount);
-        }
-        else {
-            lastPageNum = (int)Math.floor(total/pageCount) + 1;
-        }
-    }
+//    public void makeLastPageNum() {
+//    	ReplyDao dao = new ReplyDao();
+//        String emgTotal = dao.getCount();
+//        int total = Integer.parseInt(emgTotal);
+//        if( total % pageCount == 0 ) {
+//            lastPageNum = (int)Math.floor(total/pageCount);
+//        }
+//        else {
+//            lastPageNum = (int)Math.floor(total/pageCount) + 1;
+//        }
+//    }
 
     // 검색을 했을 때 총 페이지의 마지막 번호
     public void makeLastPageNum(int boardID) {

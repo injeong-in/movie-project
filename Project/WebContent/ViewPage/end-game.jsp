@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="Reply.ReplyDao"%>
@@ -197,7 +197,7 @@
 		<hr style="border: 1.5px solid gray;">
 		<% 
 			
-			ArrayList<Object> list = dao.replyList3(boardID2);
+			List<Object> list = dao.replyList3(boardID2);
 			for(int i=0; i<list.size(); i++) {
 				dto = (ReplyDTO) list.get(i);
 				String id = dto.getUserID();

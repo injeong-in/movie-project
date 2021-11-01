@@ -18,22 +18,7 @@ public class musicDao {
 	
 	static private musicDao dao = new musicDao();
 
-//	public musicDao() {
-//		try {
-//			String dbURL = "jdbc:mariadb://137.128.100.106:3306/movie?"; //
-//			String dbID = "winuser"; //mysql 계정
-//			String dbPassword = "4321"; //mysql 비밀번호
-//			String driver = "org.mariadb.jdbc.Driver";
-//
-//			Class.forName(driver);
-//			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-	
+
 	//DB연결 JNDI 방식으로 교체
 	public musicDao() {
 		try {
